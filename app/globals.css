@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ───────────────────────────────────────────────
+   Base layer
+   ─────────────────────────────────────────────── */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Manrope', system-ui, sans-serif;
+    color: #e2e8f0;
+    background-color: #0A1628;
+    line-height: 1.6;
+  }
+
+  ::selection {
+    background-color: rgba(217, 164, 65, 0.3);
+    color: #fff;
+  }
+}
+
+/* ───────────────────────────────────────────────
+   Component utilities
+   ─────────────────────────────────────────────── */
+@layer components {
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 bg-warm-gold text-midnight font-bold rounded-full
+           hover:bg-light-gold hover:shadow-[0_0_20px_rgba(217,164,65,0.3)] transition-all duration-300 text-xs sm:text-sm tracking-widest uppercase;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 border border-white/20 text-white font-semibold rounded-full
+           hover:bg-white/5 hover:border-white/40 transition-all duration-300 text-xs sm:text-sm tracking-widest uppercase;
+  }
+
+  .btn-outline-gold {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 border border-warm-gold/30 text-warm-gold font-semibold rounded-full
+           hover:bg-warm-gold/10 hover:border-warm-gold transition-all duration-300 text-xs sm:text-sm tracking-widest uppercase;
+  }
+
+  .btn-dark {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 bg-[#0D1B2A] border border-white/10 text-white font-semibold rounded-full
+           hover:bg-[#152840] hover:border-white/30 transition-all duration-300 text-xs sm:text-sm tracking-widest uppercase;
+  }
+
+  /* Section spacing */
+  .section-padding {
+    @apply py-16 sm:py-20 md:py-24 lg:py-28 px-5 sm:px-8 lg:px-12;
+  }
+
+  .section-padding-sm {
+    @apply py-10 sm:py-14 md:py-16 lg:py-20 px-5 sm:px-8 lg:px-12;
+  }
+
+  /* Container */
+  .container-max {
+    @apply max-w-7xl mx-auto w-full;
+  }
+
+  /* Hero overlay */
+  .hero-overlay {
+    @apply absolute inset-0 bg-gradient-to-r from-midnight/95 via-midnight/80 to-midnight/40;
+  }
+
+  /* Card styles */
+  .card {
+    @apply bg-[#0D1B2A]/60 border border-white/5 rounded-xl p-8 hover:border-warm-gold/30
+           transition-all duration-500 hover:bg-[#0D1B2A] hover:shadow-2xl hover:shadow-black/50;
+  }
+
+  .card-dark {
+    @apply bg-midnight/80 border border-white/5 rounded-xl p-8 hover:border-warm-gold/30
+           transition-all duration-500 hover:bg-midnight hover:shadow-2xl hover:shadow-black/50;
+  }
+
+  /* Gold accent line */
+  .gold-line {
+    @apply w-12 h-0.5 bg-warm-gold;
+  }
+
+  .gold-line-lg {
+    @apply w-16 h-1 bg-warm-gold rounded-full;
+  }
+
+  /* Label */
+  .section-label {
+    @apply text-warm-gold text-xs font-semibold tracking-[0.2em] uppercase mb-3;
+  }
+
+  /* Gradient text */
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-warm-gold to-light-gold bg-clip-text text-transparent;
+  }
+}
+
+/* ───────────────────────────────────────────────
+   Utilities
+   ─────────────────────────────────────────────── */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
