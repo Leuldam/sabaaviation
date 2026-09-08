@@ -1,53 +1,71 @@
-// components/ui/ServiceCard.tsx
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight, type LucideIcon } from "lucide-react";
+import { ArrowUpRight, type LucideIcon } from "lucide-react";
 
 interface ServiceCardProps {
-  icon: LucideIcon;
+  icon?: LucideIcon;
   title: string;
-  description: string;
+  description?: string;
+  subtitle?: string;
   slug: string;
+  image: string;
   index?: number;
+  active?: boolean;
+  tall?: boolean;
 }
 
 export default function ServiceCard({
-  icon: Icon,
   title,
   description,
+  subtitle,
   slug,
+  image,
   index = 0,
 }: ServiceCardProps) {
-  const MotionLink = motion(Link);
+  const displaySubtitle = subtitle || description;
 
   return (
-    <MotionLink
-      href={`/services/${slug}`}
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-30px" }}
-      transition={{ duration: 0.5, delay: index * 0.08 }}
-      className="card group cursor-default"
-    >
-      {/* Icon */}
-      <div className="w-12 h-12 rounded-lg bg-warm-gold/10 flex items-center justify-center mb-4 group-hover:bg-warm-gold/20 transition-colors">
-        <Icon size={22} className="text-warm-gold" />
-      </div>
+    <div className="w-full h-full">
+      <Link
+        href={`/services/${slug}`}
+        className="group relative flex flex-col justify-end overflow-hidden rounded-[26px] cursor-pointer w-full h-[370px] md:h-[390px] shadow-lg hover:shadow-2xl transition-all duration-500 bg-[#0B0F19]"
+      >
+        {/* Full-bleed background image */}
+        <Image
+          src={image}
+          alt={title}
+          fill
+          className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+          priority={index < 4}
+        />
 
-      {/* Title */}
-      <h3 className="text-white font-semibold text-base mb-2">{title}</h3>
+        {/* Dark gradient overlay matching reference UI */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#080C14]/95 via-[#080C14]/40 via-45% to-transparent pointer-events-none" />
 
-      {/* Description */}
-      <p className="text-muted text-sm leading-relaxed mb-4">{description}</p>
-      
-      {/* Arrow Link */}
-      <div className="mt-auto pt-2 flex justify-end text-warm-gold group-hover:translate-x-1 transition-transform">
-        <div className="w-8 h-8 rounded-full border border-warm-gold/30 flex items-center justify-center group-hover:bg-warm-gold group-hover:text-midnight transition-colors">
-          <ArrowRight size={16} />
+        {/* Bottom content: title + subtitle on left, circular arrow button on right */}
+        <div className="relative z-10 flex items-end justify-between gap-3 p-5 md:p-6 w-full">
+          {/* Text Container */}
+          <div className="flex-1 min-w-0 pr-1">
+            <h3 className="text-white font-bold text-[18px] md:text-[20px] leading-snug tracking-tight font-helvetica drop-shadow-sm mb-1">
+              {title}
+            </h3>
+            {displaySubtitle && (
+              <p className="text-white/80 text-[12px] md:text-[13px] leading-snug font-normal drop-shadow-sm line-clamp-2">
+                {displaySubtitle}
+              </p>
+            )}
+          </div>
+
+          {/* Gold circular arrow button */}
+          <div className="shrink-0 w-10 h-10 rounded-full bg-[#E5A83B] flex items-center justify-center text-black shadow-md transition-all duration-300 group-hover:scale-110 group-hover:bg-[#F3BA35]">
+            <ArrowUpRight size={19} strokeWidth={2.4} />
+          </div>
         </div>
-      </div>
-    </MotionLink>
+      </Link>
+    </div>
   );
 }

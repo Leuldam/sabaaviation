@@ -23,7 +23,7 @@ export default function Footer() {
   return (
     <footer className="bg-midnight border-t border-borders">
       {/* Main footer content */}
-      <div className="container-max section-padding-sm">
+      <div className="container-max font-helvetica uppercase section-padding-sm">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Logo & description */}
           <div className="lg:col-span-1">
@@ -83,19 +83,19 @@ export default function Footer() {
             <h3 className="text-white font-semibold text-sm mb-4">Contact</h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-2.5 text-muted text-sm">
-                <MapPin size={16} className="text-warm-gold mt-0.5 flex-shrink-0" />
+                <MapPin size={16} className="text-[#DAA428] mt-0.5 flex-shrink-0" />
                 Bole International Airport, Addis Ababa, Ethiopia
               </li>
               <li className="flex items-center gap-2.5 text-muted text-sm">
-                <Phone size={16} className="text-warm-gold flex-shrink-0" />
+                <Phone size={16} className="text-[#DAA428] flex-shrink-0" />
                 +251-11-551-6897
               </li>
               <li className="flex items-center gap-2.5 text-muted text-sm">
-                <Mail size={16} className="text-warm-gold flex-shrink-0" />
+                <Mail size={16} className="text-[#DAA428] flex-shrink-0" />
                 info@sabaaviation.com
               </li>
               <li className="flex items-center gap-2.5 text-muted text-sm">
-                <Clock size={16} className="text-warm-gold flex-shrink-0" />
+                <Clock size={16} className="text-[#DAA428] flex-shrink-0" />
                 24/7 Operations Support
               </li>
             </ul>

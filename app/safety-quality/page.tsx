@@ -33,7 +33,7 @@ export default function SafetyQualityPage() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628]/95 via-[#0A1628]/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/95 via-[#0A0A0A]/80 to-transparent" />
         
         <div className="relative z-10 container-max pt-32 pb-24">
           <motion.div
@@ -54,7 +54,7 @@ export default function SafetyQualityPage() {
       </section>
 
       {/* ── PILLARS GRID & IMAGE ──────────────────────────── */}
-      <section className="bg-white">
+      <section className="bg-gradient-to-b from-white to-gray-200">
         <div className="flex flex-col lg:flex-row">
           {/* Grid Area */}
           <div className="flex-1 px-5 sm:px-12 py-16 lg:py-24 max-w-5xl mx-auto lg:mx-0 lg:ml-auto">
@@ -76,10 +76,10 @@ export default function SafetyQualityPage() {
                   className="flex flex-col items-center sm:items-start text-center sm:text-left"
                 >
                   <div className="w-12 h-12 mb-4">
-                    <item.icon size={28} className="text-[#0D1B2A] font-light" strokeWidth={1.5} />
+                    <item.icon size={28} className="text-[#0A0A0A] font-light" strokeWidth={1.5} />
                   </div>
-                  <h3 className="text-[#0D1B2A] font-bold text-sm mb-2">{item.title}</h3>
-                  <p className="text-[#0D1B2A]/60 text-xs leading-relaxed max-w-[200px]">{item.desc}</p>
+                  <h3 className="text-[#0A0A0A] font-bold text-sm mb-2">{item.title}</h3>
+                  <p className="text-[#0A0A0A]/60 text-xs leading-relaxed max-w-[200px]">{item.desc}</p>
                 </motion.div>
               ))}
             </div>

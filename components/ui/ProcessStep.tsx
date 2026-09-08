@@ -33,7 +33,7 @@ export default function ProcessStep({
 
       {/* Step number */}
       <div className="relative z-10 mb-5">
-        <div className="w-12 h-12 rounded-full bg-[#0A1628] border border-white/20 flex items-center justify-center group-hover:border-white transition-colors duration-300">
+        <div className="w-12 h-12 rounded-full bg-[#0A0A0A] border border-white/20 flex items-center justify-center group-hover:border-white transition-colors duration-300">
           <span className="text-white/60 font-medium text-xs tracking-widest group-hover:text-white transition-colors">
             {String(step).padStart(2, "0")}
           </span>

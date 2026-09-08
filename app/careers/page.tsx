@@ -46,13 +46,14 @@ export default function CareersPage() {
       />
 
       {/* ── WHY JOIN SABA ────────────────────────────────── */}
-      <section className="section-padding bg-midnight">
+      <section className="section-padding bg-gradient-to-b from-white to-gray-200">
         <div className="container-max">
           <SectionHeading
             label="Why Join Us"
             title="Build Your Career in Aviation"
             subtitle="At SABA Aviation, we believe our people are our greatest asset. Join a team that values professionalism, safety, and excellence."
             centered
+            light
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
@@ -63,13 +64,13 @@ export default function CareersPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="card text-center"
+                className="card bg-white text-center shadow-md border-black/5"
               >
                 <div className="w-14 h-14 rounded-xl bg-warm-gold/10 flex items-center justify-center mx-auto mb-5">
                   <benefit.icon size={26} className="text-warm-gold" />
                 </div>
-                <h3 className="text-white text-base font-semibold mb-2">{benefit.title}</h3>
-                <p className="text-muted text-sm">{benefit.description}</p>
+                <h3 className="text-midnight text-base font-semibold mb-2">{benefit.title}</h3>
+                <p className="text-midnight/70 text-sm">{benefit.description}</p>
               </motion.div>
             ))}
           </div>
@@ -77,7 +78,7 @@ export default function CareersPage() {
       </section>
 
       {/* ── OPEN POSITIONS ───────────────────────────────── */}
-      <section className="section-padding bg-dark-navy">
+      <section className="section-padding bg-gradient-to-b from-white to-gray-200">
         <div className="container-max">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -90,13 +91,14 @@ export default function CareersPage() {
               label="Open Positions"
               title="Current Opportunities"
               centered
+              light
             />
-            <div className="card py-16 mt-8">
+            <div className="card bg-white py-16 mt-8 shadow-md border-black/5">
               <div className="w-20 h-20 rounded-full bg-warm-gold/10 flex items-center justify-center mx-auto mb-6">
                 <Briefcase size={32} className="text-warm-gold" />
               </div>
-              <h3 className="text-white text-xl font-bold mb-3">Coming Soon</h3>
-              <p className="text-muted text-base mb-8 max-w-md mx-auto">
+              <h3 className="text-midnight text-xl font-bold mb-3">Coming Soon</h3>
+              <p className="text-midnight/70 text-base mb-8 max-w-md mx-auto">
                 We are currently updating our career listings. Please check back soon for new
                 opportunities, or send us your CV directly.
               </p>

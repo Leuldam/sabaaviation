@@ -28,7 +28,7 @@ export default function OperationsPage() {
       />
 
       {/* ── OPERATIONAL NETWORK ──────────────────────────── */}
-      <section className="section-padding bg-midnight">
+      <section className="section-padding bg-gradient-to-b from-white to-gray-200">
         <div className="container-max">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Left column — text */}
@@ -41,19 +41,20 @@ export default function OperationsPage() {
               <SectionHeading
                 label="Our Operational Network"
                 title="Based in Ethiopia. Connected to Africa."
+                light
               />
-              <p className="text-muted leading-relaxed text-lg mb-8">
+              <p className="text-midnight/80 leading-relaxed text-lg mb-8">
                 We provide ground handling and flight support services at Addis Ababa and key
                 airports across Ethiopia, with a vision for broader regional expansion.
               </p>
 
               {/* Ethiopia section */}
-              <div className="card p-6">
+              <div className="card bg-white p-6">
                 <div className="flex items-center gap-3 mb-5">
                   <div className="w-10 h-10 rounded-lg bg-warm-gold/10 flex items-center justify-center">
                     <Globe size={20} className="text-warm-gold" />
                   </div>
-                  <h3 className="text-white font-bold text-lg">Ethiopia</h3>
+                  <h3 className="text-midnight font-bold text-lg">Ethiopia</h3>
                 </div>
 
                 {/* Airport list */}
@@ -64,7 +65,7 @@ export default function OperationsPage() {
                       className={`flex items-center gap-3 py-2.5 px-3 rounded-lg ${
                         airport.isPrimary
                           ? "bg-warm-gold/10 border border-warm-gold/20"
-                          : "bg-card-bg"
+                          : "bg-gray-100"
                       }`}
                     >
                       <MapPin
@@ -72,7 +73,7 @@ export default function OperationsPage() {
                         className={airport.isPrimary ? "text-warm-gold" : "text-muted"}
                       />
                       <div>
-                        <p className="text-white text-sm font-medium">
+                        <p className="text-midnight text-sm font-medium">
                           {airport.name}{" "}
                           <span className="text-muted text-xs">({airport.code})</span>
                         </p>
@@ -93,7 +94,7 @@ export default function OperationsPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="relative h-[500px] rounded-2xl overflow-hidden bg-[#0D1B2A]/60 border border-white/5 flex items-center justify-center p-8"
+              className="relative h-[500px] rounded-2xl overflow-hidden bg-[#141414]/60 border border-white/5 flex items-center justify-center p-8"
             >
               <div className="absolute inset-0 flex items-center justify-center opacity-80 pointer-events-none p-12">
                 <Image 
@@ -122,13 +123,14 @@ export default function OperationsPage() {
       </section>
 
       {/* ── FROM REQUEST TO DEPARTURE ────────────────────── */}
-      <section className="section-padding bg-dark-navy">
+      <section className="section-padding bg-gradient-to-b from-white to-gray-200">
         <div className="container-max">
           <SectionHeading
             label="Process"
             title="From Request to Departure"
             subtitle="A coordinated process for smooth operations."
             centered
+            light
           />
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mt-12">
@@ -147,9 +149,9 @@ export default function OperationsPage() {
       </section>
 
       {/* ── PROFESSIONAL COORDINATION ────────────────────── */}
-      <section className="section-padding bg-midnight">
+      <section className="section-padding bg-gradient-to-b from-white to-gray-200">
         <div className="container-max">
-          <div className="grid grid-cols-1 lg:grid-cols-2 bg-[#0D1B2A] rounded-2xl overflow-hidden border border-white/5">
+          <div className="grid grid-cols-1 lg:grid-cols-2 bg-[#141414] rounded-2xl overflow-hidden border border-white/5">
             <div className="relative h-[300px] lg:h-auto w-full">
               <Image 
                 src="/images/about_story.png" 

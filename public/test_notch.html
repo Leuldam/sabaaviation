@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Notch Test Refined</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom, #ffffff, #e5e7eb);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      padding: 60px 40px;
+      align-items: center;
+      justify-content: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    .cards-row {
+      display: flex;
+      gap: 16px;
+      width: 100%;
+      max-width: 1200px;
+      justify-content: center;
+    }
+    .card-wrap {
+      position: relative;
+      flex: 1;
+      max-width: 230px;
+      height: 410px;
+      filter: drop-shadow(0 12px 24px rgba(0,0,0,0.12));
+    }
+    .card-clip {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .card-bg {
+      width: 100%;
+      height: 100%;
+      background: #0E1013;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .card-img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .card-wrap:hover .card-img {
+      transform: scale(1.06);
+    }
+    .card-content {
+      padding: 18px 16px;
+      padding-right: 76px;
+      color: white;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .card-title {
+      margin: 0 0 6px 0;
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.25;
+      color: #fff;
+    }
+    .card-desc {
+      margin: 0;
+      font-size: 11.5px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.35;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .btn-circle {
+      position: absolute;
+      bottom: 6px;
+      right: 6px;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.22);
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 10;
+    }
+    .card-wrap:hover .btn-circle {
+      transform: scale(1.1);
+    }
+    .btn-gold {
+      background: #DAA428;
+      color: #0E1013;
+    }
+    .card-wrap:hover .btn-gold {
+      background: #F0B32D;
+    }
+    .btn-dark {
+      background: #3B0E14;
+      color: #ffffff;
+    }
+    .card-wrap:hover .btn-dark {
+      background: #DAA428;
+      color: #0E1013;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Dynamic SVG ClipPath template -->
+  <svg width="0" height="0" style="position: absolute;">
+    <defs>
+      <!-- w=227, h=410, R=24, nw=74, nh=74, rf=18, ri=18 -->
+      <clipPath id="card-notch-clip" clipPathUnits="userSpaceOnUse">
+        <path d="
+          M 24,0
+          H 203
+          A 24,24 0 0 1 227,24
+          V 318
+          A 18,18 0 0 0 209,336
+          H 171
+          A 18,18 0 0 1 153,354
+          V 392
+          A 18,18 0 0 0 135,410
+          H 24
+          A 24,24 0 0 1 0,386
+          V 24
+          A 24,24 0 0 1 24,0
+          Z
+        " />
+      </clipPath>
+    </defs>
+  </svg>
+
+  <div class="cards-row">
+    <!-- Card 1 -->
+    <div class="card-wrap">
+      <div class="card-clip" style="clip-path: url(#card-notch-clip);">
+        <div class="card-bg">
+          <img src="/images/service_flight_support.jpg" class="card-img" />
+          <div class="card-content">
+            <h3 class="card-title">Flight Support</h3>
+            <p class="card-desc">Permits, overflight clearances & round-the-clock flight dispatch.</p>
+          </div>
+        </div>
+      </div>
+      <div class="btn-circle btn-gold">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card-wrap">
+      <div class="card-clip" style="clip-path: url(#card-notch-clip);">
+        <div class="card-bg">
+          <img src="/images/service_ground_handling.jpg" class="card-img" />
+          <div class="card-content">
+            <h3 class="card-title">Ground Handling</h3>
+            <p class="card-desc">Ramp supervision, baggage management & aircraft servicing.</p>
+          </div>
+        </div>
+      </div>
+      <div class="btn-circle btn-dark">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card-wrap">
+      <div class="card-clip" style="clip-path: url(#card-notch-clip);">
+        <div class="card-bg">
+          <img src="/images/service_passenger.jpg" class="card-img" />
+          <div class="card-content">
+            <h3 class="card-title">Passenger Services</h3>
+            <p class="card-desc">Meet & assist, VIP lounges, expedited customs & immigration.</p>
+          </div>
+        </div>
+      </div>
+      <div class="btn-circle btn-dark">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="card-wrap">
+      <div class="card-clip" style="clip-path: url(#card-notch-clip);">
+        <div class="card-bg">
+          <img src="/images/service_crew.jpg" class="card-img" />
+          <div class="card-content">
+            <h3 class="card-title">Crew Services</h3>
+            <p class="card-desc">Luxury hotel bookings, dedicated crew transport & visa assistance.</p>
+          </div>
+        </div>
+      </div>
+      <div class="btn-circle btn-dark">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="card-wrap">
+      <div class="card-clip" style="clip-path: url(#card-notch-clip);">
+        <div class="card-bg">
+          <img src="/images/service_vip_aviation.jpg" class="card-img" />
+          <div class="card-content">
+            <h3 class="card-title">VIP & Business Aviation</h3>
+            <p class="card-desc">Private jet handling, executive FBO lounges & diplomatic protocols.</p>
+          </div>
+        </div>
+      </div>
+      <div class="btn-circle btn-dark">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

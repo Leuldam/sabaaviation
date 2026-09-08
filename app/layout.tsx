@@ -1,49 +1,144 @@
-import "./globals.css";
-import type { Metadata } from "next";
-import { Poppins, Cormorant_Garamond } from "next/font/google";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import AnimatedLayout from "@/components/layout/AnimatedLayout";
-import Preloader from "@/components/ui/Preloader";
-import ChatBot from "@/components/ui/ChatBot";
+import { Inter } from 'next/font/google';
+import localFont from 'next/font/local';
+import './globals.css';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
 
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-  variable: "--font-poppins",
+const helveticaNeue = localFont({
+  src: [
+    {
+      path: '../public/font/helvetica-neue-5/HelveticaNeueUltraLight.otf',
+      weight: '100',
+      style: 'normal',
+    },
+    {
+      path: '../public/font/helvetica-neue-5/HelveticaNeueThin.otf',
+      weight: '200',
+      style: 'normal',
+    },
+    {
+      path: '../public/font/helvetica-neue-5/HelveticaNeueLight.otf',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: '../public/font/helvetica-neue-5/HelveticaNeueRoman.otf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../public/font/helvetica-neue-5/HelveticaNeueMedium.otf',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../public/font/helvetica-neue-5/HelveticaNeueBold.otf',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../public/font/helvetica-neue-5/HelveticaNeueHeavy.otf',
+      weight: '800',
+      style: 'normal',
+    },
+    {
+      path: '../public/font/helvetica-neue-5/HelveticaNeueBlack.otf',
+      weight: '900',
+      style: 'normal',
+    },
+    {
+      path: '../public/font/helvetica-neue-5/HelveticaNeueItalic.ttf',
+      weight: '400',
+      style: 'italic',
+    },
+    {
+      path: '../public/font/helvetica-neue-5/HelveticaNeueMediumItalic.otf',
+      weight: '500',
+      style: 'italic',
+    },
+    {
+      path: '../public/font/helvetica-neue-5/HelveticaNeueBoldItalic.otf',
+      weight: '700',
+      style: 'italic',
+    },
+  ],
+  variable: '--font-helvetica',
+  display: 'swap',
 });
 
-const cormorant = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-cormorant",
+const montserrat = localFont({
+  src: [
+    {
+      path: '../public/font/Montserrat_Complete/Fonts/OTF/Montserrat-Thin.otf',
+      weight: '100',
+      style: 'normal',
+    },
+    {
+      path: '../public/font/Montserrat_Complete/Fonts/OTF/Montserrat-ExtraLight.otf',
+      weight: '200',
+      style: 'normal',
+    },
+    {
+      path: '../public/font/Montserrat_Complete/Fonts/OTF/Montserrat-Light.otf',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: '../public/font/Montserrat_Complete/Fonts/OTF/Montserrat-Regular.otf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../public/font/Montserrat_Complete/Fonts/OTF/Montserrat-Medium.otf',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../public/font/Montserrat_Complete/Fonts/OTF/Montserrat-SemiBold.otf',
+      weight: '600',
+      style: 'normal',
+    },
+    {
+      path: '../public/font/Montserrat_Complete/Fonts/OTF/Montserrat-Bold.otf',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../public/font/Montserrat_Complete/Fonts/OTF/Montserrat-ExtraBold.otf',
+      weight: '800',
+      style: 'normal',
+    },
+    {
+      path: '../public/font/Montserrat_Complete/Fonts/OTF/Montserrat-Black.otf',
+      weight: '900',
+      style: 'normal',
+    },
+    {
+      path: '../public/font/Montserrat_Complete/Fonts/OTF/Montserrat-Italic.otf',
+      weight: '400',
+      style: 'italic',
+    },
+    {
+      path: '../public/font/Montserrat_Complete/Fonts/OTF/Montserrat-MediumItalic.otf',
+      weight: '500',
+      style: 'italic',
+    },
+    {
+      path: '../public/font/Montserrat_Complete/Fonts/OTF/Montserrat-BoldItalic.otf',
+      weight: '700',
+      style: 'italic',
+    },
+  ],
+  variable: '--font-montserrat',
+  display: 'swap',
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://sabaaviation.com"),
-  title: {
-    default: "SABA Aviation | Aviation Service & Flight Support in Ethiopia",
-    template: "%s | SABA Aviation",
-  },
-  description:
-    "Premium aviation ground handling and flight support services for airlines, operators, and private aviation in Ethiopia.",
-  openGraph: {
-    title: "SABA Aviation | Aviation Service & Flight Support in Ethiopia",
-    description: "Professional B2B aviation operations partner.",
-    url: "https://sabaaviation.com",
-    siteName: "SABA Aviation",
-    images: [{ url: "/images/hero_home.png", alt: "SABA Aviation" }],
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "SABA Aviation",
-    description:
-      "Premium aviation ground handling and flight support services.",
-    images: ["/images/hero_home.png"],
-  },
-};
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  weight: ['300', '400', '500'],
+  display: 'swap',
+});
 
 export default function RootLayout({
   children,
@@ -51,13 +146,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`scroll-smooth ${poppins.variable} ${cormorant.variable}`}>
-      <body className={`min-h-screen flex flex-col bg-midnight text-white ${poppins.className}`}>
-        <Preloader />
+    <html lang="en" className={`${helveticaNeue.variable} ${montserrat.variable} ${inter.variable}`}>
+      <body className="text-white bg-gradient-to-b from-white to-gray-200 font-sans antialiased">
         <Header />
-        <AnimatedLayout>{children}</AnimatedLayout>
+        <div>
+          {children}
+        </div>
         <Footer />
-        <ChatBot />
       </body>
     </html>
   );

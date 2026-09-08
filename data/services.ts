@@ -14,8 +14,10 @@ import {
 export interface Service {
   icon: LucideIcon;
   title: string;
+  subtitle?: string;
   description: string;
   slug: string;
+  image: string;
   details: {
     longDescription: string;
     features: string[];
@@ -27,9 +29,11 @@ export const services: Service[] = [
   {
     icon: Compass,
     title: "Flight Support",
+    subtitle: "Permits & Crew Support",
     description:
       "Permits, coordination & operational support for seamless flight operations.",
     slug: "flight-support",
+    image: "/images/service_flight_support.jpg",
     details: {
       longDescription: "Our comprehensive flight support services are designed to ensure your aircraft operates seamlessly within Ethiopia and the surrounding region. We handle the complex regulatory and operational requirements, from securing overflight and landing permits to meticulous flight planning and weather briefing. By partnering with SABA Aviation, flight crews and operators can rely on accurate, real-time information and proactive coordination to avoid delays and optimize routing.",
       features: [
@@ -50,9 +54,11 @@ export const services: Service[] = [
   {
     icon: Settings,
     title: "Ground Handling",
+    subtitle: "Ramp & Cargo Logistics",
     description:
       "Aircraft, passengers, ramp & cargo handling with precision and care.",
     slug: "ground-handling",
+    image: "/images/service_ground_handling.jpg",
     details: {
       longDescription: "SABA Aviation offers world-class ground handling services tailored to scheduled airlines, charter flights, and cargo operators. Our highly trained ramp agents and specialized ground support equipment (GSE) ensure safe, efficient, and rapid aircraft turnarounds. From pushback and towing to baggage loading and lavatory services, we adhere strictly to international IATA and ISAGO safety standards.",
       features: [
@@ -73,9 +79,11 @@ export const services: Service[] = [
   {
     icon: ConciergeBell,
     title: "Passenger Services",
+    subtitle: "Check-in & Concierge",
     description:
       "Meet & assist, lounge, baggage & special assistance for every passenger.",
     slug: "passenger-services",
+    image: "/images/service_passenger.jpg",
     details: {
       longDescription: "We elevate the passenger experience by providing seamless terminal services from curbside to the cabin. Our professional passenger service agents are trained to deliver courteous, culturally aware, and highly efficient assistance. Whether managing check-in counters for commercial airlines or providing bespoke VIP escorts, we ensure a smooth journey through the airport.",
       features: [
@@ -94,34 +102,13 @@ export const services: Service[] = [
     }
   },
   {
-    icon: Coffee,
-    title: "Crew Services",
-    description:
-      "Accommodation, transport & support for flight crews during turnarounds.",
-    slug: "crew-services",
-    details: {
-      longDescription: "Recognizing that rested crews are critical to flight safety, we offer dedicated crew support services designed to maximize comfort and minimize stress during layovers. From the moment the aircraft engines shut down, we handle immigration clearance, ground transportation, and premium hotel accommodations so your crew can focus entirely on rest and their upcoming flight duties.",
-      features: [
-        "Express Crew Immigration and Customs Clearance",
-        "Premium Hotel Sourcing and Booking",
-        "Secure Airport-to-Hotel Transfers",
-        "Visa Arrangement Upon Arrival",
-        "Medical Assistance Coordination",
-        "Layover Concierge Services"
-      ],
-      benefits: [
-        "Ensures crew well-being and regulatory rest compliance",
-        "Cost-effective negotiated rates with premium hotel partners",
-        "Secure, reliable, and punctual ground transfers"
-      ]
-    }
-  },
-  {
     icon: Crown,
-    title: "VIP & Business Aviation",
+    title: "Crew & VIP Aviation",
+    subtitle: "Training, Logistics & Executive Terminals",
     description:
       "Executive handling, private terminals & bespoke concierge services.",
     slug: "vip-business-aviation",
+    image: "/images/service_vip_aviation.jpg",
     details: {
       longDescription: "SABA Aviation provides elite, discreet, and highly personalized handling for VIP flights, heads of state, corporate jets, and air ambulances. We understand the unique demands of general and business aviation, prioritizing absolute privacy, security, and flexibility. Our dedicated VIP agents coordinate every detail, ensuring a flawless experience for high-net-worth individuals and executives.",
       features: [
@@ -142,9 +129,11 @@ export const services: Service[] = [
   {
     icon: Boxes,
     title: "Cargo & Logistics",
+    subtitle: "Freight, Customs & Warehousing",
     description:
       "Cargo handling, customs & warehousing solutions for efficient operations.",
     slug: "cargo-logistics",
+    image: "/images/service_cargo.jpg",
     details: {
       longDescription: "Our comprehensive cargo handling solutions cater to freighter operators and belly-cargo on passenger flights. SABA Aviation ensures the safe, secure, and expeditious movement of all types of freight, including perishables, live animals, dangerous goods, and oversized cargo. We liaise closely with customs authorities to facilitate rapid clearance and seamless supply chain transitions.",
       features: [
@@ -165,9 +154,11 @@ export const services: Service[] = [
   {
     icon: Fuel,
     title: "Fuel Coordination",
+    subtitle: "Jet A-1 Uplift & Quality Control",
     description:
       "Fuel uplift & quality coordination with trusted suppliers.",
     slug: "fuel-coordination",
+    image: "/images/service_flight_support.jpg",
     details: {
       longDescription: "Aviation fuel is one of the most critical operational requirements. SABA Aviation acts as your reliable liaison to secure competitive fuel rates and guarantee timely uplifts. We partner exclusively with certified, reputable into-plane suppliers to ensure that the fuel provided meets all international quality standards (Jet A-1 / Avgas) and is delivered safely to your aircraft.",
       features: [
@@ -188,9 +179,11 @@ export const services: Service[] = [
   {
     icon: CarFront,
     title: "Ground Transportation",
+    subtitle: "VIP & Crew Surface Transit",
     description:
       "Airport transfers & surface transport for crew, passengers & cargo.",
     slug: "ground-transportation",
+    image: "/images/service_ground_handling.jpg",
     details: {
       longDescription: "Whether it is moving crew to their hotel, transferring VIPs in luxury vehicles, or transporting time-sensitive cargo from the airport to its final destination, SABA Aviation provides reliable surface transportation solutions. We maintain a network of vetted, professional drivers and a modern fleet of vehicles to ensure safety, punctuality, and comfort.",
       features: [
@@ -205,6 +198,31 @@ export const services: Service[] = [
         "Seamless door-to-door transit experience",
         "High standards of vehicle safety, hygiene, and maintenance",
         "Professional, bilingual drivers familiar with local routes"
+      ]
+    }
+  },
+  {
+    icon: Coffee,
+    title: "Crew Support Services",
+    subtitle: "Accommodation & Layover Care",
+    description:
+      "Accommodation, transport & support for flight crews during turnarounds.",
+    slug: "crew-services",
+    image: "/images/service_crew.jpg",
+    details: {
+      longDescription: "Recognizing that rested crews are critical to flight safety, we offer dedicated crew support services designed to maximize comfort and minimize stress during layovers. From the moment the aircraft engines shut down, we handle immigration clearance, ground transportation, and premium hotel accommodations.",
+      features: [
+        "Express Crew Immigration & Customs Clearance",
+        "Premium Hotel Sourcing & Reservations",
+        "Dedicated Airport-to-Hotel Transfers",
+        "Visa on Arrival Processing",
+        "Medical & Emergency Support Coordination",
+        "Layover Concierge & Catering"
+      ],
+      benefits: [
+        "Ensures crew well-being and rest compliance",
+        "Competitive rates with top-tier hotel partners",
+        "Punctual and reliable ground transfers"
       ]
     }
   },

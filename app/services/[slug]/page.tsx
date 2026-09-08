@@ -27,7 +27,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
       <HeroSection
         title={service.title}
         subtitle="Premium aviation solutions customized for your exact requirements."
-        backgroundImage="/images/hero_services.png"
+        backgroundImage={service.image}
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Services", href: "/services" },
@@ -36,12 +36,12 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
       />
 
       {/* ── CONTENT ──────────────────────────────────────── */}
-      <section className="section-padding bg-midnight relative">
+      <section className="section-padding bg-gradient-to-b from-white to-gray-200 relative">
         <div className="container-max">
           <div className="mb-12">
             <Link 
               href="/services" 
-              className="inline-flex items-center gap-2 text-warm-gold text-sm font-semibold uppercase tracking-widest hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 text-warm-gold text-sm font-semibold uppercase tracking-widest hover:text-midnight transition-colors"
             >
               <ArrowLeft size={16} /> Back to Services
             </Link>
@@ -55,10 +55,10 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 <div className="w-20 h-20 rounded-2xl bg-warm-gold/10 flex items-center justify-center mb-8 border border-warm-gold/20">
                   <Icon size={40} className="text-warm-gold" />
                 </div>
-                <h2 className="text-3xl font-bold text-white mb-4 leading-tight">
+                <h2 className="text-3xl font-bold text-midnight mb-4 leading-tight">
                   {service.title}
                 </h2>
-                <p className="text-muted text-lg leading-relaxed">
+                <p className="text-midnight/70 text-lg leading-relaxed">
                   {service.description}
                 </p>
               </div>
@@ -66,32 +66,32 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
             {/* Right Col: Detailed Explanation */}
             <div className="lg:col-span-8">
-              <div className="prose prose-invert prose-lg max-w-none">
-                <p className="text-white/80 leading-relaxed text-lg mb-8">
+              <div className="prose prose-lg max-w-none">
+                <p className="text-midnight/80 leading-relaxed text-lg mb-8">
                   {service.details.longDescription}
                 </p>
                 
-                <h3 className="text-white text-2xl font-semibold mb-6 mt-12">Key Features</h3>
+                <h3 className="text-midnight text-2xl font-semibold mb-6 mt-12">Key Features</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
                   {service.details.features.map((feature, i) => (
                     <div key={i} className="flex items-start gap-3">
                       <CheckCircle2 size={20} className="text-warm-gold flex-shrink-0 mt-1" />
-                      <span className="text-muted">{feature}</span>
+                      <span className="text-midnight/70">{feature}</span>
                     </div>
                   ))}
                 </div>
 
-                <h3 className="text-white text-2xl font-semibold mb-6">Why Choose SABA for {service.title}?</h3>
+                <h3 className="text-midnight text-2xl font-semibold mb-6">Why Choose SABA for {service.title}?</h3>
                 <div className="space-y-4 mb-6">
                   {service.details.benefits.map((benefit, i) => (
-                    <p key={i} className="text-white/80 leading-relaxed flex items-start gap-3">
+                    <p key={i} className="text-midnight/80 leading-relaxed flex items-start gap-3">
                       <span className="text-warm-gold font-bold">•</span> {benefit}
                     </p>
                   ))}
                 </div>
               </div>
               
-              <div className="mt-16 pt-12 border-t border-white/10">
+              <div className="mt-16 pt-12 border-t border-black/10">
                 <Link href="/contact" className="btn-primary inline-flex">
                   REQUEST {service.title.toUpperCase()}
                 </Link>
