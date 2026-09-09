@@ -2,131 +2,151 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
-import { navigation } from "@/data/navigation";
-import { MapPin, Phone, Mail, Clock, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
-
-const socialLinks = [
-  { icon: Facebook, href: "#", label: "Facebook" },
-  { icon: Twitter, href: "#", label: "Twitter" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Instagram, href: "#", label: "Instagram" },
-];
-
-const supportLinks = [
-  { name: "Contact Us", href: "/contact" },
-  { name: "Privacy Policy", href: "/privacy-policy" },
-  { name: "Terms & Conditions", href: "/terms" },
-];
+import { FaBehance, FaDribbble, FaInstagram, FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="bg-midnight border-t border-borders">
-      {/* Main footer content */}
-      <div className="container-max font-helvetica uppercase section-padding-sm">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-          {/* Logo & description */}
-          <div className="lg:col-span-1">
-            <Link href="/" className="inline-block mb-4 group">
-              <div className="relative w-40 sm:w-56 h-12 sm:h-16">
-                <Image
-                  src="/images/sabalogo.png"
-                  alt="SABA Aviation Logo"
-                  fill
-                  className="object-contain object-left transition-transform group-hover:scale-105"
-                  loading="lazy"
-                />
-              </div>
-            </Link>
-            <p className="text-muted text-sm leading-relaxed max-w-xs">
-              Premium aviation ground handling and flight support services connecting operators to
-              Ethiopia and beyond.
+    <footer className="bg-[#0A0A0A] text-white w-full">
+      <div className="w-full px-6 md:px-12 lg:px-24 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          {/* Company Tagline */}
+          <div>
+            <h3 className="text-2xl md:text-3xl font-light leading-tight mb-6">
+              SABA Aviation<br />
+              Service & Flight<br />
+              Support
+            </h3>
+            <p className="text-gray-400 text-sm leading-relaxed">
+              Professional aviation ground handling and flight support services in Ethiopia.
             </p>
           </div>
 
-          {/* Navigation */}
+          {/* Addis Ababa Location */}
           <div>
-            <h3 className="text-white font-semibold text-sm mb-4">Company</h3>
-            <ul className="space-y-2.5">
-              {navigation.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="text-muted text-sm hover:text-warm-gold transition-colors"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Support */}
-          <div>
-            <h3 className="text-white font-semibold text-sm mb-4">Support</h3>
-            <ul className="space-y-2.5">
-              {supportLinks.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="text-muted text-sm hover:text-warm-gold transition-colors"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h3 className="text-white font-semibold text-sm mb-4">Contact</h3>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-2.5 text-muted text-sm">
-                <MapPin size={16} className="text-[#DAA428] mt-0.5 flex-shrink-0" />
-                Bole International Airport, Addis Ababa, Ethiopia
-              </li>
-              <li className="flex items-center gap-2.5 text-muted text-sm">
-                <Phone size={16} className="text-[#DAA428] flex-shrink-0" />
-                +251-11-551-6897
-              </li>
-              <li className="flex items-center gap-2.5 text-muted text-sm">
-                <Mail size={16} className="text-[#DAA428] flex-shrink-0" />
+            <h4 className="text-[10px] uppercase tracking-[0.15em] text-gray-500 mb-4 font-medium">
+              ADDIS ABABA, ETHIOPIA
+            </h4>
+            <div className="space-y-2 text-sm">
+              <a
+                href="mailto:info@sabaaviation.com"
+                className="block hover:text-[#FF6B35] transition-colors"
+              >
                 info@sabaaviation.com
-              </li>
-              <li className="flex items-center gap-2.5 text-muted text-sm">
-                <Clock size={16} className="text-[#DAA428] flex-shrink-0" />
-                24/7 Operations Support
-              </li>
-            </ul>
+              </a>
+              <p className="text-gray-400">+251 11 551 6897</p>
+              <p className="text-gray-400 leading-relaxed text-sm">
+                Bole International Airport,<br />
+                Addis Ababa, Ethiopia
+              </p>
+              <Link
+                href="/contact"
+                className="inline-block text-white hover:text-[#FF6B35] transition-colors mt-3 text-sm underline"
+              >
+                SEE ON MAP →
+              </Link>
+            </div>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h4 className="text-[10px] uppercase tracking-[0.15em] text-gray-500 mb-4 font-medium">
+              OUR SERVICES
+            </h4>
+            <div className="space-y-2 text-sm">
+              <Link href="/services/ground-handling" className="block text-gray-400 hover:text-white transition-colors">
+                Ground Handling
+              </Link>
+              <Link href="/services/flight-support" className="block text-gray-400 hover:text-white transition-colors">
+                Flight Support
+              </Link>
+              <Link href="/services/vip-business-aviation" className="block text-gray-400 hover:text-white transition-colors">
+                VIP Services
+              </Link>
+              <Link
+                href="/services"
+                className="inline-block text-white hover:text-[#FF6B35] transition-colors mt-3 text-sm underline"
+              >
+                VIEW ALL SERVICES →
+              </Link>
+            </div>
+          </div>
+
+          {/* Contact & Social */}
+          <div>
+            <h4 className="text-[10px] uppercase tracking-[0.15em] text-gray-500 mb-4 font-medium">
+              GET IN TOUCH
+            </h4>
+            <p className="text-sm text-gray-400 mb-4">Available 24/7</p>
+            <Link
+              href="/contact"
+              className="inline-block px-6 py-2 border border-white text-white hover:bg-white hover:text-black transition-colors text-xs uppercase tracking-wider mb-6"
+            >
+              CONTACT US
+            </Link>
+
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.15em] text-gray-500 mb-3 font-medium">
+                FOLLOW US
+              </p>
+              <div className="flex gap-4">
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#FF6B35] transition-colors flex items-center justify-center"
+                  aria-label="LinkedIn"
+                >
+                  <FaLinkedinIn size={16} />
+                </a>
+                <a
+                  href="https://twitter.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#FF6B35] transition-colors flex items-center justify-center"
+                  aria-label="Twitter"
+                >
+                  <FaTwitter size={16} />
+                </a>
+                <a
+                  href="https://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#FF6B35] transition-colors flex items-center justify-center"
+                  aria-label="Facebook"
+                >
+                  <FaFacebookF size={16} />
+                </a>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#FF6B35] transition-colors flex items-center justify-center"
+                  aria-label="Instagram"
+                >
+                  <FaInstagram size={16} />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Bottom bar */}
-      <div className="border-t border-white/5">
-        <div className="container-max px-5 sm:px-8 lg:px-12 py-6 flex flex-col lg:flex-row items-center justify-between gap-4 text-center lg:text-left">
-          <p className="text-muted text-xs">
-            © {new Date().getFullYear()} SABA Aviation Service & Flight Support PLC. All rights reserved.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center gap-6 lg:gap-12">
-            <p className="text-muted/60 text-xs">
-              Aviation Support, Ethiopia, Beyond.
-            </p>
-            <div className="flex items-center gap-4">
-              <span className="text-xs text-white/40 font-semibold tracking-widest uppercase">Follow Us</span>
-              <div className="flex gap-3">
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    aria-label={social.label}
-                    className="text-white/40 hover:text-white transition-colors"
-                  >
-                    <social.icon size={16} />
-                  </a>
-                ))}
-              </div>
+        {/* Bottom Bar */}
+        <div className="border-t border-white/10 mt-12 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+            <p>© {new Date().getFullYear()} SABA Aviation Service & Flight Support PLC. All rights reserved.</p>
+            <div className="flex gap-8">
+              <Link href="/" className="hover:text-white transition-colors uppercase">
+                HOME
+              </Link>
+              <Link href="/about" className="hover:text-white transition-colors uppercase">
+                ABOUT
+              </Link>
+              <Link href="/services" className="hover:text-white transition-colors uppercase">
+                SERVICES
+              </Link>
+              <Link href="/contact" className="hover:text-white transition-colors uppercase">
+                CONTACT
+              </Link>
             </div>
           </div>
         </div>

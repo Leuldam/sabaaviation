@@ -121,7 +121,7 @@ export default function HeroSection({
           transition={{ delay: 1.2, duration: 0.6 }}
           style={{ opacity: scrollIndicatorOpacity }}
         >
-          <span className="text-white/40 text-[10px] tracking-[0.25em] uppercase font-light">Scroll</span>
+          <span className="text-white/40 text-[10px] tracking-[0.25em hidden md:block uppercase font-light">Scroll</span>
           <motion.div
             className="w-px h-10 bg-gradient-to-b from-white/40 to-transparent"
             animate={{ scaleY: [1, 0.4, 1] }}

@@ -30,6 +30,18 @@ export default function Header() {
     return () => { document.body.style.overflow = ""; };
   }, [menuOpen]);
 
+  // Close menu on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (menuOpen) {
+        setMenuOpen(false);
+      }
+    };
+    
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [menuOpen]);
+
   const toggleMenu = () => setMenuOpen((prev) => !prev);
 
   const isActive = (href: string) => {
@@ -84,114 +96,290 @@ export default function Header() {
           {menuOpen ? (
             <FiX className="w-5 h-5" />
           ) : (
-            <FiMenu className="w-5 h-5" />
+            <div className="flex flex-col gap-1.5 w-6">
+              <span className="w-4 h-0.5 bg-white rounded-full mx-auto transition-all"></span>
+              <span className="w-6 h-0.5 bg-white rounded-full transition-all"></span>
+              <span className="w-4 h-0.5 bg-white rounded-full mx-auto transition-all"></span>
+            </div>
           )}
         </button>
       </nav>
 
-      {/* ── Full-screen overlay ───────────────────────────────── */}
+      {/* ── Dropdown Menu ───────────────────────────────── */}
       <AnimatePresence>
         {menuOpen && (
-          <motion.div
-            key="overlay"
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 bg-midnight/98 backdrop-blur-xl z-40 flex flex-col lg:flex-row font-helvetica"
-            style={{ top: "80px" }}
-          >
-            {/* Left: Nav links with stagger */}
-            <ul className="flex flex-col justify-center gap-0 px-10 lg:px-20 pt-8 pb-4 lg:w-1/2">
-              {navigation.map((item, i) => (
-                <motion.li
-                  key={item.href}
-                  initial={{ opacity: 0, x: -32 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{
-                    duration: 0.5,
-                    delay: 0.06 + i * 0.08,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                  className="w-full overflow-hidden"
-                >
-                  <Link
-                    href={item.href}
-                    className={`group block py-3.5 lg:py-4 text-2xl lg:text-4xl font-black uppercase tracking-tight border-b border-white/10 transition-all duration-300 hover:pl-4 ${
-                      isActive(item.href)
-                        ? "text-warm-gold pl-4"
-                        : "text-white/75 hover:text-white"
-                    }`}
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    <span className="inline-flex items-center gap-4">
-                      {/* Small index number */}
-                      <span className="text-white/20 text-sm font-normal tabular-nums w-6 shrink-0">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      {item.name}
-                    </span>
-                  </Link>
-                </motion.li>
-              ))}
-
-              {/* Contact CTA */}
-              <motion.li
-                className="mt-8"
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 8 }}
-                transition={{
-                  duration: 0.5,
-                  delay: 0.06 + navigation.length * 0.08,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-              >
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-3 bg-warm-gold text-midnight font-black text-sm uppercase tracking-widest px-8 py-4 rounded-full hover:bg-white transition-all duration-300 group"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Contact Us
-                  <svg
-                    className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2.5}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </Link>
-              </motion.li>
-            </ul>
-
-            {/* Right panel — desktop only */}
+          <>
+            {/* backdrop */}
             <motion.div
-              className="hidden lg:flex flex-col justify-end items-start lg:w-1/2 px-20 pb-20 border-l border-white/10"
+              key="backdrop"
+              className="fixed inset-0 z-40 "
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              animate={{ opacity: 0.01 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              onClick={() => setMenuOpen(false)}
+            />
+
+            {/* responsive panel:
+                - mobile: full screen (inset-0) with no rounded corners
+                - desktop: right floating panel with rounded corners (aligned with menu button, positioned lower)
+            */}
+            <motion.aside
+              key="panel"
+              initial={{ opacity: 0, x: 48 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 48 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              className={
+                "fixed z-50 bg-white shadow-2xl p-6 overflow-auto scrollbar-hide " +
+                "inset-0 md:inset-auto md:top-24 md:right-6 md:w-80 md:max-w-[38%] md:max-h-[calc(100vh-120px)] " +
+                "rounded-none md:rounded-lg"
+              }
+              role="dialog"
+              aria-modal="true"
             >
-              <p className="text-white/30 text-xs uppercase tracking-[0.3em] mb-4">
-                Get in touch
-              </p>
-              <p className="text-white text-3xl font-light leading-relaxed mb-8 max-w-sm">
-                We operate 24/7 for seamless aviation support across Ethiopia.
-              </p>
-              <div className="flex flex-col gap-3 text-sm text-white/50">
-                <span>✦ Addis Ababa Bole International Airport</span>
-                <span>✦ +251 911 123 456</span>
-                <span>✦ info@sabaaviation.com</span>
+              <button
+                className="absolute top-4 right-4 text-gray-600 z-10 hover:text-gray-900 transition-colors"
+                onClick={() => setMenuOpen(false)}
+                aria-label="Close menu"
+              >
+                <FiX className="w-5 h-5" />
+              </button>
+
+              <div className="mt-2 font-helvetica space-y-6 text-gray-800">
+                {/* Main Navigation */}
+                <div>
+                  <h3 className="text-sm font-helvetica font-bold text-dark uppercase tracking-wider mb-3">
+                    saba
+                  </h3>
+                  <ul className="space-y-2 text-sm">
+                    <motion.li
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.1 }}
+                    >
+                      <Link
+                        href="/about"
+                        onClick={() => setMenuOpen(false)}
+                        className="hover:text-warm-gold transition-colors block"
+                      >
+                        About Us
+                      </Link>
+                    </motion.li>
+                    <motion.li
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.15 }}
+                    >
+                      <Link
+                        href="/operations"
+                        onClick={() => setMenuOpen(false)}
+                        className="hover:text-warm-gold transition-colors block"
+                      >
+                        Operations
+                      </Link>
+                    </motion.li>
+                    <motion.li
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 }}
+                    >
+                      <Link
+                        href="/safety-quality"
+                        onClick={() => setMenuOpen(false)}
+                        className="hover:text-warm-gold transition-colors block"
+                      >
+                        Safety & Quality
+                      </Link>
+                    </motion.li>
+                    <motion.li
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.25 }}
+                    >
+                      <Link
+                        href="/careers"
+                        onClick={() => setMenuOpen(false)}
+                        className="hover:text-warm-gold transition-colors block"
+                      >
+                        Careers
+                      </Link>
+                    </motion.li>
+                  </ul>
+                </div>
+
+                {/* Services */}
+                <div>
+                  <h3 className="text-sm text-gray-500 uppercase tracking-wider mb-3">
+                    Our Services
+                  </h3>
+                  <ul className="space-y-2 text-sm">
+                    <motion.li
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 }}
+                    >
+                      <Link
+                        href="/services"
+                        onClick={() => setMenuOpen(false)}
+                        className="hover:text-warm-gold transition-colors block font-medium"
+                      >
+                        All Services
+                      </Link>
+                    </motion.li>
+                    <motion.li
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.35 }}
+                    >
+                      <Link
+                        href="/services/flight-support"
+                        onClick={() => setMenuOpen(false)}
+                        className="hover:text-warm-gold transition-colors block pl-3"
+                      >
+                        Flight Support
+                      </Link>
+                    </motion.li>
+                    <motion.li
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.4 }}
+                    >
+                      <Link
+                        href="/services/ground-handling"
+                        onClick={() => setMenuOpen(false)}
+                        className="hover:text-warm-gold transition-colors block pl-3"
+                      >
+                        Ground Handling
+                      </Link>
+                    </motion.li>
+                    <motion.li
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.45 }}
+                    >
+                      <Link
+                        href="/services/passenger-services"
+                        onClick={() => setMenuOpen(false)}
+                        className="hover:text-warm-gold transition-colors block pl-3"
+                      >
+                        Passenger Services
+                      </Link>
+                    </motion.li>
+                    <motion.li
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5 }}
+                    >
+                      <Link
+                        href="/services/vip-business-aviation"
+                        onClick={() => setMenuOpen(false)}
+                        className="hover:text-warm-gold transition-colors block pl-3"
+                      >
+                        VIP & Business Aviation
+                      </Link>
+                    </motion.li>
+                    <motion.li
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.55 }}
+                    >
+                      <Link
+                        href="/services/cargo-logistics"
+                        onClick={() => setMenuOpen(false)}
+                        className="hover:text-warm-gold transition-colors block pl-3"
+                      >
+                        Cargo & Logistics
+                      </Link>
+                    </motion.li>
+                    <motion.li
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.6 }}
+                    >
+                      <Link
+                        href="/services/fuel-coordination"
+                        onClick={() => setMenuOpen(false)}
+                        className="hover:text-warm-gold transition-colors block pl-3"
+                      >
+                        Fuel Coordination
+                      </Link>
+                    </motion.li>
+                    <motion.li
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.65 }}
+                    >
+                      <Link
+                        href="/services/ground-transportation"
+                        onClick={() => setMenuOpen(false)}
+                        className="hover:text-warm-gold transition-colors block pl-3"
+                      >
+                        Ground Transportation
+                      </Link>
+                    </motion.li>
+                    <motion.li
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.7 }}
+                    >
+                      <Link
+                        href="/services/crew-services"
+                        onClick={() => setMenuOpen(false)}
+                        className="hover:text-warm-gold transition-colors block pl-3"
+                      >
+                        Crew Support Services
+                      </Link>
+                    </motion.li>
+                  </ul>
+                </div>
+
+                {/* Additional Links */}
+                <div className="pt-4 border-t border-gray-200">
+                  <ul className="space-y-2 text-sm">
+                    <motion.li
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.75 }}
+                    >
+                      <Link
+                        href="/contact"
+                        onClick={() => setMenuOpen(false)}
+                        className="hover:text-warm-gold transition-colors block font-medium"
+                      >
+                        Contact Us
+                      </Link>
+                    </motion.li>
+                    <motion.li
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.8 }}
+                    >
+                      <Link
+                        href="/privacy-policy"
+                        onClick={() => setMenuOpen(false)}
+                        className="hover:text-warm-gold transition-colors block text-xs text-gray-500"
+                      >
+                        Privacy Policy
+                      </Link>
+                    </motion.li>
+                    <motion.li
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.85 }}
+                    >
+                      <Link
+                        href="/terms"
+                        onClick={() => setMenuOpen(false)}
+                        className="hover:text-warm-gold transition-colors block text-xs text-gray-500"
+                      >
+                        Terms & Conditions
+                      </Link>
+                    </motion.li>
+                  </ul>
+                </div>
               </div>
-            </motion.div>
-          </motion.div>
+            </motion.aside>
+          </>
         )}
       </AnimatePresence>
     </header>

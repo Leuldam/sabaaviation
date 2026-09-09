@@ -29,6 +29,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import ServiceCard from "@/components/ui/ServiceCard";
 import CTABanner from "@/components/ui/CTABanner";
 import PartnerLogos from "@/components/ui/PartnerLogos";
+import ContactSection from "@/components/ui/ContactSection";
 import { services } from "@/data/services";
 
 const safetyBadges = [
@@ -182,15 +183,7 @@ export default function Home() {
           </Link>
 
           {/* Pulsing ring + divider + availability text */}
-          <div className="flex items-center gap-3">
-            <div className="relative flex items-center justify-center w-3 h-3">
-              <span className="absolute w-3 h-3 rounded-full bg-green-400 opacity-75 animate-ping" />
-              <span className="w-2 h-2 rounded-full bg-green-400" />
-            </div>
-            <span className="text-white/60 text-[11px] uppercase tracking-[0.2em] font-light">
-              Available 24 / 7
-            </span>
-          </div>
+          
         </motion.div>
 
         {/* Trust badges */}
@@ -516,8 +509,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── CTA ──────────────────────────────────────────── */}
-      <CTABanner />
+      {/* ── CONTACT SECTION ──────────────────────────────── */}
+      <ContactSection />
     </>
   );
 }
