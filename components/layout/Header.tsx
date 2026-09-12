@@ -43,6 +43,7 @@ export default function Header() {
   }, [menuOpen]);
 
   const toggleMenu = () => setMenuOpen((prev) => !prev);
+  const isMobileMenu = () => typeof window !== "undefined" && window.innerWidth < 768;
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
@@ -77,7 +78,7 @@ export default function Header() {
             <li key={item.href}>
               <Link
                 href={item.href}
-                className={`px-3 py-2 text-[15px] font-helvetica font-thin uppercase tracking-widest transition-all duration-200 ${
+                className={`px-3 py-2 text-[15px] md:text-[11px] lg:text-[14px] font-helvetica font-thin uppercase tracking-widest transition-all duration-200 ${
                   isActive(item.href) ? "text-warm-gold" : "text-white"
                 }`}
               >
@@ -112,7 +113,7 @@ export default function Header() {
             {/* backdrop */}
             <motion.div
               key="backdrop"
-              className="fixed inset-0 z-40 "
+              className="fixed inset-0 z-40  "
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.01 }}
               exit={{ opacity: 0 }}
@@ -125,32 +126,21 @@ export default function Header() {
             */}
             <motion.aside
               key="panel"
-              initial={{ opacity: 0, x: 48 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 48 }}
+              initial={{ opacity: 0, y: isMobileMenu() ? -18 : 0, x: isMobileMenu() ? 0 : 48 }}
+              animate={{ opacity: 1, y: 0, x: 0 }}
+              exit={{ opacity: 0, y: isMobileMenu() ? -18 : 0, x: isMobileMenu() ? 0 : 48 }}
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
               className={
                 "fixed z-50 bg-white shadow-2xl p-6 overflow-auto scrollbar-hide " +
-                "inset-0 md:inset-auto md:top-24 md:right-6 md:w-80 md:max-w-[38%] md:max-h-[calc(100vh-120px)] " +
-                "rounded-none md:rounded-lg"
+                "top-20 right-4 w-[50vw] max-w-[340px] md:inset-auto md:top-26 md:right-6 md:left-auto md:w-80 md:max-w-[38%] md:max-h-[calc(100vh-120px)] " +
+                "rounded-lg md:rounded-lg"
               }
               role="dialog"
               aria-modal="true"
             >
-              <button
-                className="absolute top-4 right-4 text-gray-600 z-10 hover:text-gray-900 transition-colors"
-                onClick={() => setMenuOpen(false)}
-                aria-label="Close menu"
-              >
-                <FiX className="w-5 h-5" />
-              </button>
-
               <div className="mt-2 font-helvetica space-y-6 text-gray-800">
                 {/* Main Navigation */}
                 <div>
-                  <h3 className="text-sm font-helvetica font-bold text-dark uppercase tracking-wider mb-3">
-                    saba
-                  </h3>
                   <ul className="space-y-2 text-sm">
                     <motion.li
                       initial={{ opacity: 0, y: 10 }}
@@ -328,51 +318,6 @@ export default function Header() {
                         className="hover:text-warm-gold transition-colors block pl-3"
                       >
                         Crew Support Services
-                      </Link>
-                    </motion.li>
-                  </ul>
-                </div>
-
-                {/* Additional Links */}
-                <div className="pt-4 border-t border-gray-200">
-                  <ul className="space-y-2 text-sm">
-                    <motion.li
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.75 }}
-                    >
-                      <Link
-                        href="/contact"
-                        onClick={() => setMenuOpen(false)}
-                        className="hover:text-warm-gold transition-colors block font-medium"
-                      >
-                        Contact Us
-                      </Link>
-                    </motion.li>
-                    <motion.li
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.8 }}
-                    >
-                      <Link
-                        href="/privacy-policy"
-                        onClick={() => setMenuOpen(false)}
-                        className="hover:text-warm-gold transition-colors block text-xs text-gray-500"
-                      >
-                        Privacy Policy
-                      </Link>
-                    </motion.li>
-                    <motion.li
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.85 }}
-                    >
-                      <Link
-                        href="/terms"
-                        onClick={() => setMenuOpen(false)}
-                        className="hover:text-warm-gold transition-colors block text-xs text-gray-500"
-                      >
-                        Terms & Conditions
                       </Link>
                     </motion.li>
                   </ul>
