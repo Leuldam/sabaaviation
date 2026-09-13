@@ -1,8 +1,11 @@
+import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import localFont from 'next/font/local';
 import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import CookieConsent from '@/components/ui/CookieConsent';
+import LocalBusinessJsonLd from '@/components/seo/LocalBusinessJsonLd';
 
 const helveticaNeue = localFont({
   src: [
@@ -140,6 +143,48 @@ const inter = Inter({
   display: 'swap',
 });
 
+export const metadata: Metadata = {
+  metadataBase: new URL('https://www.sabaaviation.com'),
+  title: {
+    default: 'SABA Aviation | Ground Handling & Flight Support in Ethiopia',
+    template: '%s | SABA Aviation',
+  },
+  description:
+    'Premium aviation ground handling, flight support, VIP services, cargo coordination, and airport operations in Addis Ababa and across Ethiopia.',
+  keywords: [
+    'SABA Aviation',
+    'ground handling in Ethiopia',
+    'flight support Ethiopia',
+    'VIP aviation services Addis Ababa',
+    'aircraft handling Ethiopia',
+    'cargo handling Ethiopia',
+    'Bole International Airport support',
+    'aviation support services Ethiopia',
+  ],
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: 'SABA Aviation | Ground Handling & Flight Support in Ethiopia',
+    description:
+      'Professional aviation support services in Ethiopia for airlines, charter operators, VIP travelers, cargo operations, and executive flight teams.',
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://www.sabaaviation.com',
+    siteName: 'SABA Aviation',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'SABA Aviation',
+    description:
+      'Ground handling, flight support, VIP aviation, cargo handling, and operational coordination in Ethiopia.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -148,11 +193,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${helveticaNeue.variable} ${montserrat.variable} ${inter.variable}`}>
       <body className="text-white bg-gradient-to-b from-white to-gray-200 font-sans antialiased">
+        <LocalBusinessJsonLd />
         <Header />
         <div>
           {children}
         </div>
         <Footer />
+        <CookieConsent />
       </body>
     </html>
   );

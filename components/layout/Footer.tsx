@@ -50,7 +50,7 @@ export default function Footer() {
           </div>
 
           {/* Services */}
-          <div>
+          <div className="hidden md:block">
             <h4 className="text-[10px] uppercase tracking-[0.15em] text-gray-500 mb-4 font-medium">
               OUR SERVICES
             </h4>
@@ -78,16 +78,16 @@ export default function Footer() {
             <h4 className="text-[10px] uppercase tracking-[0.15em] text-gray-500 mb-4 font-medium">
               GET IN TOUCH
             </h4>
-            <p className="text-sm text-gray-400 mb-4">Available 24/7</p>
+            <p className="text-sm hidden md:block text-gray-400 mb-4">Available 24/7</p>
             <Link
               href="/contact"
-              className="inline-block rounded-full px-6 py-2 border border-white text-white hover:bg-white hover:text-black transition-colors text-xs uppercase tracking-wider mb-6"
+              className="hidden md:inline-block rounded-full px-6 py-2 border border-white text-white hover:bg-white hover:text-black transition-colors text-xs uppercase tracking-wider mb-6"
             >
               CONTACT US
             </Link>
 
             <div>
-              <p className="text-[10px] uppercase tracking-[0.15em] text-gray-500 mb-3 font-medium">
+              <p className="text-[10px] hidden md:block uppercase tracking-[0.15em] text-gray-500 mb-3 font-medium">
                 FOLLOW US
               </p>
               <div className="flex gap-4">
