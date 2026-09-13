@@ -93,7 +93,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               
               <div className="mt-16 pt-12 border-t border-black/10">
                 <Link href="/contact" className="btn-primary inline-flex">
-                  REQUEST {service.title.toUpperCase()}
+                  Contact {service.title.toUpperCase()}
                 </Link>
               </div>
             </div>
@@ -102,8 +102,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         </div>
       </section>
 
-      {/* ── CTA ──────────────────────────────────────────── */}
-      <CTABanner />
+       
     </>
   );
 }

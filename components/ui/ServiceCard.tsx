@@ -61,7 +61,7 @@ export default function ServiceCard({
           </div>
 
           {/* Gold circular arrow button */}
-          <div className="shrink-0 w-10 h-10 rounded-full bg-[#E5A83B] flex items-center justify-center text-black shadow-md transition-all duration-300 group-hover:scale-110 group-hover:bg-[#F3BA35]">
+          <div className="shrink-0 w-10 h-10 rounded-full bg-[#052f4d] flex items-center justify-center text-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:bg-[#022742]">
             <ArrowUpRight size={19} strokeWidth={2.4} />
           </div>
         </div>

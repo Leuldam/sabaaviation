@@ -31,7 +31,7 @@ export default function ContactSection() {
                 Contact us
               </h2>
               {/* Orange underline */}
-              <div className="w-24 md:w-32 h-[2px] bg-[#FF6B35]"></div>
+              <div className="w-24 md:w-32 h-[2px] bg-[#052f4d]"></div>
             </div>
 
             {/* Right Side - Arrow Button */}
@@ -40,7 +40,7 @@ export default function ContactSection() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-[#FF6B35] rounded-full flex items-center justify-center hover:bg-[#ff5520] transition-colors group"
+                  className="w-10 h-10 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-[#052f4d] rounded-full flex items-center justify-center hover:bg-[#022742] transition-colors group"
                   aria-label="Go to contact page"
                 >
                   <motion.div

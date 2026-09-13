@@ -15,7 +15,7 @@
   --accent-blue: #91A5BA;
   --accent-blue-light: #AAB8C6;
 
-  --accent-gold: #C8B06A;
+  --accent-gold: #073f67;
 }
 
 /* ───────────────────────────────────────────────
@@ -56,23 +56,23 @@
 @layer components {
   /* Buttons */
   .btn-primary {
-    @apply inline-flex items-center gap-2 px-7 py-3.5 bg-warm-gold text-midnight font-bold rounded-full
-           hover:bg-light-gold hover:shadow-[0_0_20px_rgba(217,164,65,0.3)] transition-all duration-300 text-xs sm:text-sm tracking-widest uppercase;
+    @apply inline-flex items-center gap-2 px-7 py-3.5 bg-[#073f67] text-white font-bold rounded-full
+           hover:bg-[#052f4d] hover:shadow-[0_0_20px_rgba(7,63,103,0.35)] transition-all duration-300 text-xs sm:text-sm tracking-widest uppercase;
   }
 
   .btn-outline {
-    @apply inline-flex items-center gap-2 px-7 py-3.5 border border-white/20 text-white font-semibold rounded-full
-           hover:bg-white/5 hover:border-white/40 transition-all duration-300 text-xs sm:text-sm tracking-widest uppercase;
+    @apply inline-flex items-center gap-2 px-7 py-3.5 border border-[#073f67]/30 text-[#073f67] font-semibold rounded-full
+           hover:bg-[#073f67]/10 hover:border-[#073f67] transition-all duration-300 text-xs sm:text-sm tracking-widest uppercase;
   }
 
   .btn-outline-gold {
-    @apply inline-flex items-center gap-2 px-7 py-3.5 border border-warm-gold/30 text-warm-gold font-semibold rounded-full
-           hover:bg-warm-gold/10 hover:border-warm-gold transition-all duration-300 text-xs sm:text-sm tracking-widest uppercase;
+    @apply inline-flex items-center gap-2 px-7 py-3.5 border border-[#073f67]/30 text-[#073f67] font-semibold rounded-full
+           hover:bg-[#073f67]/10 hover:border-[#073f67] transition-all duration-300 text-xs sm:text-sm tracking-widest uppercase;
   }
 
   .btn-dark {
-    @apply inline-flex items-center gap-2 px-7 py-3.5 bg-[#141414] border border-white/10 text-white font-semibold rounded-full
-           hover:bg-[#222222] hover:border-white/30 transition-all duration-300 text-xs sm:text-sm tracking-widest uppercase;
+    @apply inline-flex items-center gap-2 px-7 py-3.5 bg-[#073f67] border border-[#073f67] text-white font-semibold rounded-full
+           hover:bg-[#052f4d] hover:border-[#052f4d] transition-all duration-300 text-xs sm:text-sm tracking-widest uppercase;
   }
 
   /* Section spacing */
@@ -145,5 +145,50 @@
   }
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
+  }
+
+  .floating-card {
+    animation: drift-soft 6.5s ease-in-out infinite;
+  }
+
+  .floating-panel {
+    animation: hover-lift 7.2s ease-in-out infinite;
+  }
+
+  .floating-mini {
+    animation: drift-mini 5.8s ease-in-out infinite;
+  }
+}
+
+@keyframes drift-soft {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-8px) rotate(0.45deg);
+  }
+  66% {
+    transform: translateY(-3px) rotate(-0.25deg);
+  }
+}
+
+@keyframes hover-lift {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(-0.3deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(0.6deg);
+  }
+}
+
+@keyframes drift-mini {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
   }
 }

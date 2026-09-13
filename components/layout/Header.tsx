@@ -52,13 +52,13 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+      className={`fixed left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-midnight/95 backdrop-blur-xl shadow-lg shadow-black/20"
-          : "bg-gradient-to-b from-black/40 to-transparent"
+          ? "top-6 md:top-3 w-[calc(100%-1.5rem)] max-w-[1200px] px-3 md:px-5 bg-midnight/90 backdrop-blur-xl shadow-lg shadow-black/20 rounded-[35px]"
+          : "top-0 w-full bg-gradient-to-b from-black/40 to-transparent"
       }`}
     >
-      <nav className="w-full flex items-center justify-between h-20 px-5 sm:px-8 lg:px-10 xl:px-0">
+      <nav className={`w-full flex items-center justify-between h-16 px-5 sm:px-8 lg:px-10 xl:px-0 transition-all duration-500 ${scrolled ? "rounded-[35px]" : ""}`}>
         {/* Logo */}
         <Link href="/" className="flex items-center group">
           <div className="relative w-40 sm:w-48 lg:w-56 h-20 sm:h-16 lg:h-20">
@@ -78,7 +78,7 @@ export default function Header() {
             <li key={item.href}>
               <Link
                 href={item.href}
-                className={`px-3 py-2 text-[15px] md:text-[11px] lg:text-[14px] font-helvetica font-thin uppercase tracking-widest transition-all duration-200 ${
+                className={`px-3 py-2 text-[15px] md:text-[11px] lg:text-[13px] font-helvetica font-thin uppercase tracking-widest transition-all duration-200 ${
                   isActive(item.href) ? "text-warm-gold" : "text-white"
                 }`}
               >
@@ -186,13 +186,7 @@ export default function Header() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.25 }}
                     >
-                      <Link
-                        href="/careers"
-                        onClick={() => setMenuOpen(false)}
-                        className="hover:text-warm-gold transition-colors block"
-                      >
-                        Careers
-                      </Link>
+                       
                     </motion.li>
                   </ul>
                 </div>

@@ -82,7 +82,7 @@ export default function HeroSection({
   return (
     <section
       ref={sectionRef}
-      className={`relative ${fullHeight ? "min-h-screen" : "min-h-[50vh]"} flex items-end overflow-hidden`}
+      className={`relative ${fullHeight ? "h-[100svh] min-h-[100svh]" : "min-h-[50vh]"} flex items-end overflow-hidden`}
     >
       {isVideo && videoSrc ? (
         <motion.div
@@ -114,24 +114,38 @@ export default function HeroSection({
       <div className="hero-overlay" />
 
       {fullHeight && (
-        <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.6 }}
-          style={{ opacity: scrollIndicatorOpacity }}
-        >
-          <span className="text-white/40 text-[10px] tracking-[0.25em hidden md:block uppercase font-light">Scroll</span>
+        <>
           <motion.div
-            className="w-px h-10 bg-gradient-to-b from-white/40 to-transparent"
-            animate={{ scaleY: [1, 0.4, 1] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </motion.div>
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2, duration: 0.6 }}
+            style={{ opacity: scrollIndicatorOpacity }}
+          >
+            <span className="text-white/40 text-[10px] tracking-[0.25em hidden md:block uppercase font-light">Scroll</span>
+            <motion.div
+              className="w-px h-10 bg-gradient-to-b from-white/40 to-transparent"
+              animate={{ scaleY: [1, 0.4, 1] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </motion.div>
+
+          <motion.div
+            className="absolute bottom-5 left-5 z-20"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.4, duration: 0.5 }}
+            style={{ opacity: scrollIndicatorOpacity }}
+          >
+            <div className="flex h-7 w-7 items-center justify-center rounded-full border border-white/20 bg-white/5 text-[10px] font-medium text-white/80 shadow-[0_0_12px_rgba(255,255,255,0.08)] backdrop-blur-[2px]">
+              N
+            </div>
+          </motion.div>
+        </>
       )}
 
       <motion.div
-        className="relative z-10 container-max w-full pb-12 pl-6 pr-3 sm:pb-16 pt-24 sm:pt-32"
+        className={`relative z-10 container-max w-full ${fullHeight ? "flex h-full flex-col justify-end" : ""} pb-8 pl-6 pr-3 pt-20 sm:pb-16 sm:pt-24`}
         style={fullHeight ? { y: contentY, opacity: contentOpacity } : undefined}
       >
         {breadcrumbs && breadcrumbs.length > 0 && (
@@ -160,7 +174,7 @@ export default function HeroSection({
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-4xl md:text-6xl lg:text-8xl font-helvetica font-bold uppercase tracking-wide text-white max-w-base md:max-w-5xl lg:max-w-5xl leading-tight lg:leading-tight pb-6 lg:pb-19"
+          className="text-[2.7rem] leading-[0.9] sm:text-4xl md:text-6xl lg:text-10xl font-helvetica font-bold uppercase tracking-wide text-white max-w-base md:max-w-5xl lg:max-w-2xl pb-4 sm:pb-6 lg:pb-19"
         >
           {title}
         </motion.h1>
@@ -169,7 +183,7 @@ export default function HeroSection({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-5 sm:mt-6 text-xs sm:text-lg md:text-lg lg:text-[15px]  pb-7 lg:pb-2 font-montserrat font-light tracking-wider uppercase text-white/50 max-w-0xl text-balance"
+          className="mt-5 sm:mt-6 text-xs sm:text-lg md:text-lg lg:text-[13px]  pb-7 lg:pb-2  font-montserrat font-light tracking-wider uppercase text-white/50 max-w-0xl text-balance"
         >
           {subtitle}
         </motion.p>

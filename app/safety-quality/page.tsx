@@ -96,7 +96,7 @@ export default function SafetyQualityPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <p className="text-xs uppercase tracking-[0.2em] text-[#FF6B35] mb-4 font-medium">
+              <p className="text-xs uppercase tracking-[0.2em] text-[#052f4d] mb-4 font-medium">
                 OUR COMMITMENT
               </p>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0A0A0A] mb-6 leading-tight">
@@ -153,7 +153,7 @@ export default function SafetyQualityPage() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="text-center"
               >
-                <stat.icon className="w-8 h-8 text-[#FF6B35] mx-auto mb-3" />
+                <stat.icon className="w-8 h-8 text-[#052f4d] mx-auto mb-3" />
                 <p className="text-3xl md:text-4xl font-bold text-white mb-2">{stat.value}</p>
                 <p className="text-sm text-gray-400">{stat.label}</p>
               </motion.div>
@@ -166,7 +166,7 @@ export default function SafetyQualityPage() {
       <section className="py-16 md:py-24 bg-gradient-to-b from-white to-gray-50">
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
           <div className="text-center mb-16">
-            <p className="text-xs uppercase tracking-[0.2em] text-[#FF6B35] mb-4 font-medium">
+            <p className="text-xs uppercase tracking-[0.2em] text-[#052f4d] mb-4 font-medium">
               SIX PILLARS OF EXCELLENCE
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0A0A0A] mb-4">
@@ -187,8 +187,8 @@ export default function SafetyQualityPage() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="bg-white rounded-xl p-8 shadow-sm hover:shadow-xl transition-shadow duration-300 border border-gray-100"
               >
-                <div className="w-14 h-14 bg-[#FF6B35]/10 rounded-xl flex items-center justify-center mb-6">
-                  <pillar.icon className="w-7 h-7 text-[#FF6B35]" strokeWidth={1.5} />
+                <div className="w-14 h-14 bg-[#052f4d]/10 rounded-xl flex items-center justify-center mb-6">
+                  <pillar.icon className="w-7 h-7 text-[#052f4d]" strokeWidth={1.5} />
                 </div>
                 <h3 className="text-xl font-bold text-[#0A0A0A] mb-3">{pillar.title}</h3>
                 <p className="text-gray-600 text-sm leading-relaxed mb-4">
@@ -197,7 +197,7 @@ export default function SafetyQualityPage() {
                 <ul className="space-y-2">
                   {pillar.features.map((feature, i) => (
                     <li key={i} className="flex items-center gap-2 text-sm text-gray-700">
-                      <div className="w-1.5 h-1.5 bg-[#FF6B35] rounded-full"></div>
+                      <div className="w-1.5 h-1.5 bg-[#052f4d] rounded-full"></div>
                       <span>{feature}</span>
                     </li>
                   ))}
@@ -212,7 +212,7 @@ export default function SafetyQualityPage() {
       <section className="py-16 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
           <div className="text-center mb-12">
-            <p className="text-xs uppercase tracking-[0.2em] text-[#FF6B35] mb-4 font-medium">
+            <p className="text-xs uppercase tracking-[0.2em] text-[#052f4d] mb-4 font-medium">
               CERTIFICATIONS & COMPLIANCE
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-[#0A0A0A] mb-4">
@@ -231,7 +231,7 @@ export default function SafetyQualityPage() {
                 className="flex items-center justify-between p-6 bg-gray-50 rounded-xl border border-gray-200"
               >
                 <div className="flex items-center gap-4">
-                  <Award className="w-10 h-10 text-[#FF6B35]" />
+                  <Award className="w-10 h-10 text-[#052f4d]" />
                   <div>
                     <h3 className="font-semibold text-[#0A0A0A]">{cert.name}</h3>
                     <p className="text-sm text-gray-600">Status: {cert.status}</p>

@@ -40,10 +40,10 @@ export default function ServicesPage() {
           <div className="container-max">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <ScrollFloat distance={100} scrub={1.5}>
-                <p className="section-label font-helvetica text-[#DAA428]">What We Offer</p>
+                <p className="section-label font-helvetica text-[#073f67]">What We Offer</p>
                 <h2 className="text-3xl md:text-4xl font-bold text-midnight tracking-tight mb-6">
                   Seamless Aviation Support,{" "}
-                  <span className="text-[#DAA428]">Every Step of the Way.</span>
+                  <span className="text-[#073f67]">Every Step of the Way.</span>
                 </h2>
                 <p className="text-midnight/70 leading-relaxed text-base mb-8">
                   SABA Aviation Service & Flight Support PLC delivers a full spectrum of aviation
@@ -54,7 +54,7 @@ export default function ServicesPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {highlights.map((item) => (
                     <div key={item} className="flex items-center gap-2.5">
-                      <CheckCircle2 size={16} className="text-[#DAA428] shrink-0" />
+                      <CheckCircle2 size={16} className="text-[#073f67] shrink-0" />
                       <span className="text-midnight/80 text-sm font-medium">{item}</span>
                     </div>
                   ))}
@@ -78,7 +78,7 @@ export default function ServicesPage() {
                       { num: "100%", label: "Compliance" },
                     ].map((stat) => (
                       <div key={stat.label} className="text-center">
-                        <p className="text-[#DAA428] font-bold text-2xl">{stat.num}</p>
+                        <p className="text-[#073f67] font-bold text-2xl">{stat.num}</p>
                         <p className="text-white/70 text-xs uppercase tracking-wider">{stat.label}</p>
                       </div>
                     ))}
@@ -94,7 +94,7 @@ export default function ServicesPage() {
           <div className="container-max">
             <ScrollFloat distance={80} scrub={1.5}>
               <div className="text-center mb-14">
-                <p className="section-label font-helvetica text-[#DAA428]">All Services</p>
+                <p className="section-label font-helvetica text-[#073f67]">All Services</p>
                 <h2 className="text-3xl md:text-4xl font-bold text-midnight tracking-tight">
                   Everything You Need, In One Place
                 </h2>
@@ -135,7 +135,7 @@ export default function ServicesPage() {
               <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/95 via-[#0A0A0A]/80 to-[#0A0A0A]/50" />
               <div className="relative z-10 p-10 md:p-16 lg:p-20">
                 <div className="max-w-2xl">
-                  <p className="section-label text-[#DAA428]">Why SABA</p>
+                  <p className="section-label text-[#073f67]">Why SABA</p>
                   <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight mb-6 leading-tight">
                     The Aviation Partner You Can Trust.
                   </h2>
@@ -146,9 +146,9 @@ export default function ServicesPage() {
                   </p>
                   <div className="flex flex-wrap gap-4">
                     <Link href="/contact" className="btn-primary">
-                      Request a Quote <ArrowRight size={16} />
+                      Contact Us <ArrowRight size={16} />
                     </Link>
-                    <Link href="/safety-quality" className="btn-outline">
+                    <Link href="/safety-quality" className="btn-outline text-white">
                       Our Safety Standards
                     </Link>
                   </div>
@@ -159,8 +159,7 @@ export default function ServicesPage() {
         </section>
       </div>
 
-      {/* ── CTA ──────────────────────────────────────────── */}
-      <CTABanner />
+     
     </>
   );
 }

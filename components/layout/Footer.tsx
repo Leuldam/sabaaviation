@@ -6,15 +6,13 @@ import { FaBehance, FaDribbble, FaInstagram, FaFacebookF, FaLinkedinIn, FaTwitte
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0A0A0A] text-white w-full">
-      <div className="w-full px-6 md:px-12 lg:px-24 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+    <footer className="bg-[#0A0A0A] text-white w-full font-[Inter,ui-sans-serif,system-ui,sans-serif]">
+      <div className="w-full px-6 md:px-12 lg:px-10 py-16">
+        <div className="grid grid-cols-1 md:-cols-2 lg:grid-cols-4 gap-16">
           {/* Company Tagline */}
           <div>
             <h3 className="text-2xl md:text-3xl font-light leading-tight mb-6">
-              SABA Aviation<br />
-              Service & Flight<br />
-              Support
+              SABA Aviation 
             </h3>
             <p className="text-gray-400 text-sm leading-relaxed">
               Professional aviation ground handling and flight support services in Ethiopia.
@@ -29,21 +27,25 @@ export default function Footer() {
             <div className="space-y-2 text-sm">
               <a
                 href="mailto:info@sabaaviation.com"
-                className="block hover:text-[#FF6B35] transition-colors"
+                className="block text-gray-300 hover:text-white transition-colors"
               >
                 info@sabaaviation.com
               </a>
-              <p className="text-gray-400">+251 11 551 6897</p>
-              <p className="text-gray-400 leading-relaxed text-sm">
+              <a
+                href="tel:+251115516897"
+                className="block text-gray-400 hover:text-white transition-colors"
+              >
+                +251 11 551 6897
+              </a>
+              <a
+                href="https://maps.google.com/?q=Bole+International+Airport+Addis+Ababa+Ethiopia"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-gray-400 hover:text-white transition-colors leading-relaxed"
+              >
                 Bole International Airport,<br />
                 Addis Ababa, Ethiopia
-              </p>
-              <Link
-                href="/contact"
-                className="inline-block text-white hover:text-[#FF6B35] transition-colors mt-3 text-sm underline"
-              >
-                SEE ON MAP →
-              </Link>
+              </a>
             </div>
           </div>
 
@@ -64,7 +66,7 @@ export default function Footer() {
               </Link>
               <Link
                 href="/services"
-                className="inline-block text-white hover:text-[#FF6B35] transition-colors mt-3 text-sm underline"
+                className="inline-block text-white hover:text-[#052f4d] transition-colors mt-3 text-sm underline"
               >
                 VIEW ALL SERVICES →
               </Link>
@@ -79,7 +81,7 @@ export default function Footer() {
             <p className="text-sm text-gray-400 mb-4">Available 24/7</p>
             <Link
               href="/contact"
-              className="inline-block px-6 py-2 border border-white text-white hover:bg-white hover:text-black transition-colors text-xs uppercase tracking-wider mb-6"
+              className="inline-block rounded-full px-6 py-2 border border-white text-white hover:bg-white hover:text-black transition-colors text-xs uppercase tracking-wider mb-6"
             >
               CONTACT US
             </Link>
@@ -93,7 +95,7 @@ export default function Footer() {
                   href="https://linkedin.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#FF6B35] transition-colors flex items-center justify-center"
+                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#052f4d] transition-colors flex items-center justify-center"
                   aria-label="LinkedIn"
                 >
                   <FaLinkedinIn size={16} />
@@ -102,7 +104,7 @@ export default function Footer() {
                   href="https://twitter.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#FF6B35] transition-colors flex items-center justify-center"
+                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#052f4d] transition-colors flex items-center justify-center"
                   aria-label="Twitter"
                 >
                   <FaTwitter size={16} />
@@ -111,7 +113,7 @@ export default function Footer() {
                   href="https://facebook.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#FF6B35] transition-colors flex items-center justify-center"
+                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#052f4d] transition-colors flex items-center justify-center"
                   aria-label="Facebook"
                 >
                   <FaFacebookF size={16} />
@@ -120,7 +122,7 @@ export default function Footer() {
                   href="https://instagram.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#FF6B35] transition-colors flex items-center justify-center"
+                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#052f4d] transition-colors flex items-center justify-center"
                   aria-label="Instagram"
                 >
                   <FaInstagram size={16} />

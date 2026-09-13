@@ -28,23 +28,23 @@ export default function ProcessStep({
     >
       {/* Connector line (hidden on last item) */}
       {!isLast && (
-        <div className="hidden md:block absolute top-6 left-[calc(50%+24px)] w-[calc(100%-48px)] h-px bg-white/10" />
+        <div className="hidden md:block absolute top-6 left-[calc(50%+24px)] w-[calc(100%-24px)] h-px bg-[#052f4d]" />
       )}
 
       {/* Step number */}
       <div className="relative z-10 mb-5">
-        <div className="w-12 h-12 rounded-full bg-[#0A0A0A] border border-white/20 flex items-center justify-center group-hover:border-white transition-colors duration-300">
-          <span className="text-white/60 font-medium text-xs tracking-widest group-hover:text-white transition-colors">
+        <div className="w-12 h-12 rounded-full bg-[#052f4d] border border-white/20 flex items-center justify-center group-hover:border-white transition-colors duration-300">
+          <span className="text-white font-medium text-xs tracking-widest group-hover:text-white transition-colors">
             {String(step).padStart(2, "0")}
           </span>
         </div>
       </div>
 
       {/* Title */}
-      <h4 className="text-white font-semibold text-xs sm:text-sm mb-2">{title}</h4>
+      <h4 className="text-[#052f4d] font-semibold text-xs sm:text-sm mb-2">{title}</h4>
 
       {/* Description */}
-      <p className="text-white/40 text-[10px] sm:text-xs max-w-[140px] leading-relaxed">{description}</p>
+      <p className="text-black text-[10px] sm:text-xs max-w-[140px] leading-relaxed">{description}</p>
     </motion.div>
   );
 }

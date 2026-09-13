@@ -153,7 +153,7 @@ export default function Home() {
     <>
       {/* ── HERO ─────────────────────────────────────────── */}
       <HeroSection
-        title="SABA AVIATION SERVICE & FLIGHT SUPPORT "
+        title="ELEVATE YOUR FLIGHT OPERATIONS IN ETHIOPIA"
         subtitle="Professional aviation ground handling and flight support services in Ethiopia."
         backgroundImage="/images/hero_home.png"
         backgroundVideo="/images/backgroundvideo2.mp4"
@@ -170,7 +170,7 @@ export default function Home() {
           {/* Glowing pill button */}
           <Link
             href="/contact"
-            className="group relative inline-flex items-center gap-3 bg-warm-gold text-midnight font-black text-xs sm:text-sm uppercase tracking-widest px-7 py-3.5 rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(218,164,40,0.5)]"
+            className="group relative inline-flex items-center gap-3 bg-[#073f67] text-white font-poppins text-xs sm:text-sm uppercase tracking-widest px-5 py-3 rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(7,63,103,0.45)]"
           >
             {/* Animated shimmer */}
             <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
@@ -187,21 +187,21 @@ export default function Home() {
         </motion.div>
 
         {/* Trust badges */}
-        <div className="flex flex-row items-center font-montserrat font-medium uppercase tracking-widest justify-between gap-4 sm:gap-6 pt-6 sm:pt-8 border-t border-white/10 w-full">
-          <div className="flex items-center gap-3 sm:gap-4 shrink-0">
-            <div className="w-10 h-10 sm:w-12 sm:h-12  rounded-full border border-warm-gold flex items-center justify-center">
-              <Clock size={16} className="text-gold sm:w-5 sm:h-5" />
+        <div className="flex flex-row items-center font-montserrat font-medium uppercase tracking-widest justify-between gap-3 sm:gap-6 pt-5 sm:pt-2 border-t border-white/10 w-full">
+          <div className="flex items-center gap-2.5 sm:gap-4 shrink-0">
+            <div className="w-6 h-6 sm:w-12 sm:h-12 rounded-full border border-warm-gold flex items-center justify-center">
+              <Clock size={10} className="text-gold sm:w-5 sm:h-5" />
             </div>
             <div>
-              <p className="text-white  text-sm font-montserrat font-semibold sm:text-lg font-semibold">24/7</p>
-              <p className="text-white  font-normal text-[10px] sm:text-sm leading-tight">Operational<br className="sm:hidden" /> Support</p>
+              <p className="text-white text-[4px] font-montserrat font-semibold sm:text-base">24/7</p>
+              <p className="text-white text-[4px] leading-tight sm:text-xs">Operational<br className="sm:hidden" /> Support</p>
             </div>
           </div>
 
-          <div className="w-px h-8 sm:h-12 bg-white/10 shrink-0" />
+          <div className="w-px h-7 sm:h-12 bg-white/10 shrink-0" />
 
           <div className="text-right">
-            <p className="text-white text-xs sm:text-base leading-tight sm:leading-relaxed">
+            <p className="text-white text-[4px] leading-tight sm:text-xs sm:leading-relaxed">
               Your Trusted Aviation Partner<br className="hidden sm:block" /> in Ethiopia
             </p>
           </div>
@@ -213,80 +213,144 @@ export default function Home() {
 
       {/* ── UNIFIED LIGHT GRADIENT CONTENT ──────────────── */}
       <div className="bg-gradient-to-b from-white to-gray-200">
-        {/* ── ABOUT SECTION ────────────────────────────────── */}
-        <section className="section-padding">
-          <div className="container-max">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <ScrollFloat distance={100} scrub={1.5}>
-                <p className="section-label text-xs md:text-base font-helvetica text-[#DAA428]">About SABA</p>
-                <h2 className="text-3xl md:text-4xl font-bold text-midnight  mb-6 tracking-tight">
-                  Aviation Support,{" "}
-                  <span className="text-[#DAA428]">Professionally Delivered.</span>
-                </h2>
-                <p className="text-midnight font-helvetica text-justify text-sm sm:text-base leading-relaxed mb-8">
-                  SABA Aviation Service & Flight Support PLC provides reliable, responsive and
-                  professionally coordinated aviation support services designed to keep aircraft, crew
-                  and passengers moving efficiently through Ethiopia.
-                </p>
-                <div className="flex justify-center sm:justify-start">
-                  <Link href="/about" className="btn-dark mt-4 cursor-pointer">
-                    MORE ABOUT US <ArrowRight size={16} />
-                  </Link>
-                </div>
-              </ScrollFloat>
+        <section className="section-padding overflow-hidden relative">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,_rgba(7,63,103,0.18),_transparent_25%),radial-gradient(circle_at_80%_75%,_rgba(209,177,106,0.18),_transparent_22%)]" />
 
-              <ScrollFloat distance={80} scrub={1.8} delay={0.1}>
-                <div className="relative h-[400px] rounded-xl overflow-hidden">
-                  <Image
-                    src="/images/backgroundimage2.png"
-                    alt="SABA Aviation team"
-                    fill
-                    className="object-cover"
-                  />
-                  {/* Subtle gold border accent */}
-                  <div className="absolute inset-0 rounded-xl border border-warm-gold/20" />
+          <div className="container-max relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-16 items-center">
+              <div className="relative order-2 lg:order-1">
+                <div className="mb-5 inline-flex items-center gap-2.5 rounded-full border border-[#073f67]/15 bg-white/80 px-3 py-1.5 shadow-[0_14px_28px_rgba(7,63,103,0.08)] backdrop-blur-sm">
+                  <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.24em] uppercase text-[#073f67]">About SABA</span>
                 </div>
-              </ScrollFloat>
+
+                <h2 className="text-3xl sm:text-4xl md:text-[3.2rem] lg:text-[4rem] font-black leading-[0.95] tracking-[-0.06em] text-midnight mb-5">
+                  Built for
+                  <span className="block text-[#073f67] mt-2">confident operations.</span>
+                </h2>
+
+                <div className="mb-5 h-[3px] w-20 rounded-full bg-gradient-to-r from-[#073f67] to-[#d1b16a]" />
+
+                <p className="max-w-xl text-sm sm:text-base leading-8 text-midnight/80 font-helvetica mb-8">
+                  SABA Aviation Service &amp; Flight Support PLC provides structured, dependable aviation
+                  support across Ethiopia—helping operators, crew, and passengers move with speed,
+                  control, and confidence from touchdown to departure.
+                </p>
+
+                <div className="grid grid-cols-3 sm:grid-cols-3 gap-3 mb-8">
+                  {[
+                    { value: "24/7", label: "Operations" },
+                    { value: "12+", label: "Years" },
+                    { value: "98%", label: "Reliability" },
+                  ].map((item) => (
+                    <div
+                      key={item.label}
+                      className="rounded-2xl border border-slate-200 bg-white/80 p-4 shadow-[0_18px_35px_rgba(15,23,42,0.05)]"
+                    >
+                      <p className="text-2xl font-black leading-none text-[#073f67] mb-2">{item.value}</p>
+                      <p className="text-[10px] uppercase tracking-[0.16em] text-slate-500">{item.label}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex flex-col sm:flex-row items-center gap-4">
+                  <Link
+                    href="/about"
+                    className="group inline-flex items-center gap-2.5 rounded-full bg-[#073f67] px-6 py-3 text-[11px] sm:text-xs font-bold uppercase tracking-[0.18em] text-white shadow-[0_18px_35px_rgba(7,63,103,0.28)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#052f4d]"
+                  >
+                    More About Us
+                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 transition-transform duration-300 group-hover:translate-x-1">
+                      <ArrowRight size={14} />
+                    </span>
+                  </Link>
+
+                  <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] text-slate-500">
+                    <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.85)]" />
+                    Trusted delivery
+                  </div>
+                </div>
+              </div>
+
+              <div className="relative order-1 lg:order-2">
+                <div className="absolute -top-10 -left-8 h-28 w-28 rounded-full bg-[#073f67]/10 blur-3xl" />
+                <div className="absolute -bottom-12 -right-3 h-28 w-28 rounded-full bg-[#d1b16a]/18 blur-3xl" />
+
+                <div className="relative mx-auto max-w-[560px] rounded-[2rem] border border-white/90 bg-white p-2.5 shadow-[0_30px_80px_rgba(15,23,42,0.12)]">
+                  <div className="relative h-[300px] sm:h-[370px] lg:h-[450px] overflow-hidden rounded-[1.6rem]">
+                    <Image
+                      src="/images/backgroundimage2.png"
+                      alt="SABA Aviation team"
+                      fill
+                      className="object-cover scale-[1.05]"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#071c2f]/90 via-[#071c2f]/30 to-transparent" />
+
+                    <div className="absolute left-5 top-5 right-5 flex items-center justify-between gap-3">
+                      <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.2em] text-white/90 backdrop-blur-md">
+                        Est. 2013
+                      </span>
+                      <span className="rounded-full border border-[#d1b16a]/30 bg-[#d1b16a]/10 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.2em] text-[#f4e4b3] backdrop-blur-md">
+                        Corporate ready
+                      </span>
+                    </div>
+
+                    <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
+                      <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[10px] uppercase tracking-[0.18em] text-white/90 backdrop-blur-md">
+                        
+                        Efficient support network
+                      </div>
+
+                      <div className="rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-md shadow-[0_18px_40px_rgba(0,0,0,0.15)]">
+                        <div className="flex items-center justify-between gap-3">
+                          <div>
+                            <p className="text-[10px] uppercase tracking-[0.24em] text-white/60">Core strength</p>
+                            <p className="mt-2 text-lg font-bold text-white">Ground handling & flight support</p>
+                          </div>
+                          <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#d1b16a]/15 text-[#d1b16a]">
+                            <Shield size={18} />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+               
+              </div>
             </div>
           </div>
         </section>
 
         {/* ── SERVICES SECTION ─────────────────────────────── */}
-        <section className="section-padding">
-          <div className="container-max">
+        <section className="w-full py-16 sm:py-20 lg:py-24">
+          <div className="w-full max-w-[1700px] mx-auto px-5 sm:px-8 lg:px-12">
             {/* Header matching reference UI */}
             <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8 mb-12">
               {/* Left */}
               <div className="max-w-md">
                 <div className="flex items-center gap-2.5 mb-3">
-                  <span className="w-1 h-4 bg-[#DAA428] rounded-full inline-block" />
-                  <p className=" text-xs md:text-base font-semibold font-helvetica text-[#DAA428] tracking-wider uppercase">
+                 
+                  <p className=" text-xs md:text-base font-semibold font-helvetica text-[#073f67] tracking-wider uppercase">
                     Services We Offer
                   </p>
                 </div>
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-midnight tracking-tight leading-[1.08] mb-4">
-                  Certified Excellence
-                </h2>
-                <p className="text-black font-helvetica text-base leading-relaxed max-w-base">
+                
+                <p className="text-black font-helvetica text-sm leading-relaxed max-w-base">
                   From flight permits and ground handling to VIP concierge, we've got you covered.
                   Choose reliability, choose SABA.
                 </p>
               </div>
 
               {/* Right */}
-              <div className="flex flex-col justify-between border-l border-gray-300 pl-6 md:pl-8 max-w-lg self-stretch py-2">
-                <p className="text-midnight uppercase text-base  font-helvetica tracking-wider leading-relaxed mb-6 hidden md:block">
-                  Comprehensive end-to-end aviation solutions tailored for seamless operations
-                  across Ethiopia.
-                </p>
+              <div className="flex flex-col justify-between border-l border-gray-300 pl-6 md:pl-16 max-w-lg self-stretch py-2">
+               
                 <div className="flex flex-wrap items-center justify-between gap-4 md:gap-6">
                   {/* Call for Booking CTA Button */}
                   <Link
                     href="/contact"
-                    className="group inline-flex items-center gap-2.5 px-5 sm:px-6 py-2.5 rounded-full bg-[#DAA428] hover:bg-[#F3BA35] text-midnight font-montserrat font-bold text-xs sm:text-sm tracking-wide transition-all duration-300 shadow-sm hover:shadow-[0_4px_18px_rgba(218,164,40,0.35)]"
+                    className="group inline-flex items-center gap-2.5 px-5 sm:px-6 py-2.5 rounded-full bg-[#073f67] hover:bg-[#052f4d] text-white font-montserrat font-bold text-xs sm:text-sm tracking-wide transition-all duration-300 shadow-sm hover:shadow-[0_4px_18px_rgba(7,63,103,0.35)]"
                   >
-                    <span className="w-6 h-6 rounded-full bg-black/10 flex items-center justify-center group-hover:scale-110 transition-transform">
-                      <Phone size={12} className="text-midnight group-hover:rotate-12 transition-transform duration-300" />
+                    <span className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <Phone size={12} className="text-white group-hover:rotate-12 transition-transform duration-300" />
                     </span>
                     <span>Call for Booking</span>
                     <ArrowRight size={14} strokeWidth={2.5} className="group-hover:translate-x-1 transition-transform" />
@@ -350,7 +414,7 @@ export default function Home() {
               >
                 {/* Active sliding indicator along the single line */}
                 <div
-                  className="absolute top-0 bottom-0 rounded-full bg-[#5A121C] transition-all duration-300 ease-out"
+                  className="absolute top-0 bottom-0 rounded-full bg-[#052f4d] transition-all duration-300 ease-out"
                   style={{
                     width: "32%",
                     left: `${scrollProgress * 68}%`,
@@ -370,7 +434,7 @@ export default function Home() {
               <div className="flex flex-col gap-8">
                 <div>
                   <h2 className="text-3xl md:text-4xl font-black text-midnight tracking-tight leading-tight mb-5">
-                    Supporting Aviation <span className=" text-[#DAA428]">Operations in Ethiopia</span>
+                    Supporting Aviation <span className=" text-[#073f67]">Operations in Ethiopia</span>
                   </h2>
                   <p className="text-midnight font-helvetica leading-relaxed mb-8 max-w-xl">
                     With a strategic location in Addis Ababa, we coordinate ground handling and flight
@@ -379,7 +443,7 @@ export default function Home() {
                   <div className="flex justify-center sm:justify-start">
                     <Link
                       href="/operations"
-                      className="group inline-flex items-center uppercase gap-2.5 px-7 py-3.5 rounded-full bg-[#141414] border border-black/20 text-white font-bold text-sm tracking-wide transition-all duration-300 hover:bg-[#252525] hover:shadow-lg"
+                      className="group inline-flex items-center uppercase gap-2.5 px-7 py-3.5 rounded-full bg-[#052f4d] border border-black/20 text-white font-bold text-sm tracking-wide transition-all duration-300 hover:bg-[#022742] hover:shadow-lg"
                     >
                       Our Operations
                       <ArrowRight size={15} strokeWidth={2.5} className="group-hover:translate-x-1 transition-transform" />
@@ -390,7 +454,7 @@ export default function Home() {
 
               {/* Center — Interactive Ethiopia Map */}
               <div className="flex items-center justify-center w-full overflow-hidden">
-                <div className="relative w-full max-w-[440px] h-[350px] sm:h-[380px] md:max-w-[550px] md:h-[450px] shrink-0">
+                <div className="relative w-full max-w-[440px] h-[280px] sm:h-[380px] md:max-w-[550px] md:h-[350px] shrink-0">
                   {/* Map SVG */}
                   <Image
                     src="/images/ethiopia-map.svg"
@@ -475,13 +539,13 @@ export default function Home() {
       </div>
 
       {/* ── SAFETY SECTION ────────────────────────────────── */}
-      <section className="relative py-24 sm:py-32  overflow-hidden mt-12">
+      <section className="relative py-24 sm:py-22  overflow-hidden ">
         <Image src="/images/hero_safety.png" alt="Safety" fill className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/90 to-[#0A0A0A]/40" />
 
         <div className="relative z-10 container-max px-5 sm:px-8 lg:px-12">
           <ScrollFloat distance={100} scrub={1.5} className="max-w-2xl mb-16 sm:mb-24">
-            <p className="section-label font-helvetica text-[#DAA428] text-base ">Why SABA</p>
+            <p className="section-label font-helvetica text-[#f2f4f5] text-base ">Why SABA</p>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-tight">
               Built Around Safety.<br />
               Driven by Reliability.
@@ -490,16 +554,16 @@ export default function Home() {
               We uphold the highest standards in aviation safety, compliance and operational
               excellence, ensuring your operation runs smoothly, every time.
             </p>
-            <Link href="/safety-quality" className="btn-outline">
+            <Link href="/safety-quality" className="btn-outline text-white font-semibold text-sm sm:text-base tracking-wide inline-flex items-center gap-2.5          ">
               OUR SAFETY & QUALITY <ArrowRight size={16} />
             </Link>
           </ScrollFloat>
 
           {/* Safety badges inline row */}
-          <ScrollFloat distance={70} scrub={1.2} delay={0.15} className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <ScrollFloat distance={70} scrub={1.2} delay={0.15} className="grid grid-cols-2 md:grid-cols-4 gap-8 -mt-2 md:-mt-24">
             {safetyBadges.map((badge) => (
-              <div key={badge.label} className="flex flex-col items-center sm:items-start text-center sm:text-left group">
-                <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center mb-4 group-hover:border-warm-gold/50 transition-colors">
+              <div key={badge.label} className="flex flex-col items-center text-center group">
+                <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center mb-8 group-hover:border-warm-gold/50 transition-colors">
                   <badge.icon size={20} className="text-white/60 group-hover:text-warm-gold transition-colors" />
                 </div>
                 <p className="text-white font-medium text-sm tracking-wide">{badge.label}</p>

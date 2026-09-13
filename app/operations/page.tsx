@@ -49,7 +49,7 @@ export default function OperationsPage() {
               </p>
 
               {/* Ethiopia section */}
-              <div className="card bg-white p-6">
+              <div className="card bg-white p-6 transition-colors duration-200 hover:bg-white">
                 <div className="flex items-center gap-3 mb-5">
                   <div className="w-10 h-10 rounded-lg bg-warm-gold/10 flex items-center justify-center">
                     <Globe size={20} className="text-warm-gold" />
@@ -62,11 +62,11 @@ export default function OperationsPage() {
                   {airports.map((airport) => (
                     <div
                       key={airport.code}
-                      className={`flex items-center gap-3 py-2.5 px-3 rounded-lg ${
+                      className={`flex items-center gap-3 py-2.5 px-3 rounded-lg transition-colors duration-200 ${
                         airport.isPrimary
                           ? "bg-warm-gold/10 border border-warm-gold/20"
                           : "bg-gray-100"
-                      }`}
+                      } hover:bg-white hover:border-white`}
                     >
                       <MapPin
                         size={16}
@@ -168,8 +168,8 @@ export default function OperationsPage() {
                 From the moment you request support to the moment you depart, we ensure everything is in place.
               </p>
               <div>
-                <Link href="/contact" className="btn-outline">
-                  REQUEST FLIGHT SUPPORT <ArrowRight size={14} />
+                <Link href="/contact" className="btn-outline text-white">
+                  Contact Flight Support <ArrowRight size={14} />
                 </Link>
               </div>
             </div>
@@ -177,13 +177,7 @@ export default function OperationsPage() {
         </div>
       </section>
 
-      {/* ── CTA ──────────────────────────────────────────── */}
-      <CTABanner
-        title="Our team is ready 24/7 to support your operation."
-        subtitle="Contact our operations center for immediate assistance."
-        buttonText="CONTACT OPERATIONS"
-        buttonHref="/contact"
-      />
+       
     </>
   );
 }

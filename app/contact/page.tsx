@@ -33,8 +33,14 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission logic
-    alert("Thank you for your message. Our team will respond within 24 hours.");
+
+    const recipient = "info@sabaaviation.com";
+    const subject = encodeURIComponent(formData.subject || "Contact Request");
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+    );
+
+    window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
     setFormData({ name: "", email: "", subject: "", message: "" });
   };
 
@@ -202,7 +208,7 @@ export default function ContactPage() {
                   />
                 </div>
 
-                <button type="submit" className="w-full bg-warm-gold text-midnight hover:bg-[#0A0A0A] hover:text-white transition-colors py-4 rounded-full font-bold text-xs tracking-widest uppercase flex items-center justify-center gap-2 mt-4">
+                <button type="submit" className="w-full bg-warm-gold text-white hover:bg-[#0A0A0A] hover:text-white transition-colors py-4 rounded-full font-bold text-xs tracking-widest uppercase flex items-center justify-center gap-2 mt-4">
                   SEND MESSAGE <ArrowRight size={16} />
                 </button>
               </form>
@@ -211,38 +217,9 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* ── MAP ──────────────────────────────────────────── */}
-      <section className="bg-gradient-to-b from-white to-gray-200">
-        <div className="container-max section-padding-sm">
-          <SectionHeading title="Find Us" centered light />
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mt-8 rounded-xl overflow-hidden border border-card-border h-[400px]"
-          >
-            <iframe
-              src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.5!2d${contactInfo.coordinates.lng}!3d${contactInfo.coordinates.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sBole+International+Airport!5e0!3m2!1sen!2set!4v1600000000000`}
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="SABA Aviation Location"
-            />
-          </motion.div>
-        </div>
-      </section>
+       
 
-      {/* ── CTA ──────────────────────────────────────────── */}
-      <CTABanner
-        title="Need team is ready 24/7 to support your operation."
-        subtitle="Contact our operations center for immediate assistance and support."
-        buttonText="CONTACT OPERATIONS"
-        buttonHref="/contact"
-      />
+    
     </>
   );
 }

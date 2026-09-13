@@ -22,7 +22,7 @@ export default function CTAButtons() {
       </Link>
       <Link
         href="/contact"
-        className="btn-outline text-[10px] sm:text-xs px-4 sm:px-6"
+        className="btn-outline  text-[10px] sm:text-xs px-4 sm:px-6"
       >
         Contact Us <ArrowRight size={14} className="sm:w-4 sm:h-4" />
       </Link>
