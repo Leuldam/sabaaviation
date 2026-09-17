@@ -160,7 +160,7 @@ export default function Home() {
         fullHeight
       >
 
-        {/* ── CONTACT US CTA ── */}
+        {/* ── BOOKING CTA ── */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -169,12 +169,12 @@ export default function Home() {
         >
           {/* Glowing pill button */}
           <Link
-            href="/contact"
+            href="/booking"
             className="group relative inline-flex items-center gap-3 bg-[#073f67] text-white font-poppins text-xs sm:text-sm uppercase tracking-widest px-5 py-3 rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(7,63,103,0.45)]"
           >
             {/* Animated shimmer */}
             <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-            <span className="relative">Contact Us</span>
+            <span className="relative">Book now</span>
             <span className="relative flex items-center justify-center w-6 h-6 rounded-full bg-midnight/20 group-hover:bg-midnight/30 transition-colors">
               <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.8}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -324,18 +324,16 @@ export default function Home() {
         <section className="w-full py-16 sm:py-20 lg:py-24">
           <div className="w-full max-w-[1700px] mx-auto px-5 sm:px-8 lg:px-12">
             {/* Header matching reference UI */}
-            <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8 mb-12">
+            <ScrollFloat distance={35} scrub={1.1} className="mb-12">
+            <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8">
               {/* Left */}
               <div className="max-w-md">
-                <div className="flex items-center gap-2.5 mb-3">
-                 
-                  <p className=" text-xs md:text-base font-semibold font-helvetica text-[#073f67] tracking-wider uppercase">
-                    Services We Offer
-                  </p>
+                <div className="mb-5 inline-flex items-center gap-2.5 rounded-full border border-[#073f67]/15 bg-white/80 px-3 py-1.5 shadow-[0_14px_28px_rgba(7,63,103,0.08)] backdrop-blur-sm">
+                  <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.24em] uppercase text-[#073f67]">Service</span>
                 </div>
                 
                 <p className="text-black font-helvetica text-sm leading-relaxed max-w-base">
-                  From flight permits and ground handling to VIP concierge, we've got you covered.
+                  From flight permits and ground handling to VIP concierge, we&apos;ve got you covered.
                   Choose reliability, choose SABA.
                 </p>
               </div>
@@ -376,8 +374,10 @@ export default function Home() {
                 </div>
               </div>
             </div>
+            </ScrollFloat>
 
             {/* Horizontal carousel showing 4 cards on desktop, sliding one by one */}
+            <ScrollFloat distance={45} scrub={1.3} className="w-full">
             <div
               ref={carouselRef}
               onScroll={handleScroll}
@@ -400,6 +400,7 @@ export default function Home() {
                 </div>
               ))}
             </div>
+            </ScrollFloat>
 
             {/* Single continuous progress line track matching reference UI */}
             <div className="flex items-center justify-center mt-10">
