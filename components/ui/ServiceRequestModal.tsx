@@ -44,7 +44,7 @@ export default function ServiceRequestModal({
           type="button"
           onClick={onClose}
           aria-label="Close request form"
-          className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-full border border-black/10 bg-white text-midnight transition hover:bg-gray-100"
+          className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-full border border-black/10 bg-[#FAF8F3] text-midnight transition hover:bg-gray-100"
         >
           <X size={14} />
         </button>

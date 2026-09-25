@@ -56,7 +56,7 @@
   }
 
   input.input, textarea.input, select.input {
-    @apply w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm text-midnight/90 placeholder:text-midnight/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#d1a54d]/30 transition-shadow;
+    @apply w-full rounded-lg border border-gray-200 bg-[#FAF8F3] px-4 py-3 text-sm text-midnight/90 placeholder:text-midnight/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#d1a54d]/30 transition-shadow;
     font-family: var(--font-montserrat);
   }
 

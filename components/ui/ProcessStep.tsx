@@ -26,9 +26,13 @@ export default function ProcessStep({
       transition={{ duration: 0.4, delay: index * 0.1 }}
       className="flex flex-col items-center text-center relative group"
     >
-      {/* Connector line (hidden on last item) */}
+      {/* Connector line (desktop) */}
       {!isLast && (
-        <div className="hidden md:block absolute top-6 left-[calc(50%+24px)] w-[calc(100%-24px)] h-px bg-[#052f4d]" />
+        <div className="hidden md:block absolute top-6 left-[calc(50%+24px)] w-[calc(100%-24px)] h-px bg-[#052f4d]/30" />
+      )}
+      {/* Connector line (mobile) */}
+      {!isLast && (
+        <div className="md:hidden absolute top-[48px] left-[calc(50%-0.5px)] h-[calc(100%+40px)] w-px bg-[#052f4d]/20 z-0" />
       )}
 
       {/* Step number */}

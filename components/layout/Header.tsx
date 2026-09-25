@@ -92,7 +92,7 @@ export default function Header() {
                   <div className="absolute left-1/2 -translate-x-1/2 top-full w-[480px] h-4" />
 
                   <div className="absolute left-1/2 -translate-x-1/2 top-[calc(100%+0.75rem)] w-[480px] opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-2 group-hover:translate-y-0 transition-all duration-300 ease-out z-50 pointer-events-none group-hover:pointer-events-auto">
-                    <div className="bg-white rounded-2xl shadow-[0_25px_70px_rgba(0,0,0,0.2)] border border-gray-100/80 overflow-hidden">
+                    <div className="bg-[#FAF8F3] rounded-2xl shadow-[0_25px_70px_rgba(0,0,0,0.2)] border border-gray-100/80 overflow-hidden">
                       {/* Header */}
                       <div className="px-6 pt-5 pb-3 flex items-center justify-between">
                         <p className="text-[10px] font-montserrat font-bold uppercase tracking-[0.25em] text-gray-400">Core Services</p>
@@ -142,9 +142,9 @@ export default function Header() {
             <FiX className="w-5 h-5" />
           ) : (
             <div className="flex flex-col gap-1.5 w-6">
-              <span className="w-4 h-0.5 bg-white rounded-full mx-auto transition-all"></span>
-              <span className="w-6 h-0.5 bg-white rounded-full transition-all"></span>
-              <span className="w-4 h-0.5 bg-white rounded-full mx-auto transition-all"></span>
+              <span className="w-4 h-0.5 bg-[#FAF8F3] rounded-full mx-auto transition-all"></span>
+              <span className="w-6 h-0.5 bg-[#FAF8F3] rounded-full transition-all"></span>
+              <span className="w-4 h-0.5 bg-[#FAF8F3] rounded-full mx-auto transition-all"></span>
             </div>
           )}
         </button>
@@ -175,7 +175,7 @@ export default function Header() {
               exit={{ opacity: 0, y: isMobileMenu() ? -18 : 0, x: isMobileMenu() ? 0 : 48 }}
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
               className={
-                "fixed z-50 bg-white shadow-2xl p-6 overflow-auto scrollbar-hide " +
+                "fixed z-50 bg-[#FAF8F3] shadow-2xl p-6 overflow-auto scrollbar-hide " +
                 "top-20 right-4 w-[50vw] max-w-[340px] md:inset-auto md:top-26 md:right-6 md:left-auto md:w-80 md:max-w-[38%] md:max-h-[calc(100vh-120px)] " +
                 "rounded-lg md:rounded-lg"
               }

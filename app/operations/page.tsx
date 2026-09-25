@@ -186,7 +186,7 @@ export default function OperationsPage() {
                 <div className="pointer-events-none absolute -left-3 -top-3 h-full w-full rounded-[0.3rem] border border-[#073f67]/20">
                   <CornerMarks />
                 </div>
-                <div className="relative flex h-[320px] w-full items-center justify-center overflow-hidden rounded-[0.3rem] border border-[#073f67]/15 bg-white p-6 sm:h-[400px] sm:p-8 lg:h-[480px]">
+                <div className="relative flex h-[320px] w-full items-center justify-center overflow-hidden rounded-[0.3rem] border border-[#073f67]/15 bg-[#FAF8F3] p-6 sm:h-[400px] sm:p-8 lg:h-[480px]">
                   <div className="pointer-events-none absolute inset-0 flex items-center justify-center p-10 opacity-70 sm:p-12">
                     <Image
                       src="/images/ethiopia-map.svg"
@@ -199,13 +199,13 @@ export default function OperationsPage() {
 
                   <div className="absolute left-[48%] top-[52%] z-10 -translate-x-1/2 -translate-y-1/2">
                     <div className="flex flex-col items-center">
-                      <div className="mb-2 flex h-9 w-9 items-center justify-center rounded-full border border-[#073f67]/30 bg-white shadow-[0_4px_20px_rgba(7,63,103,0.15)]">
+                      <div className="mb-2 flex h-9 w-9 items-center justify-center rounded-full border border-[#073f67]/30 bg-[#FAF8F3] shadow-[0_4px_20px_rgba(7,63,103,0.15)]">
                         <span className="relative flex h-2.5 w-2.5">
                           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#073f67]/50" />
                           <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#073f67]" />
                         </span>
                       </div>
-                      <div className="rounded-md border border-[#073f67]/15 bg-white px-3 py-1.5 text-center shadow-sm">
+                      <div className="rounded-md border border-[#073f67]/15 bg-[#FAF8F3] px-3 py-1.5 text-center shadow-sm">
                         <p className="font-[family-name:var(--font-display)] text-sm font-medium leading-none text-[#0b1620]">
                           ADD
                         </p>
@@ -282,10 +282,10 @@ export default function OperationsPage() {
                   everything is in place.
                 </p>
                 <Link
-                  href="/contact"
-                  className="mt-8 inline-flex items-center gap-2 border-b border-[#073f67] pb-1 text-[0.95rem] font-medium text-[#073f67] transition-opacity hover:opacity-70"
+                  href="/booking"
+                  className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#073f67] px-7 py-3.5 text-sm font-bold tracking-wide text-white shadow-lg transition-all hover:-translate-y-0.5 hover:bg-[#052f4d] hover:shadow-xl hover:shadow-[#073f67]/20"
                 >
-                  Contact Flight Support <ArrowRight size={14} />
+                  Request Support <ArrowRight size={15} strokeWidth={2.5} />
                 </Link>
               </div>
             </div>

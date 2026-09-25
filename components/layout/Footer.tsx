@@ -81,7 +81,7 @@ export default function Footer() {
             <p className="text-sm hidden md:block text-gray-400 mb-4">Available 24/7</p>
             <Link
               href="/contact"
-              className="hidden md:inline-block rounded-full px-6 py-2 border border-white text-white hover:bg-white hover:text-black transition-colors text-xs uppercase tracking-wider mb-6"
+              className="hidden md:inline-block rounded-full px-6 py-2 border border-white text-white hover:bg-[#FAF8F3] hover:text-black transition-colors text-xs uppercase tracking-wider mb-6"
             >
               CONTACT US
             </Link>

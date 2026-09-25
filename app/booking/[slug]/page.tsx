@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ArrowLeft, ShieldCheck, Clock, Zap } from "lucide-react";
 import { Fraunces } from "next/font/google";
 import BookingForm from "@/components/ui/BookingForm";
+import BackButton from "@/components/ui/BackButton";
 import { getBookingProfile } from "@/data/booking-profiles";
 import { services } from "@/data/services";
 
@@ -40,12 +41,12 @@ export default async function BookingPage({ params }: Props) {
           <div className="absolute inset-0 bg-gradient-to-t from-[#031827]/85 to-[#031827]/20" />
           <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-4">
             <div>
-              <Link
-                href="/booking"
+              <BackButton
+                iconSize={9}
                 className="mb-1.5 inline-flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-widest text-white/45"
               >
-                <ArrowLeft size={9} /> All Services
-              </Link>
+                All Services
+              </BackButton>
               <h1 className="font-[family-name:var(--font-display)] text-xl font-medium text-white leading-tight">
                 {serviceTitle}
               </h1>
@@ -88,12 +89,12 @@ export default async function BookingPage({ params }: Props) {
 
           <div className="relative z-10 flex h-full flex-col px-8 pb-8 pt-[calc(2rem+64px)] xl:px-10">
             {/* Back nav */}
-            <Link
-              href="/booking"
+            <BackButton
+              iconSize={11}
               className="mb-auto inline-flex items-center gap-2 text-[9px] font-bold uppercase tracking-widest text-white/30 transition-colors hover:text-white/70"
             >
-              <ArrowLeft size={11} /> All Services
-            </Link>
+              All Services
+            </BackButton>
 
             {/* Service identity — centered in panel */}
             <div className="py-6">

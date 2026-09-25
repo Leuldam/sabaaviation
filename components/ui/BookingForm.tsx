@@ -2,11 +2,12 @@
 
 import { useEffect, useId, useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
-import Image from "next/image";
-import QRCode from "qrcode";
-import { CheckCircle2, Download, LoaderCircle, Mail, Check, Send } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { CheckCircle2, Download, LoaderCircle, Check, Send, ArrowLeft, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { BookingField, BookingProfile } from "@/data/booking-profiles";
+import { services } from "@/data/services";
 
 interface BookingFormProps {
   serviceTitle: string;
@@ -17,19 +18,47 @@ type FormValues = Record<string, string>;
 type BookingResult = {
   success?: boolean; reference?: string; requestDate?: string;
   ticketBase64?: string; ticketFilename?: string;
-  error?: string; mailto?: string;
+  error?: string;
 };
+
+/* ═══ Country codes ════════════════════════════════════════════ */
+const COUNTRY_CODES = [
+  { code: "+251", country: "ET" },
+  { code: "+1",   country: "US" },
+  { code: "+44",  country: "GB" },
+  { code: "+971", country: "AE" },
+  { code: "+49",  country: "DE" },
+  { code: "+33",  country: "FR" },
+  { code: "+86",  country: "CN" },
+  { code: "+91",  country: "IN" },
+  { code: "+254", country: "KE" },
+  { code: "+255", country: "TZ" },
+  { code: "+256", country: "UG" },
+  { code: "+20",  country: "EG" },
+  { code: "+27",  country: "ZA" },
+  { code: "+234", country: "NG" },
+  { code: "+212", country: "MA" },
+  { code: "+966", country: "SA" },
+  { code: "+7",   country: "RU" },
+  { code: "+81",  country: "JP" },
+  { code: "+82",  country: "KR" },
+  { code: "+61",  country: "AU" },
+  { code: "+55",  country: "BR" },
+  { code: "+52",  country: "MX" },
+];
 
 /* ═══ Field renderer ═══════════════════════════════════════════ */
 function Field({
-  field, value, serviceSlug, onChange, onCheckboxChange,
+  field, value, countryCode, serviceSlug, onChange, onCheckboxChange, onCountryCodeChange, serviceSlug: slug, todayStr,
 }: {
-  field: BookingField; value: string; serviceSlug: string;
+  field: BookingField; value: string; countryCode: string; serviceSlug: string;
   onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
   onCheckboxChange: (name: string, option: string, checked: boolean) => void;
+  onCountryCodeChange: (code: string) => void;
+  todayStr: string;
 }) {
   const inputCls =
-    "w-full rounded-xl border border-[#dde3e7] bg-white px-4 py-3 text-sm text-[#0b1220] " +
+    "w-full rounded-xl border border-[#dde3e7] bg-[#FAF8F3] px-4 py-3 text-sm text-[#0b1220] " +
     "placeholder:text-[#b5c0c8] focus:outline-none focus:ring-2 focus:ring-[#073f67]/15 " +
     "focus:border-[#073f67]/40 transition-all duration-200 shadow-sm font-[var(--font-montserrat)]";
 
@@ -51,7 +80,7 @@ function Field({
                 className={`flex cursor-pointer items-center gap-3 rounded-xl border px-4 py-2.5 text-sm transition-all duration-200 ${
                   checked
                     ? "border-[#073f67]/40 bg-[#073f67]/5 text-[#073f67] font-medium"
-                    : "border-[#dde3e7] bg-white text-[#52606d] hover:border-[#073f67]/25 hover:bg-[#f5f8fb]"
+                    : "border-[#dde3e7] bg-[#FAF8F3] text-[#52606d] hover:border-[#073f67]/25 hover:bg-[#f5f8fb]"
                 }`}
               >
                 <span
@@ -74,6 +103,52 @@ function Field({
           })}
         </div>
       </fieldset>
+    );
+  }
+
+  // Phone field: split into country-code selector + number-only input
+  if (field.name === "phone") {
+    return (
+      <div>
+        <label
+          htmlFor={`${serviceSlug}-phone-number`}
+          className="mb-2 block text-[10px] font-bold uppercase tracking-widest text-[#6b7a84]"
+        >
+          {field.label}
+          {field.required && <span className="ml-1 text-[#073f67]">*</span>}
+        </label>
+        <div className="flex gap-2">
+          <select
+            id={`${serviceSlug}-phone-code`}
+            name="phoneCode"
+            value={countryCode}
+            onChange={(e) => onCountryCodeChange(e.target.value)}
+            required={field.required}
+            className="rounded-xl border border-[#dde3e7] bg-[#FAF8F3] px-2 py-3 text-sm text-[#0b1220] focus:outline-none focus:ring-2 focus:ring-[#073f67]/15 focus:border-[#073f67]/40 transition-all duration-200 shadow-sm font-[var(--font-montserrat)] flex-shrink-0 w-[110px]"
+          >
+            <option value="">Code*</option>
+            {COUNTRY_CODES.map(({ code, country }) => (
+              <option key={code} value={code}>{country} {code}</option>
+            ))}
+          </select>
+          <input
+            id={`${serviceSlug}-phone-number`}
+            name="phone"
+            type="tel"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            value={value}
+            onChange={(e) => {
+              // Only allow digits
+              const digits = e.target.value.replace(/[^0-9]/g, "");
+              onChange({ ...e, target: { ...e.target, name: "phone", value: digits } } as ChangeEvent<HTMLInputElement>);
+            }}
+            placeholder={field.placeholder || "Phone number"}
+            required={field.required}
+            className={`${inputCls} flex-1`}
+          />
+        </div>
+      </div>
     );
   }
 
@@ -106,10 +181,31 @@ function Field({
           id={`${serviceSlug}-${field.name}`}
           name={field.name}
           value={value}
-          onChange={onChange}
+          onChange={(e) => {
+            if (field.type === "number") {
+              let digits = e.target.value.replace(/[^0-9]/g, "");
+              // Enforce min="1" behavior when digits are entered
+              if (digits === "0") digits = "1";
+              onChange({ ...e, target: { ...e.target, name: field.name, value: digits } } as ChangeEvent<HTMLInputElement>);
+            } else {
+              onChange(e);
+            }
+          }}
+          onKeyDown={(e) => {
+            if (field.type === "number") {
+              if (['Backspace', 'Delete', 'Tab', 'ArrowLeft', 'ArrowRight'].includes(e.key)) return;
+              if (e.ctrlKey || e.metaKey) return; // allow copy/paste shortcuts
+              if (!/[0-9]/.test(e.key)) {
+                e.preventDefault();
+              }
+            }
+          }}
           placeholder={field.placeholder}
-          type={field.type || "text"}
+          type={field.type === "number" ? "text" : field.type || "text"}
+          inputMode={field.type === "number" ? "numeric" : undefined}
+          pattern={field.type === "number" ? "[0-9]*" : undefined}
           required={field.required}
+          min={field.type === "date" ? todayStr : undefined}
           className={inputCls}
         />
       )}
@@ -119,18 +215,19 @@ function Field({
 
 const CONTACT_FIELDS = ["name", "email", "phone", "company"];
 
-/* ═══ Main form component ══════════════════════════════════════ */
 export default function BookingForm({ serviceTitle, serviceSlug, profile }: BookingFormProps) {
+  const router = useRouter();
   const [form, setForm] = useState<FormValues>(() => {
     if (typeof window === "undefined") return {};
     try {
       return JSON.parse(window.localStorage.getItem(`saba-booking-draft-${serviceSlug}`) || "{}");
     } catch { return {}; }
   });
+  const [phoneCode, setPhoneCode] = useState<string>("+251");
+  const [selectedService, setSelectedService] = useState(serviceSlug);
   const [step, setStep] = useState<"form" | "done">("form");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<BookingResult | null>(null);
-  const [qr, setQr] = useState<string | null>(null);
   const uid = useId();
 
   // Autosave
@@ -138,16 +235,15 @@ export default function BookingForm({ serviceTitle, serviceSlug, profile }: Book
     window.localStorage.setItem(`saba-booking-draft-${serviceSlug}`, JSON.stringify(form));
   }, [form, serviceSlug]);
 
-  // QR code
-  useEffect(() => {
-    let alive = true;
-    const t = setTimeout(() => {
-      QRCode.toDataURL(JSON.stringify({ serviceSlug, email: form.email, name: form.name }))
-        .then((url: string) => { if (alive) setQr(url); })
-        .catch(() => {});
-    }, 300);
-    return () => { alive = false; clearTimeout(t); };
-  }, [form.email, form.name, serviceSlug]);
+  function handleServiceSwitch(newSlug: string) {
+    if (newSlug !== serviceSlug) {
+      router.push(`/booking/${newSlug}`);
+    }
+  }
+
+  function handleGoBack() {
+    router.back();
+  }
 
   function onChange(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
     setForm((p) => ({ ...p, [e.target.name]: e.target.value }));
@@ -165,7 +261,7 @@ export default function BookingForm({ serviceTitle, serviceSlug, profile }: Book
       const res = await fetch("/api/bookings", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ serviceSlug, serviceTitle, form }),
+        body: JSON.stringify({ serviceSlug, serviceTitle, form: { ...form, phone: `${phoneCode} ${form.phone || ""}`.trim() } }),
       });
       const data = await res.json();
       setResult(data);
@@ -224,10 +320,7 @@ export default function BookingForm({ serviceTitle, serviceSlug, profile }: Book
         </div>
 
         {/* Reference */}
-        <div className="mb-5 flex items-center gap-4 rounded-2xl border border-[#dde3e7] bg-white p-5 shadow-sm">
-          {qr && (
-            <Image src={qr} alt="QR" width={68} height={68} unoptimized className="rounded-xl flex-shrink-0 opacity-75" />
-          )}
+        <div className="mb-5 flex items-center gap-4 rounded-2xl border border-[#dde3e7] bg-[#FAF8F3] p-5 shadow-sm">
           <div className="min-w-0 flex-1">
             <p className="mb-1 text-[9px] font-bold uppercase tracking-[0.22em] text-[#9aabb6]">Reference</p>
             <p className="truncate font-mono text-xl font-bold text-[#073f67]">{ref}</p>
@@ -239,11 +332,10 @@ export default function BookingForm({ serviceTitle, serviceSlug, profile }: Book
         <div className="mb-8 grid grid-cols-2 gap-2.5">
           {[
             { label: "Service", value: serviceTitle },
-            { label: "Status", value: "Pending Review" },
             { label: "Requested", value: result?.requestDate || new Date().toLocaleDateString() },
-            { label: "Op. Date", value: form.date || form.shipmentDate || form.upliftDate || "TBC" },
+            { label: "Op. Date", value: form.date || form.shipmentDate || form.upliftDate || form.returnDate || "TBC" },
           ].map(({ label, value }) => (
-            <div key={label} className="rounded-xl border border-[#e8ecef] bg-white px-4 py-3.5">
+            <div key={label} className="rounded-xl border border-[#e8ecef] bg-[#FAF8F3] px-4 py-3.5">
               <p className="mb-1 text-[9px] font-bold uppercase tracking-widest text-[#9aabb6]">{label}</p>
               <p className="text-sm font-semibold text-[#263746] leading-snug">{value}</p>
             </div>
@@ -258,14 +350,12 @@ export default function BookingForm({ serviceTitle, serviceSlug, profile }: Book
           >
             <Download size={15} /> Download Confirmation
           </button>
-          {result?.mailto && (
-            <a
-              href={result.mailto}
-              className="flex flex-1 items-center justify-center gap-2 rounded-2xl border border-[#dde3e7] bg-white px-6 py-4 text-sm font-semibold text-[#073f67] transition-all hover:bg-[#f0f5fa] hover:-translate-y-0.5"
-            >
-              <Mail size={15} /> Contact Operations
-            </a>
-          )}
+          <Link
+            href="/contact"
+            className="flex flex-1 items-center justify-center gap-2 rounded-2xl border border-[#dde3e7] bg-[#FAF8F3] px-6 py-4 text-sm font-semibold text-[#073f67] transition-all hover:bg-[#f0f5fa] hover:-translate-y-0.5"
+          >
+            <Phone size={15} /> Contact Operation Lead
+          </Link>
         </div>
       </motion.div>
     );
@@ -283,15 +373,33 @@ export default function BookingForm({ serviceTitle, serviceSlug, profile }: Book
 
           {/* ── Page header ── */}
           <div className="mb-7 border-b border-[#073f67]/8 pb-6">
-            <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.22em] text-[#073f67]/40">
-              Service Request
-            </p>
-            <h2 className="font-[family-name:var(--font-display)] text-2xl font-medium text-[#0b1620] sm:text-3xl">
-              Tell us what you need
-            </h2>
-            <p className="mt-2 text-sm text-[#6b7a84]">
-              Fill in the details — our desk responds within the hour.
-            </p>
+            <div className="flex justify-between items-start gap-4 flex-wrap mb-4">
+              <div>
+                <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.22em] text-[#073f67]/40">
+                  Service Request
+                </p>
+                <h2 className="font-[family-name:var(--font-display)] text-2xl font-medium text-[#0b1620] sm:text-3xl">
+                  Tell us what you need
+                </h2>
+                <p className="mt-2 text-sm text-[#6b7a84]">
+                  Fill in the details — our desk responds within the hour.
+                </p>
+              </div>
+              <div className="w-full sm:w-auto">
+                <select
+                  value={selectedService}
+                  onChange={(e) => handleServiceSwitch(e.target.value)}
+                  className="w-full sm:w-64 rounded-xl border border-[#dde3e7] bg-[#FAF8F3] px-4 py-3 text-sm text-[#0b1220] focus:outline-none focus:ring-2 focus:ring-[#073f67]/15 focus:border-[#073f67]/40 transition-all duration-200 shadow-sm font-[var(--font-montserrat)] cursor-pointer"
+                >
+                  <option disabled value="">Other Services...</option>
+                  {services.map((srv) => (
+                    <option key={srv.slug} value={srv.slug}>
+                      {srv.title}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
           </div>
 
           {/* ── Contact ── */}
@@ -303,9 +411,12 @@ export default function BookingForm({ serviceTitle, serviceSlug, profile }: Book
                   key={f.name}
                   field={f}
                   value={form[f.name] || ""}
+                  countryCode={phoneCode}
                   serviceSlug={serviceSlug}
                   onChange={onChange}
                   onCheckboxChange={onCheckbox}
+                  onCountryCodeChange={setPhoneCode}
+                  todayStr={new Date().toISOString().split("T")[0]}
                 />
               ))}
             </div>
@@ -328,9 +439,12 @@ export default function BookingForm({ serviceTitle, serviceSlug, profile }: Book
                     key={f.name}
                     field={f}
                     value={form[f.name] || ""}
+                    countryCode={phoneCode}
                     serviceSlug={serviceSlug}
                     onChange={onChange}
                     onCheckboxChange={onCheckbox}
+                    onCountryCodeChange={setPhoneCode}
+                    todayStr={new Date().toISOString().split("T")[0]}
                   />
                 ))}
               </div>
@@ -359,7 +473,7 @@ export default function BookingForm({ serviceTitle, serviceSlug, profile }: Book
               onChange={onChange}
               placeholder={profile.detailsPlaceholder}
               rows={3}
-              className="mt-5 w-full rounded-xl border border-[#dde3e7] bg-white px-4 py-3 text-sm text-[#0b1220] placeholder:text-[#b5c0c8] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#073f67]/15 focus:border-[#073f67]/40 resize-none transition-all duration-200 font-[var(--font-montserrat)]"
+              className="mt-5 w-full rounded-xl border border-[#dde3e7] bg-[#FAF8F3] px-4 py-3 text-sm text-[#0b1220] placeholder:text-[#b5c0c8] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#073f67]/15 focus:border-[#073f67]/40 resize-none transition-all duration-200 font-[var(--font-montserrat)]"
             />
           </div>
 

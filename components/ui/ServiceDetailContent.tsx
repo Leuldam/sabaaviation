@@ -8,7 +8,6 @@ import {
   ArrowLeft,
   ArrowRight,
   Check,
-  Phone,
   Mail,
   CalendarCheck,
   Plane,
@@ -121,7 +120,7 @@ export default function ServiceDetailContent({ service }: ServiceDetailContentPr
   }, []);
 
   return (
-    <div ref={rootRef} className="bg-white">
+    <div ref={rootRef} className="bg-[#FAF8F3]">
       {/* ── Top bar ────────────────────────────────────────── */}
 
 
@@ -144,12 +143,6 @@ export default function ServiceDetailContent({ service }: ServiceDetailContentPr
               <ArrowRight size={13} className="transition-transform group-hover:translate-x-1" />
             </Link>
           </span>
-          <a
-            href="tel:+251000000000"
-            className="inline-flex items-center gap-2 text-[#073f67]/70 text-xs font-semibold uppercase tracking-widest hover:text-[#073f67] transition-colors"
-          >
-            <Phone size={13} /> Speak with Operations
-          </a>
         </div>
       </section>
 
@@ -175,7 +168,7 @@ export default function ServiceDetailContent({ service }: ServiceDetailContentPr
             {service.details.features.map((feature, i) => (
               <div
                 key={i}
-                className="reveal-item group grid grid-cols-[2.25rem_1fr_1.25rem] sm:grid-cols-[3rem_1fr_1.5rem] items-center gap-2 sm:gap-4 py-4 sm:py-5 border-b border-[#073f67]/10 hover:bg-white transition-colors px-3 -mx-3 rounded-lg"
+                className="reveal-item group grid grid-cols-[2.25rem_1fr_1.25rem] sm:grid-cols-[3rem_1fr_1.5rem] items-center gap-2 sm:gap-4 py-4 sm:py-5 border-b border-[#073f67]/10 hover:bg-[#FAF8F3] transition-colors px-3 -mx-3 rounded-lg"
               >
                 <span className="tabular-nums text-xs sm:text-sm font-semibold text-[#073f67]/50">
                   {String(i + 1).padStart(2, "0")}
@@ -224,10 +217,10 @@ export default function ServiceDetailContent({ service }: ServiceDetailContentPr
 
               <div className="reveal mt-9 sm:mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
                 <span className="relative inline-flex">
-                  <span className="cta-glow absolute inset-0 rounded-full bg-white" />
+                  <span className="cta-glow absolute inset-0 rounded-full bg-[#FAF8F3]" />
                   <Link
                     href={`/booking/${service.slug}`}
-                    className="group relative inline-flex items-center gap-2 bg-white text-[#073f67] text-xs font-bold uppercase tracking-widest px-6 py-3.5 rounded-full transition-all hover:-translate-y-0.5 hover:scale-[1.03] hover:shadow-xl hover:shadow-black/20"
+                    className="group relative inline-flex items-center gap-2 bg-[#FAF8F3] text-[#073f67] text-xs font-bold uppercase tracking-widest px-6 py-3.5 rounded-full transition-all hover:-translate-y-0.5 hover:scale-[1.03] hover:shadow-xl hover:shadow-black/20"
                   >
                     <CalendarCheck size={14} />
                     Book This Service

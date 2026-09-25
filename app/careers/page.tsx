@@ -64,7 +64,7 @@ export default function CareersPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="card bg-white text-center shadow-md border-black/5"
+                className="card bg-[#FAF8F3] text-center shadow-md border-black/5"
               >
                 <div className="w-14 h-14 rounded-xl bg-warm-gold/10 flex items-center justify-center mx-auto mb-5">
                   <benefit.icon size={26} className="text-warm-gold" />

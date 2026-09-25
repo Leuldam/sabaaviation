@@ -87,7 +87,7 @@ export default function BookingServicesPage() {
             </p>
             <Link
               href={`/booking/${selected.slug}`}
-              className="group inline-flex items-center gap-3 rounded-full bg-white px-7 py-3.5 text-xs font-bold uppercase tracking-widest text-[#073f67] shadow-xl shadow-black/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl hover:bg-[#eef4f9]"
+              className="group inline-flex items-center gap-3 rounded-full bg-[#FAF8F3] px-7 py-3.5 text-xs font-bold uppercase tracking-widest text-[#073f67] shadow-xl shadow-black/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl hover:bg-[#eef4f9]"
             >
               Book This Service
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#073f67] transition-transform duration-300 group-hover:translate-x-0.5">
@@ -127,7 +127,7 @@ export default function BookingServicesPage() {
               <button
                 type="button"
                 onClick={() => setOpen((o) => !o)}
-                className={`w-full flex items-center gap-3 rounded-2xl border bg-white px-4 py-3.5 text-left shadow-sm transition-all duration-200 ${
+                className={`w-full flex items-center gap-3 rounded-2xl border bg-[#FAF8F3] px-4 py-3.5 text-left shadow-sm transition-all duration-200 ${
                   open ? "border-[#073f67]/40 ring-2 ring-[#073f67]/10" : "border-[#dde3e7] hover:border-[#073f67]/25"
                 }`}
               >
@@ -148,7 +148,7 @@ export default function BookingServicesPage() {
 
               {/* Dropdown panel */}
               {open && (
-                <div className="absolute left-0 right-0 top-[calc(100%+6px)] z-50 overflow-hidden rounded-2xl border border-[#dde3e7] bg-white shadow-xl shadow-black/10">
+                <div className="absolute left-0 right-0 top-[calc(100%+6px)] z-50 overflow-hidden rounded-2xl border border-[#dde3e7] bg-[#FAF8F3] shadow-xl shadow-black/10">
                   <div className="max-h-64 overflow-y-auto py-1.5 scrollbar-hide">
                     {services.map((s) => {
                       const SIcon = s.icon;
@@ -194,7 +194,7 @@ export default function BookingServicesPage() {
               <button
                 type="button"
                 onClick={() => setOpen((o) => !o)}
-                className={`w-full flex items-center gap-4 rounded-2xl border bg-white px-5 py-4 text-left shadow-sm transition-all duration-200 ${
+                className={`w-full flex items-center gap-4 rounded-2xl border bg-[#FAF8F3] px-5 py-4 text-left shadow-sm transition-all duration-200 ${
                   open
                     ? "border-[#073f67]/40 ring-2 ring-[#073f67]/10 shadow-md"
                     : "border-[#dde3e7] hover:border-[#073f67]/30 hover:shadow-md"
@@ -221,7 +221,7 @@ export default function BookingServicesPage() {
 
               {/* Dropdown panel */}
               {open && (
-                <div className="absolute left-0 right-0 top-[calc(100%+8px)] z-50 overflow-hidden rounded-2xl border border-[#dde3e7] bg-white shadow-2xl shadow-black/12">
+                <div className="absolute left-0 right-0 top-[calc(100%+8px)] z-50 overflow-hidden rounded-2xl border border-[#dde3e7] bg-[#FAF8F3] shadow-2xl shadow-black/12">
                   {/* Panel header */}
                   <div className="border-b border-[#073f67]/6 px-4 py-2.5">
                     <p className="text-[9px] font-bold uppercase tracking-[0.22em] text-[#073f67]/35">

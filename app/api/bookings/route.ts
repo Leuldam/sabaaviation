@@ -5,14 +5,9 @@ import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
 import { contactInfo } from "@/data/company";
 import fs from "fs";
 
-const navy = rgb(0.03, 0.16, 0.26);
-const gold = rgb(0.71, 0.49, 0.05);
-const slate = rgb(0.29, 0.36, 0.41);
-const pale = rgb(0.95, 0.97, 0.98);
-
 type FormValues = Record<string, string | undefined>;
 
-type PdfInput = { serviceTitle: string; form: FormValues; reference: string; requestDate: string; qrData: string };
+type PdfInput = { serviceTitle: string; form: FormValues; reference: string; requestDate: string; };
 
 function getMailer() {
   const host = process.env.SMTP_HOST;
@@ -44,70 +39,112 @@ function wrapText(text: string, maxCharacters = 70) {
   return lines;
 }
 
-function drawLabelValue(page: ReturnType<PDFDocument["addPage"]>, font: Awaited<ReturnType<PDFDocument["embedFont"]>>, label: string, value: string, x: number, y: number, width: number) {
-  page.drawText(label.toUpperCase(), { x, y, size: 7, font, color: slate });
-  const lines = wrapText(value || "-", Math.max(18, Math.floor(width / 5.3)));
-  page.drawText(lines[0], { x, y: y - 14, size: 10, font, color: navy });
-  return y - 14 - (lines.length - 1) * 12;
-}
-
-async function generatePdfBuffer({ serviceTitle, form, reference, requestDate, qrData }: PdfInput) {
+async function generatePdfBuffer({ serviceTitle, form, reference, requestDate }: PdfInput) {
   const pdfDoc = await PDFDocument.create();
   const page = pdfDoc.addPage([595, 842]);
   const regular = await pdfDoc.embedFont(StandardFonts.Helvetica);
   const bold = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
-  const qrMatch = qrData.match(/^data:.+;base64,(.+)$/);
+  
+  // Define colors
+  const bg = rgb(0.98, 0.98, 0.97); // #FAF8F3
+  const darkNavy = rgb(0.02, 0.18, 0.30); // #052f4d
+  const blue = rgb(0.03, 0.25, 0.40); // #073f67
+  const grayText = rgb(0.42, 0.48, 0.52); // #6b7a84
+  const lightBorder = rgb(0.87, 0.89, 0.91); // #dde3e7
 
+  // Background
   page.drawRectangle({ x: 0, y: 0, width: 595, height: 842, color: rgb(1, 1, 1) });
-  page.drawRectangle({ x: 0, y: 770, width: 595, height: 72, color: navy });
-  page.drawText("SABA", { x: 34, y: 807, size: 25, font: bold, color: rgb(1, 1, 1) });
-  page.drawText("AVIATION SERVICE & FLIGHT SUPPORT PLC", { x: 35, y: 789, size: 7, font: regular, color: rgb(0.78, 0.84, 0.87) });
-  page.drawText("SERVICE CONFIRMATION", { x: 390, y: 805, size: 10, font: bold, color: gold });
-  page.drawText("REQUEST INFORMATION", { x: 35, y: 735, size: 9, font: bold, color: navy });
-  page.drawLine({ start: { x: 35, y: 726 }, end: { x: 560, y: 726 }, thickness: 1, color: gold });
+  
+  // Header section
+  page.drawRectangle({ x: 0, y: 742, width: 595, height: 100, color: darkNavy });
+  page.drawText("SABA", { x: 40, y: 795, size: 28, font: bold, color: rgb(1, 1, 1) });
+  page.drawText("AVIATION SERVICE & FLIGHT SUPPORT", { x: 40, y: 775, size: 9, font: regular, color: rgb(0.8, 0.85, 0.9) });
+  
+  page.drawText("SERVICE REQUEST CONFIRMATION", { x: 330, y: 795, size: 12, font: bold, color: rgb(1, 1, 1) });
+  page.drawText(`Ref: ${reference}`, { x: 330, y: 775, size: 10, font: regular, color: rgb(0.8, 0.85, 0.9) });
+  page.drawText(`Date: ${requestDate}`, { x: 330, y: 760, size: 10, font: regular, color: rgb(0.8, 0.85, 0.9) });
 
-// Updated layout without status label for cleaner confirmation
-  drawLabelValue(page, bold, "Reference", reference, 35, 705, 160);
-  // Service label shifted left to occupy space formerly used by status
-  drawLabelValue(page, bold, "Service", serviceTitle.toUpperCase(), 210, 705, 320);
-  drawLabelValue(page, bold, "Request date", requestDate, 35, 660, 160);
+  let cursorY = 700;
 
-  page.drawText("CUSTOMER", { x: 35, y: 610, size: 9, font: bold, color: navy });
-  page.drawLine({ start: { x: 35, y: 601 }, end: { x: 560, y: 601 }, thickness: 1, color: gold });
-  drawLabelValue(page, bold, "Company", form.company || "-", 35, 580, 160);
-  drawLabelValue(page, bold, "Contact", form.name || "-", 210, 580, 160);
-  drawLabelValue(page, bold, "Email", form.email || "-", 385, 580, 170);
-  drawLabelValue(page, bold, "Phone", form.phone || "-", 35, 535, 160);
+  // Title
+  page.drawText(serviceTitle.toUpperCase(), { x: 40, y: cursorY, size: 16, font: bold, color: blue });
+  cursorY -= 30;
 
-  page.drawText("OPERATION", { x: 35, y: 485, size: 9, font: bold, color: navy });
-  page.drawLine({ start: { x: 35, y: 476 }, end: { x: 560, y: 476 }, thickness: 1, color: gold });
-  const operationFields = [
-    ["Aircraft", form.aircraftType || "-"], ["Registration", form.aircraftRegistration || "-"], ["Flight", form.flightNumber || "-"],
-    ["Arrival", form.arrivalAirport || form.airport || form.pickup || form.origin || "-"], ["ETA / Pickup", form.arrivalTime || form.pickupTime || form.upliftTime || "-"],
-    ["Departure", form.departureAirport || form.dropoff || form.destination || "-"], ["ETD / Delivery", form.departureTime || form.deliveryDate || form.returnTime || "-"], ["Operation date", form.date || form.shipmentDate || form.upliftDate || form.returnDate || "-"],
-  ];
-  operationFields.forEach(([label, value], index) => drawLabelValue(page, bold, label, value || "-", 35 + (index % 3) * 175, 455 - Math.floor(index / 3) * 43, 160));
+  // Separate Contact vs Operation fields
+  const contactKeys = ["name", "company", "email", "phone"];
+  const allKeys = Object.keys(form).filter(k => form[k] && form[k].trim() !== "");
+  const contactData = contactKeys.filter(k => allKeys.includes(k));
+  const operationData = allKeys.filter(k => !contactKeys.includes(k) && k !== "details");
+  
+  function drawSection(title: string, keys: string[]) {
+    if (keys.length === 0) return;
+    
+    // Section header
+    page.drawText(title, { x: 40, y: cursorY, size: 11, font: bold, color: darkNavy });
+    cursorY -= 15;
+    page.drawLine({ start: { x: 40, y: cursorY }, end: { x: 555, y: cursorY }, thickness: 1, color: lightBorder });
+    cursorY -= 20;
 
-  page.drawText("REQUESTED SUPPORT", { x: 35, y: 320, size: 9, font: bold, color: navy });
-  page.drawLine({ start: { x: 35, y: 311 }, end: { x: 560, y: 311 }, thickness: 1, color: gold });
-  const excluded = new Set(["name", "email", "phone", "company", "details", "date", "shipmentDate", "upliftDate", "returnDate", "aircraftType", "aircraftRegistration", "flightNumber", "arrivalAirport", "departureAirport", "airport", "arrivalTime", "departureTime", "pickup", "dropoff", "pickupTime"]);
-  const requested = Object.entries(form).filter(([key, value]) => value && !excluded.has(key)).map(([key, value]) => `${key.replace(/([A-Z])/g, " $1")}: ${value}`).join(" | ");
-  const supportLines = wrapText(requested || "Operational coordination requested", 86);
-  supportLines.slice(0, 4).forEach((line, index) => page.drawText(line, { x: 35, y: 290 - index * 15, size: 9, font: regular, color: slate }));
-  page.drawText("SPECIAL REQUIREMENTS", { x: 35, y: 220, size: 9, font: bold, color: navy });
-  const notes = wrapText(form.details || "No additional notes provided.", 86);
-  notes.slice(0, 3).forEach((line, index) => page.drawText(line, { x: 35, y: 198 - index * 15, size: 9, font: regular, color: slate }));
+    // Grid layout for fields
+    const startX = 40;
+    const colWidth = 250;
+    let col = 0;
 
-  page.drawRectangle({ x: 35, y: 87, width: 525, height: 70, color: pale });
-  page.drawText("SABA OPERATIONS", { x: 50, y: 133, size: 8, font: bold, color: navy });
-  page.drawText("24/7 Operational Support", { x: 50, y: 116, size: 9, font: regular, color: slate });
-  page.drawText(`Phone: ${contactInfo.phone}`, { x: 50, y: 101, size: 8, font: regular, color: slate });
-  page.drawText(`Email: ${contactInfo.operations}`, { x: 220, y: 101, size: 8, font: regular, color: slate });
-  if (qrMatch) page.drawImage(await pdfDoc.embedPng(Buffer.from(qrMatch[1], "base64")), { x: 470, y: 93, width: 80, height: 80 });
+    keys.forEach((key, index) => {
+      const label = key.replace(/([A-Z])/g, " $1").replace(/^./, str => str.toUpperCase());
+      const value = String(form[key]);
+      
+      const currentX = startX + (col * colWidth);
+      
+      page.drawText(label.toUpperCase(), { x: currentX, y: cursorY, size: 8, font: bold, color: grayText });
+      
+      const wrappedValues = wrapText(value, 40);
+      wrappedValues.forEach((line, i) => {
+        page.drawText(line, { x: currentX, y: cursorY - 14 - (i * 12), size: 10, font: regular, color: darkNavy });
+      });
+      
+      const heightUsed = 14 + (wrappedValues.length * 12);
+      
+      col++;
+      if (col > 1) {
+        col = 0;
+        cursorY -= heightUsed + 10;
+      }
+    });
+    
+    if (col > 0) cursorY -= 40; // Add padding if ended on first column
+    else cursorY -= 10;
+  }
 
-  page.drawText("SABA AVIATION SERVICE & FLIGHT SUPPORT PLC", { x: 35, y: 52, size: 7, font: bold, color: navy });
-  page.drawText("Your Trusted Gateway to Seamless Airport Operations", { x: 35, y: 39, size: 7, font: regular, color: slate });
-  page.drawText("This document confirms receipt of the service request and does not constitute an airline ticket or boarding pass.", { x: 35, y: 24, size: 6.5, font: regular, color: slate });
+  drawSection("CONTACT DETAILS", contactData);
+  cursorY -= 10;
+  drawSection("OPERATION DETAILS", operationData);
+
+  // Additional Notes (Full width)
+  if (form.details && form.details.trim() !== "") {
+    cursorY -= 10;
+    page.drawText("ADDITIONAL NOTES", { x: 40, y: cursorY, size: 11, font: bold, color: darkNavy });
+    cursorY -= 15;
+    page.drawLine({ start: { x: 40, y: cursorY }, end: { x: 555, y: cursorY }, thickness: 1, color: lightBorder });
+    cursorY -= 20;
+    
+    const notes = wrapText(form.details, 95);
+    notes.forEach((line) => {
+      page.drawText(line, { x: 40, y: cursorY, size: 10, font: regular, color: darkNavy });
+      cursorY -= 14;
+    });
+  }
+
+  // Footer
+  const footerY = 100;
+  page.drawRectangle({ x: 40, y: footerY - 60, width: 515, height: 75, color: bg });
+  page.drawText("SABA OPERATIONS", { x: 55, y: footerY - 5, size: 9, font: bold, color: darkNavy });
+  page.drawText("24/7 Operational Support", { x: 55, y: footerY - 20, size: 9, font: regular, color: grayText });
+  page.drawText(`Phone: ${contactInfo.phone}`, { x: 55, y: footerY - 35, size: 9, font: regular, color: grayText });
+  page.drawText(`Email: ${contactInfo.operations}`, { x: 250, y: footerY - 35, size: 9, font: regular, color: grayText });
+  
+  page.drawText("SABA AVIATION SERVICE & FLIGHT SUPPORT PLC", { x: 40, y: 25, size: 7, font: bold, color: darkNavy });
+  page.drawText("Your Trusted Gateway to Seamless Airport Operations", { x: 40, y: 15, size: 7, font: regular, color: grayText });
 
   return Buffer.from(await pdfDoc.save());
 }
@@ -118,8 +155,7 @@ export async function POST(req: Request) {
     const now = new Date();
     const reference = `SABA-${now.getFullYear()}-${String(Date.now() % 1000000).padStart(6, "0")}`;
     const requestDate = now.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
-    const qrData = await QRCode.toDataURL(JSON.stringify({ reference, serviceSlug, email: form.email }));
-    const pdfBuffer = await generatePdfBuffer({ serviceTitle, form, reference, requestDate, qrData });
+    const pdfBuffer = await generatePdfBuffer({ serviceTitle, form, reference, requestDate });
     const subject = encodeURIComponent(`${reference} - ${serviceTitle} request`);
     const bodyText = encodeURIComponent(`Request ${reference}\nService: ${serviceTitle}\nContact: ${form.name || "-"}\nPlease review this operation request.`);
     const mailto = `mailto:${contactInfo.operations}?subject=${subject}&body=${bodyText}`;

@@ -70,7 +70,7 @@ export default function ServiceRequestForm({
   };
 
   return (
-    <div className="mt-0 rounded-2xl border border-[#0A0A0A]/5 bg-white p-3 shadow-[0_18px_45px_rgba(15,23,42,0.1)] sm:p-4">
+    <div className="mt-0 rounded-2xl border border-[#0A0A0A]/5 bg-[#FAF8F3] p-3 shadow-[0_18px_45px_rgba(15,23,42,0.1)] sm:p-4">
       <div className="mb-3 flex items-center justify-between gap-2.5 border-b border-black/5 pb-2.5">
         <div className="flex items-center gap-2.5">
           <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-warm-gold/10 text-warm-gold sm:h-9 sm:w-9">
@@ -228,7 +228,7 @@ export default function ServiceRequestForm({
             <button
               type="button"
               onClick={() => setStep(1)}
-              className="inline-flex flex-1 items-center justify-center rounded-full border border-black/10 bg-white px-3 py-2 text-[9px] font-bold uppercase tracking-[0.2em] text-midnight transition-colors hover:bg-gray-100 sm:text-[10px]"
+              className="inline-flex flex-1 items-center justify-center rounded-full border border-black/10 bg-[#FAF8F3] px-3 py-2 text-[9px] font-bold uppercase tracking-[0.2em] text-midnight transition-colors hover:bg-gray-100 sm:text-[10px]"
             >
               Back
             </button>
@@ -262,7 +262,7 @@ export default function ServiceRequestForm({
             <button
               type="button"
               onClick={() => setStep(2)}
-              className="inline-flex flex-1 items-center justify-center rounded-full border border-black/10 bg-white px-3 py-2 text-[9px] font-bold uppercase tracking-[0.2em] text-midnight transition-colors hover:bg-gray-100 sm:text-[10px]"
+              className="inline-flex flex-1 items-center justify-center rounded-full border border-black/10 bg-[#FAF8F3] px-3 py-2 text-[9px] font-bold uppercase tracking-[0.2em] text-midnight transition-colors hover:bg-gray-100 sm:text-[10px]"
             >
               Back
             </button>

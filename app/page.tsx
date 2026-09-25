@@ -297,7 +297,7 @@ export default function Home() {
                 <div className="absolute -top-10 -left-8 h-28 w-28 rounded-full bg-[#073f67]/10 blur-3xl" />
                 <div className="absolute -bottom-12 -right-3 h-28 w-28 rounded-full bg-[#d1b16a]/18 blur-3xl" />
 
-                <div className="relative mx-auto max-w-[560px] rounded-[2rem] border border-white/90 bg-white p-2.5 shadow-[0_30px_80px_rgba(15,23,42,0.12)]">
+                <div className="relative mx-auto max-w-[560px] rounded-[2rem] border border-white/90 bg-[#FAF8F3] p-2.5 shadow-[0_30px_80px_rgba(15,23,42,0.12)]">
                   <div className="relative h-[340px] sm:h-[400px] lg:h-[480px] overflow-hidden rounded-[1.6rem]">
                     <Image
                       src="/images/backgroundimage2.png"
@@ -361,9 +361,10 @@ export default function Home() {
               <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8">
                 {/* Left */}
                 <div className="max-w-md">
-                  <div className="mb-5 inline-flex items-center gap-2.5 rounded-full border border-[#073f67]/15 bg-white/80 px-3 py-1.5 shadow-[0_14px_28px_rgba(7,63,103,0.08)] backdrop-blur-sm">
-                    <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.24em] uppercase text-[#073f67]">Service</span>
-                  </div>
+                  <Link href="/services" className="mb-5 inline-flex items-center gap-2.5 rounded-full border border-[#073f67]/15 bg-white/80 px-4 py-2 shadow-[0_14px_28px_rgba(7,63,103,0.08)] backdrop-blur-sm transition-all hover:bg-[#FAF8F3] hover:scale-105 hover:shadow-[0_14px_28px_rgba(7,63,103,0.15)] group">
+                    <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.24em] uppercase text-[#073f67]">Our Services</span>
+                    <ArrowRight size={13} className="text-[#073f67] transition-transform group-hover:translate-x-1" />
+                  </Link>
 
                   <p className="text-black font-helvetica text-sm leading-relaxed max-w-base">
                     From regulatory coordination and ground operations to VIP, cargo, crew, and fuel solutions, we keep every stakeholder aligned.
@@ -531,7 +532,7 @@ export default function Home() {
               </div>
 
               {/* Right — Dynamic Airport Info Card */}
-              <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 min-w-[240px] transition-all duration-300">
+              <div className="bg-[#FAF8F3] rounded-2xl shadow-xl border border-gray-100 p-6 min-w-[240px] transition-all duration-300">
                 <p className="text-[10px] uppercase tracking-widest text-gray-400 font-semibold mb-3">Selected Airport</p>
 
                 {/* IATA code + Name */}
