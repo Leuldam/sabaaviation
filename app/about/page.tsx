@@ -163,7 +163,7 @@ export default function AboutPage() {
               {stats.map((s, i) => (
                 <div key={s.label} className="px-4 py-6 text-center first:pl-0 sm:first:pl-4">
                   <p className="font-[family-name:var(--font-display)] text-[2rem] font-medium text-[#073f67] sm:text-[2.3rem]">
-                    <span ref={(el) => (numberRefs.current[i] = el)}>0</span>
+                    <span ref={(el) => { numberRefs.current[i] = el; }}>0</span>
                     {s.suffix}
                   </p>
                   <p className="mt-1 text-[11px] uppercase tracking-[0.14em] text-[#6b7684]">

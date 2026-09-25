@@ -101,6 +101,7 @@ export const bookingProfiles: Record<string, BookingProfile> = {
       { name: "airport", label: "Airport", placeholder: "ICAO / IATA code", required: true }, 
       { name: "paymentMethod", label: "Payment method", placeholder: "Select payment method", options: ["Credit Account", "Credit Card", "Cash"], required: true },
     ],
+    detailsLabel: "Fuel coordination notes",
     detailsPlaceholder: "Add fuel release, credit terms, tax exemption, uplift deadline, or other operational requirements.",
   },
   "ground-transportation": {

@@ -328,7 +328,7 @@ export default function SafetyQualityPage() {
                     <p className="font-[family-name:var(--font-display)] text-[1.7rem] font-medium text-[#073f67] sm:text-[2rem]">
                       {parsed ? (
                         <>
-                          <span ref={(el) => (numberRefs.current[i] = el)}>0</span>
+                          <span ref={(el) => { numberRefs.current[i] = el; }}>0</span>
                           {parsed.suffix}
                         </>
                       ) : (
