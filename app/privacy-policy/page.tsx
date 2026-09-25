@@ -4,7 +4,17 @@
 import HeroSection from "@/components/ui/HeroSection";
 import CTABanner from "@/components/ui/CTABanner";
 import ScrollFloat from "@/components/ui/ScrollFloat";
-import { Shield, Lock, Eye, Database, FileText, Bell, CheckCircle2 } from "lucide-react";
+import { Shield, Lock, Eye, Database, CheckCircle2 } from "lucide-react";
+import { Fraunces } from "next/font/google";
+
+// Same display serif as the rest of the site — reserved for the one main
+// headline here. Everything else stays plain, legible sans: a legal notice
+// should read like a document, not a marketing page.
+const display = Fraunces({
+  subsets: ["latin"],
+  weight: ["500", "600"],
+  variable: "--font-display",
+});
 
 export default function PrivacyPolicyPage() {
   const lastUpdated = "September 8, 2026";
@@ -50,89 +60,105 @@ export default function PrivacyPolicyPage() {
       />
 
       {/* ── CONTENT ──────────────────────────────────────── */}
-      <div className="bg-gradient-to-b from-[#0A0A0A] via-midnight to-[#0A0A0A] py-16 sm:py-24">
+      <div className={`bg-[#FAF8F3] py-16 sm:py-24 ${display.variable}`}>
         <div className="container-max px-5 sm:px-8 lg:px-12">
-          
-          {/* Key Principles Grid */}
+          {/* Key Principles */}
           <ScrollFloat distance={40} scrub={1.2} className="mb-16">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 gap-8 border-y border-[#073f67]/12 py-10 sm:grid-cols-2 sm:gap-10 lg:grid-cols-4">
               {keyPrinciples.map((item) => (
-                <div
-                  key={item.title}
-                  className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-warm-gold/40 transition-all duration-300 group"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-warm-gold/10 border border-warm-gold/30 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                    <item.icon className="w-6 h-6 text-warm-gold" />
-                  </div>
-                  <h3 className="text-white font-bold text-lg mb-2">{item.title}</h3>
-                  <p className="text-white/60 text-xs leading-relaxed">{item.description}</p>
+                <div key={item.title}>
+                  <item.icon size={22} className="text-[#073f67]" strokeWidth={1.5} />
+                  <h3 className="mt-4 text-[1.02rem] font-semibold text-[#0b1620]">{item.title}</h3>
+                  <p className="mt-2 text-[0.85rem] leading-6 text-[#3d4a55]">{item.description}</p>
                 </div>
               ))}
             </div>
           </ScrollFloat>
 
           {/* Detailed Legal Body */}
-          <div className="max-w-4xl mx-auto bg-[#141414]/80 border border-white/10 rounded-3xl p-8 sm:p-12 backdrop-blur-xl shadow-2xl space-y-10 text-white/80">
-            
-            <div className="border-b border-white/10 pb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="mx-auto max-w-4xl space-y-10 rounded-[0.3rem] border border-[#073f67]/12 bg-white p-8 text-[#1c2733] shadow-[0_20px_50px_rgba(7,63,103,0.06)] sm:p-12">
+            <div className="flex flex-col items-start justify-between gap-4 border-b border-[#073f67]/12 pb-6 sm:flex-row sm:items-center">
               <div>
-                <span className="text-warm-gold text-xs font-bold tracking-widest uppercase">Legal Information</span>
-                <h2 className="text-2xl sm:text-3xl font-black text-white mt-1">Privacy Notice</h2>
+                <span className="text-[11px] font-bold uppercase tracking-widest text-[#073f67]">
+                  Legal Information
+                </span>
+                <h2 className="mt-1 font-[family-name:var(--font-display)] text-2xl font-medium text-[#0b1620] sm:text-3xl">
+                  Privacy Notice
+                </h2>
               </div>
-              <span className="text-xs text-white/50 bg-white/5 px-4 py-2 rounded-full border border-white/10">
+              <span className="rounded-full border border-[#073f67]/15 bg-[#073f67]/5 px-4 py-2 text-xs text-[#3d4a55]">
                 Last Updated: {lastUpdated}
               </span>
             </div>
 
             {/* Section 1 */}
             <section className="space-y-4">
-              <h3 className="text-xl font-bold text-white flex items-center gap-3">
-                <span className="w-2 h-2 rounded-full bg-warm-gold" />
+              <h3 className="flex items-center gap-3 text-xl font-bold text-[#0b1620]">
+                <span className="h-2 w-2 rounded-full bg-[#073f67]" />
                 1. Information We Collect
               </h3>
-              <p className="text-sm leading-relaxed text-white/70">
-                SABA Aviation Service & Flight Support PLC collects personal and operational data necessary to deliver flight clearance, ground handling, fueling, crew support, and passenger services across Ethiopian airports.
+              <p className="text-sm leading-relaxed text-[#3d4a55]">
+                SABA Aviation Service & Flight Support PLC collects personal and operational data
+                necessary to deliver flight clearance, ground handling, fueling, crew support, and
+                passenger services across Ethiopian airports.
               </p>
-              <ul className="space-y-2 text-sm text-white/70 pl-4 border-l border-warm-gold/30">
+              <ul className="space-y-2 border-l border-[#073f67]/20 pl-4 text-sm text-[#3d4a55]">
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-warm-gold shrink-0 mt-0.5" />
-                  <span><strong>Flight Details:</strong> Tail numbers, flight plans, routes, ETA/ETD, slot requests, and permit applications.</span>
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#073f67]" />
+                  <span>
+                    <strong className="text-[#0b1620]">Flight Details:</strong> Tail numbers, flight
+                    plans, routes, ETA/ETD, slot requests, and permit applications.
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-warm-gold shrink-0 mt-0.5" />
-                  <span><strong>Crew & Passenger Data:</strong> Passport copies, visa requirements, GENDEC manifests, and security clearance documents required by authorities.</span>
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#073f67]" />
+                  <span>
+                    <strong className="text-[#0b1620]">Crew & Passenger Data:</strong> Passport
+                    copies, visa requirements, GENDEC manifests, and security clearance documents
+                    required by authorities.
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-warm-gold shrink-0 mt-0.5" />
-                  <span><strong>Corporate Contact Information:</strong> Name, email, telephone, company designation, and billing details provided during bookings.</span>
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#073f67]" />
+                  <span>
+                    <strong className="text-[#0b1620]">Corporate Contact Information:</strong> Name,
+                    email, telephone, company designation, and billing details provided during
+                    bookings.
+                  </span>
                 </li>
               </ul>
             </section>
 
             {/* Section 2 */}
             <section className="space-y-4">
-              <h3 className="text-xl font-bold text-white flex items-center gap-3">
-                <span className="w-2 h-2 rounded-full bg-warm-gold" />
+              <h3 className="flex items-center gap-3 text-xl font-bold text-[#0b1620]">
+                <span className="h-2 w-2 rounded-full bg-[#073f67]" />
                 2. How We Use Your Data
               </h3>
-              <p className="text-sm leading-relaxed text-white/70">
+              <p className="text-sm leading-relaxed text-[#3d4a55]">
                 Your data is processed strictly for legitimate aviation operations, including:
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-white/70">
-                <div className="p-4 rounded-xl bg-white/5 border border-white/5">
-                  <p className="font-semibold text-white mb-1">Permit Approvals</p>
-                  <p>Submitting overflight and landing permit applications to the Ethiopian Civil Aviation Authority (ECAA).</p>
+              <div className="grid grid-cols-1 gap-4 text-xs text-[#3d4a55] sm:grid-cols-2">
+                <div className="rounded-[0.2rem] border border-[#073f67]/10 bg-[#FAF8F3] p-4">
+                  <p className="mb-1 font-semibold text-[#0b1620]">Permit Approvals</p>
+                  <p>
+                    Submitting overflight and landing permit applications to the Ethiopian Civil
+                    Aviation Authority (ECAA).
+                  </p>
                 </div>
-                <div className="p-4 rounded-xl bg-white/5 border border-white/5">
-                  <p className="font-semibold text-white mb-1">Ground Logistics</p>
-                  <p>Coordinating ramp handling, passenger transport, hotel arrangements, and aviation fuel dispatch.</p>
+                <div className="rounded-[0.2rem] border border-[#073f67]/10 bg-[#FAF8F3] p-4">
+                  <p className="mb-1 font-semibold text-[#0b1620]">Ground Logistics</p>
+                  <p>
+                    Coordinating ramp handling, passenger transport, hotel arrangements, and
+                    aviation fuel dispatch.
+                  </p>
                 </div>
-                <div className="p-4 rounded-xl bg-white/5 border border-white/5">
-                  <p className="font-semibold text-white mb-1">Safety & Compliance</p>
-                  <p>Ensuring full adherence to ICAO, IATA ISAGO, and local airport security standards.</p>
+                <div className="rounded-[0.2rem] border border-[#073f67]/10 bg-[#FAF8F3] p-4">
+                  <p className="mb-1 font-semibold text-[#0b1620]">Safety & Compliance</p>
+                  <p>Ensuring full adherence to ICAO and local airport security standards.</p>
                 </div>
-                <div className="p-4 rounded-xl bg-white/5 border border-white/5">
-                  <p className="font-semibold text-white mb-1">Operational Support</p>
+                <div className="rounded-[0.2rem] border border-[#073f67]/10 bg-[#FAF8F3] p-4">
+                  <p className="mb-1 font-semibold text-[#0b1620]">Operational Support</p>
                   <p>Providing 24/7 dispatch notifications, flight tracking updates, and invoicing.</p>
                 </div>
               </div>
@@ -140,54 +166,71 @@ export default function PrivacyPolicyPage() {
 
             {/* Section 3 */}
             <section className="space-y-4">
-              <h3 className="text-xl font-bold text-white flex items-center gap-3">
-                <span className="w-2 h-2 rounded-full bg-warm-gold" />
+              <h3 className="flex items-center gap-3 text-xl font-bold text-[#0b1620]">
+                <span className="h-2 w-2 rounded-full bg-[#073f67]" />
                 3. Disclosure to Authorities & Third Parties
               </h3>
-              <p className="text-sm leading-relaxed text-white/70">
-                We do not sell, rent, or trade your information to commercial third parties. Information is disclosed solely to:
+              <p className="text-sm leading-relaxed text-[#3d4a55]">
+                We do not sell, rent, or trade your information to commercial third parties.
+                Information is disclosed solely to:
               </p>
-              <ul className="list-disc list-inside space-y-1.5 text-sm text-white/70">
-                <li>Governmental & Civil Aviation Authorities (e.g. ECAA, Ethiopian Immigration, Customs).</li>
-                <li>Airport Operators & Ground Service Providers essential for execution of requested services.</li>
-                <li>Vetted vendor partners (e.g. luxury hotel accommodation, armored transport) under strict confidentiality agreements.</li>
+              <ul className="list-inside list-disc space-y-1.5 text-sm text-[#3d4a55]">
+                <li>
+                  Governmental & Civil Aviation Authorities (e.g. ECAA, Ethiopian Immigration,
+                  Customs).
+                </li>
+                <li>
+                  Airport Operators & Ground Service Providers essential for execution of
+                  requested services.
+                </li>
+                <li>
+                  Vetted vendor partners (e.g. luxury hotel accommodation, armored transport)
+                  under strict confidentiality agreements.
+                </li>
               </ul>
             </section>
 
             {/* Section 4 */}
             <section className="space-y-4">
-              <h3 className="text-xl font-bold text-white flex items-center gap-3">
-                <span className="w-2 h-2 rounded-full bg-warm-gold" />
+              <h3 className="flex items-center gap-3 text-xl font-bold text-[#0b1620]">
+                <span className="h-2 w-2 rounded-full bg-[#073f67]" />
                 4. Data Security & Storage
               </h3>
-              <p className="text-sm leading-relaxed text-white/70">
-                SABA Aviation employs high-grade encryption, secure server infrastructure, and restricted administrative access protocols. All physical and electronic records are monitored under strict aviation cybersecurity standards.
+              <p className="text-sm leading-relaxed text-[#3d4a55]">
+                SABA Aviation employs high-grade encryption, secure server infrastructure, and
+                restricted administrative access protocols. All physical and electronic records
+                are monitored under strict aviation cybersecurity standards.
               </p>
             </section>
 
             {/* Section 5 */}
             <section className="space-y-4">
-              <h3 className="text-xl font-bold text-white flex items-center gap-3">
-                <span className="w-2 h-2 rounded-full bg-warm-gold" />
+              <h3 className="flex items-center gap-3 text-xl font-bold text-[#0b1620]">
+                <span className="h-2 w-2 rounded-full bg-[#073f67]" />
                 5. Contacting Our Data Officer
               </h3>
-              <p className="text-sm leading-relaxed text-white/70">
-                For queries regarding your personal data, rights to access, rectification, or deletion of records:
+              <p className="text-sm leading-relaxed text-[#3d4a55]">
+                For queries regarding your personal data, rights to access, rectification, or
+                deletion of records:
               </p>
-              <div className="p-5 rounded-2xl bg-warm-gold/10 border border-warm-gold/30 text-xs sm:text-sm space-y-1 text-white">
-                <p className="font-bold text-warm-gold uppercase tracking-wider">SABA Aviation Privacy Office</p>
+              <div className="space-y-1 rounded-[0.2rem] border border-[#073f67]/15 bg-[#073f67]/5 p-5 text-xs text-[#1c2733] sm:text-sm">
+                <p className="font-bold uppercase tracking-wider text-[#073f67]">
+                  SABA Aviation Privacy Office
+                </p>
                 <p>Bole International Airport, Addis Ababa, Ethiopia</p>
-                <p>Email: <a href="mailto:info@sabaaviation.com" className="underline text-warm-gold">info@sabaaviation.com</a></p>
+                <p>
+                  Email:{" "}
+                  <a href="mailto:info@sabaaviation.com" className="text-[#073f67] underline">
+                    info@sabaaviation.com
+                  </a>
+                </p>
                 <p>24/7 Operations Desk: +251-11-551-6897</p>
               </div>
             </section>
-
           </div>
         </div>
       </div>
 
-      {/* ── CTA ──────────────────────────────────────────── */}
-      <CTABanner />
     </>
   );
 }

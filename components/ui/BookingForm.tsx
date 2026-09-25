@@ -225,6 +225,7 @@ export default function BookingForm({ serviceTitle, serviceSlug, profile }: Book
   });
   const [phoneCode, setPhoneCode] = useState<string>("+251");
   const [selectedService, setSelectedService] = useState(serviceSlug);
+  const [privacyAccepted, setPrivacyAccepted] = useState(false);
   const [step, setStep] = useState<"form" | "done">("form");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<BookingResult | null>(null);
@@ -261,7 +262,12 @@ export default function BookingForm({ serviceTitle, serviceSlug, profile }: Book
       const res = await fetch("/api/bookings", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ serviceSlug, serviceTitle, form: { ...form, phone: `${phoneCode} ${form.phone || ""}`.trim() } }),
+        body: JSON.stringify({
+          serviceSlug,
+          serviceTitle,
+          privacyConsent: privacyAccepted,
+          form: { ...form, phone: `${phoneCode} ${form.phone || ""}`.trim() },
+        }),
       });
       const data = await res.json();
       setResult(data);
@@ -491,6 +497,43 @@ export default function BookingForm({ serviceTitle, serviceSlug, profile }: Book
               </motion.div>
             )}
           </AnimatePresence>
+
+          {/* ── Privacy consent ── */}
+          <div className="mb-5 rounded-xl border border-[#073f67]/20 bg-white/75 px-4 py-4 shadow-sm">
+            <div className="mb-2 flex items-center justify-between gap-3">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-[#073f67]">
+                Privacy consent
+              </p>
+              <span className="text-[9px] font-bold uppercase tracking-widest text-[#6b7a84]">
+                Required
+              </span>
+            </div>
+            <label
+              htmlFor={`${serviceSlug}-privacy-consent`}
+              className="flex cursor-pointer items-start gap-3 text-sm leading-6 text-[#263746]"
+            >
+              <input
+                id={`${serviceSlug}-privacy-consent`}
+                type="checkbox"
+                checked={privacyAccepted}
+                onChange={(e) => setPrivacyAccepted(e.target.checked)}
+                required
+                className="mt-1 h-5 w-5 flex-shrink-0 accent-[#073f67]"
+              />
+              <span>
+                I have read and agree to the{" "}
+                <Link
+                  href="/privacy-policy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-[#073f67] underline underline-offset-2"
+                >
+                  Privacy Policy
+                </Link>
+                .
+              </span>
+            </label>
+          </div>
 
           {/* ── Submit ── */}
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">

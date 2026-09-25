@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ChevronDown, Clock3, ShieldCheck, Check } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Fraunces } from "next/font/google";
 import { services } from "@/data/services";
@@ -17,6 +18,7 @@ export default function BookingServicesPage() {
   const [selectedSlug, setSelectedSlug] = useState(services[0].slug);
   const [open, setOpen] = useState(false);
   const dropRef = useRef<HTMLDivElement>(null);
+  const mobileDropRef = useRef<HTMLDivElement>(null);
 
   const selected = services.find((s) => s.slug === selectedSlug) || services[0];
   const Icon = selected.icon;
@@ -24,13 +26,18 @@ export default function BookingServicesPage() {
   // Close dropdown when clicking outside
   useEffect(() => {
     function handle(e: MouseEvent) {
-      if (dropRef.current && !dropRef.current.contains(e.target as Node)) {
+      if (
+        !dropRef.current?.contains(e.target as Node) &&
+        !mobileDropRef.current?.contains(e.target as Node)
+      ) {
         setOpen(false);
       }
     }
     document.addEventListener("mousedown", handle);
     return () => document.removeEventListener("mousedown", handle);
   }, []);
+
+  const router = useRouter();
 
   function pick(slug: string) {
     setSelectedSlug(slug);
@@ -115,20 +122,21 @@ export default function BookingServicesPage() {
         </div>
 
         {/* Main content — flex-1 with centered content */}
-        <div className="flex flex-1 flex-col justify-center px-5 py-6 sm:px-8 lg:px-10 overflow-hidden">
+        <div className="relative z-20 flex flex-1 flex-col justify-center px-5 py-6 sm:px-8 lg:px-10">
 
           {/* ── MOBILE: native-style dropdown ─────────────────── */}
           <div className="lg:hidden">
             <label className="mb-2 block text-[9px] font-bold uppercase tracking-[0.22em] text-[#073f67]/50">
               Select a service
             </label>
-            <div ref={dropRef} className="relative">
-              {/* Trigger */}
+            <div ref={mobileDropRef} className="relative">
               <button
                 type="button"
-                onClick={() => setOpen((o) => !o)}
+                aria-haspopup="listbox"
+                aria-expanded={open}
+                onClick={() => setOpen((value) => !value)}
                 className={`w-full flex items-center gap-3 rounded-2xl border bg-[#FAF8F3] px-4 py-3.5 text-left shadow-sm transition-all duration-200 ${
-                  open ? "border-[#073f67]/40 ring-2 ring-[#073f67]/10" : "border-[#dde3e7] hover:border-[#073f67]/25"
+                  open ? "border-[#073f67]/40 ring-2 ring-[#073f67]/10" : "border-[#dde3e7]"
                 }`}
               >
                 <div className="h-9 w-9 flex-shrink-0 rounded-xl bg-[#073f67]/8 flex items-center justify-center">
@@ -146,29 +154,32 @@ export default function BookingServicesPage() {
                 />
               </button>
 
-              {/* Dropdown panel */}
               {open && (
-                <div className="absolute left-0 right-0 top-[calc(100%+6px)] z-50 overflow-hidden rounded-2xl border border-[#dde3e7] bg-[#FAF8F3] shadow-xl shadow-black/10">
-                  <div className="max-h-64 overflow-y-auto py-1.5 scrollbar-hide">
-                    {services.map((s) => {
-                      const SIcon = s.icon;
-                      const active = s.slug === selectedSlug;
+                <div className="absolute left-0 right-0 top-[calc(100%+8px)] z-50 overflow-hidden rounded-2xl border border-[#dde3e7] bg-[#FAF8F3] shadow-2xl shadow-black/12">
+                  <div className="max-h-60 overflow-y-auto py-1.5">
+                    {services.map((service) => {
+                      const ServiceIcon = service.icon;
+                      const active = service.slug === selectedSlug;
                       return (
                         <button
-                          key={s.slug}
+                          key={service.slug}
                           type="button"
-                          onClick={() => pick(s.slug)}
-                          className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-colors ${
-                            active ? "bg-[#073f67]/6" : "hover:bg-[#f5f8fb]"
-                          }`}
+                          role="option"
+                          aria-selected={active}
+                          onClick={() => pick(service.slug)}
+                          className={`w-full flex items-center gap-3 px-4 py-3 text-left ${active ? "bg-[#073f67]/5" : "active:bg-[#f5f8fb]"}`}
                         >
-                          <div className={`h-8 w-8 flex-shrink-0 rounded-lg flex items-center justify-center ${active ? "bg-[#073f67]" : "bg-[#073f67]/8"}`}>
-                            <SIcon size={14} className={active ? "text-white" : "text-[#073f67]"} />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <p className={`text-sm font-semibold truncate ${active ? "text-[#073f67]" : "text-[#0b1620]"}`}>{s.title}</p>
-                            {s.subtitle && <p className="text-[11px] text-[#8a969e]">{s.subtitle}</p>}
-                          </div>
+                          <ServiceIcon size={16} className="flex-shrink-0 text-[#073f67]" />
+                          <span className="min-w-0 flex-1">
+                            <span className={`block truncate text-sm font-semibold ${active ? "text-[#073f67]" : "text-[#0b1620]"}`}>
+                              {service.title}
+                            </span>
+                            {service.subtitle && (
+                              <span className="mt-0.5 block truncate text-[11px] text-[#8a969e]">
+                                {service.subtitle}
+                              </span>
+                            )}
+                          </span>
                           {active && <Check size={14} className="flex-shrink-0 text-[#073f67]" />}
                         </button>
                       );
@@ -280,7 +291,7 @@ export default function BookingServicesPage() {
         </div>
 
         {/* ── Mobile CTA bar ──────────────────────────────────── */}
-        <div className="flex-shrink-0 border-t border-[#073f67]/8 bg-white/80 p-4 backdrop-blur-sm lg:hidden">
+        <div className="relative z-10 flex-shrink-0 border-t border-[#073f67]/8 bg-white/80 p-4 backdrop-blur-sm lg:hidden">
           <div className="mb-3 flex items-center gap-3">
             <div className="relative h-12 w-16 flex-shrink-0 overflow-hidden rounded-lg">
               <Image src={selected.image} alt={selected.title} fill sizes="64px" className="object-cover" />

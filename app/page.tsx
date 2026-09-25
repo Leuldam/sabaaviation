@@ -227,9 +227,9 @@ export default function Home() {
 
 
       {/* ── UNIFIED LIGHT GRADIENT CONTENT ──────────────── */}
-      <div className="bg-gradient-to-b from-white to-gray-200">
+      <div className="bg-[#FAF8F3]">
         <section className="section-padding overflow-hidden relative">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,_rgba(7,63,103,0.18),_transparent_25%),radial-gradient(circle_at_80%_75%,_rgba(209,177,106,0.18),_transparent_22%)]" />
+          <div className="absolute inset-0 bg-[#FAF8F3]" />
 
           <div className="container-max relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-16 items-center">
@@ -297,57 +297,55 @@ export default function Home() {
                 <div className="absolute -top-10 -left-8 h-28 w-28 rounded-full bg-[#073f67]/10 blur-3xl" />
                 <div className="absolute -bottom-12 -right-3 h-28 w-28 rounded-full bg-[#d1b16a]/18 blur-3xl" />
 
-                <div className="relative mx-auto max-w-[560px] rounded-[2rem] border border-white/90 bg-[#FAF8F3] p-2.5 shadow-[0_30px_80px_rgba(15,23,42,0.12)]">
-                  <div className="relative h-[340px] sm:h-[400px] lg:h-[480px] overflow-hidden rounded-[1.6rem]">
+                <div className="relative mx-auto max-w-[560px]  bg-[#FAF8F3] p-2.5 shadow-[0_30px_80px_rgba(15,23,42,0.12)]">
+                  <div className="relative h-[400px] sm:h-[400px] lg:h-[480px] overflow-hidden">
                     <Image
-                      src="/images/backgroundimage2.png"
+                      src="/images/plane.png"
                       alt="SABA Aviation team"
                       fill
-                      className="object-cover scale-[1.05]"
+                      className="object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#071c2f]/95 via-[#071c2f]/40 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#071c2f]/90 via-[#071c2f]/20 to-transparent" />
 
-                    <div className="absolute   top-5 right-5 flex justify-between gap-3">
+                    <span className="absolute top-5 right-5 rounded-full border border-[#d1b16a]/40 bg-[#d1b16a]/15 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-[#f4e4b3] backdrop-blur-md">
+                      Corporate ready
+                    </span>
 
-                      <span className="rounded-full border border-[#d1b16a]/40 bg-[#d1b16a]/15 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-[#f4e4b3] backdrop-blur-md">
-                        Corporate ready
-                      </span>
-                    </div>
-
-                    <div className="absolute inset-x-0 bottom-0 p-4 sm:p-6">
-                      <div className="relative group">
-                        {/* Ambient glow removed as requested */}
-
-                        <Link
-                          href="/booking"
-                          className="relative block rounded-2xl border-2 border-sky-400/40 bg-gradient-to-br from-[#082038]/95 via-[#06182a]/95 to-[#04101e]/98 p-4 sm:p-5 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65),0_0_30px_rgba(14,165,233,0.25)] overflow-hidden transition-all duration-300 hover:border-sky-400/80 hover:shadow-[0_25px_60px_rgba(0,0,0,0.7),0_0_40px_rgba(14,165,233,0.45)] hover:-translate-y-1"
-                        >
-                          {/* Animated shimmer sweep */}
-                          <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-sky-300/15 to-transparent pointer-events-none" />
-
-                          {/* Content and bold CTA button */}
-                          <div className="relative flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
-                            <div>
-                              <p className="text-base sm:text-lg font-black text-white tracking-tight group-hover:text-sky-200 transition-colors duration-300">
-                                Book Flight Support
+                    <div className="absolute inset-x-0 bottom-0 px-4 pt-4 pb-3 sm:px-5 sm:pt-5 sm:pb-4">
+                      <div className="rounded-[1.4rem] bg-gradient-to-b from-white/15 to-white/0 p-[1px]">
+                        <div className="rounded-[calc(1.4rem-1px)] bg-[#071c2f]/60 backdrop-blur-2xl p-4 sm:p-5">
+                          <div className="flex flex-col sm:flex-row sm:items-end font-medium justify-between gap-4">
+                            <div className="font-helvetica">
+                              <p className="text-xl sm:text-2xl font-serif italic font-normal text-white/90  text-white tracking-normal leading-snug">
+                                Book Us
                               </p>
-                              <p className="text-xs text-slate-300/90 font-medium mt-0.5">
+                              <p className="mt-1.5 text-sm sm:text-[15px] text-white/50 font-normal leading-relaxed">
                                 Permits, ground handling &amp; fast facilitation
                               </p>
                             </div>
 
-                            {/* BOLD Standout Action Button with blue glow */}
-                            <div className="flex-shrink-0 inline-flex items-center justify-center gap-2 rounded-xl bg-[#073f67] border border-sky-400/40 px-5 py-2.5 sm:px-5 sm:py-3 text-xs sm:text-sm font-black uppercase tracking-wider text-white shadow-[0_4px_20px_rgba(7,63,103,0.6),0_0_15px_rgba(14,165,233,0.35)] group-hover:bg-[#0a4d7d] group-hover:border-sky-300 group-hover:scale-105 group-hover:shadow-[0_6px_25px_rgba(14,165,233,0.65)] transition-all duration-300">
+                            <Link
+                              href="/booking"
+                              className="group/btn relative inline-flex w-full sm:w-auto flex-shrink-0 items-center justify-center gap-2.5 rounded-xl bg-[#073f67] py-3 pl-6 pr-3 text-sm font-semibold font-montserrat tracking-wide text-white transition-colors duration-300  "
+                            >
                               <span>Book Now</span>
-                              <ArrowRight size={16} className="stroke-[3] transition-transform duration-300 group-hover:translate-x-1" />
-                            </div>
+                              <span className="relative flex h-7 w-7 items-center justify-center overflow-hidden rounded-lg bg-white/15">
+                                <ArrowRight
+                                  size={14}
+                                  className="absolute stroke-[2.5] transition-transform duration-300 ease-out group-hover/btn:translate-x-7"
+                                />
+                                <ArrowRight
+                                  size={14}
+                                  className="absolute -translate-x-7 stroke-[2.5] transition-transform duration-300 ease-out group-hover/btn:translate-x-0"
+                                />
+                              </span>
+                            </Link>
                           </div>
-                        </Link>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-
               </ScrollFloat>
             </div>
           </div>
@@ -384,7 +382,7 @@ export default function Home() {
                       <span className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center group-hover:scale-110 transition-transform">
                         <Phone size={12} className="text-white group-hover:rotate-12 transition-transform duration-300" />
                       </span>
-                      <span>Call for Booking</span>
+                      <span>Book Now</span>
                       <ArrowRight size={14} strokeWidth={2.5} className="group-hover:translate-x-1 transition-transform" />
                     </Link>
 

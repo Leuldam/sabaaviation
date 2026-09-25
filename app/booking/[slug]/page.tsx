@@ -152,7 +152,7 @@ export default async function BookingPage({ params }: Props) {
         {/* RIGHT — scrollable form panel */}
         <div className="flex flex-1 flex-col overflow-hidden bg-[#FAF8F3] pt-[64px]">
           <div className="flex-1 overflow-y-auto scrollbar-hide">
-            <BookingForm serviceTitle={serviceTitle} serviceSlug={serviceSlug} profile={profile} />
+            <BookingForm key={serviceSlug} serviceTitle={serviceTitle} serviceSlug={serviceSlug} profile={profile} />
           </div>
         </div>
       </div>

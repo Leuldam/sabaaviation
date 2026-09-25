@@ -151,7 +151,19 @@ async function generatePdfBuffer({ serviceTitle, form, reference, requestDate }:
 
 export async function POST(req: Request) {
   try {
-    const { serviceTitle, serviceSlug, form = {} } = await req.json() as { serviceTitle: string; serviceSlug: string; form: FormValues };
+    const { serviceTitle, serviceSlug, privacyConsent, form = {} } = await req.json() as {
+      serviceTitle: string;
+      serviceSlug: string;
+      privacyConsent?: boolean;
+      form: FormValues;
+    };
+    if (privacyConsent !== true) {
+      return NextResponse.json(
+        { success: false, error: "Please accept the Privacy Policy before sending your request." },
+        { status: 400 },
+      );
+    }
+
     const now = new Date();
     const reference = `SABA-${now.getFullYear()}-${String(Date.now() % 1000000).padStart(6, "0")}`;
     const requestDate = now.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });

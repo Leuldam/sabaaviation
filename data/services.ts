@@ -58,7 +58,7 @@ export const services: Service[] = [
     description:
       "Pre-arrival verification of fueling, catering, ground transportation, and hotel accommodations completed at least two hours prior to arrival.",
     slug: "ground-handling",
-    image: "/images/service_ground_handling.jpg",
+    image: "/images/ramo.png",
     details: {
       longDescription: "SABA Aviation offers world-class ground handling services tailored to scheduled airlines, charter flights, and cargo operators. Our highly trained ramp agents and specialized ground support equipment (GSE) ensure safe, efficient, and rapid aircraft turnarounds. From pushback and towing to baggage loading and lavatory services, we adhere strictly to international IATA and ISAGO safety standards.",
       features: [
@@ -183,7 +183,7 @@ export const services: Service[] = [
     description:
       "Airport transfers & surface transport for crew, passengers & cargo.",
     slug: "ground-transportation",
-    image: "/images/service_ground_handling.jpg",
+    image: "/images/ramo.png",
     details: {
       longDescription: "Whether it is moving crew to their hotel, transferring VIPs in luxury vehicles, or transporting time-sensitive cargo from the airport to its final destination, SABA Aviation provides reliable surface transportation solutions. We maintain a network of vetted, professional drivers and a modern fleet of vehicles to ensure safety, punctuality, and comfort.",
       features: [

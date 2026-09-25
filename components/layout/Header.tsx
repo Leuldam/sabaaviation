@@ -37,7 +37,7 @@ export default function Header() {
         setMenuOpen(false);
       }
     };
-    
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [menuOpen]);
@@ -52,11 +52,10 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ${
-        scrolled
-          ? "top-6 md:top-3 w-[calc(100%-1.5rem)] max-w-[1200px] px-3 md:px-5 bg-midnight/90 backdrop-blur-xl shadow-lg shadow-black/20 rounded-[35px]"
-          : "top-0 w-full bg-gradient-to-b from-black/40 to-transparent"
-      }`}
+      className={`fixed left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ${scrolled
+        ? "top-6 md:top-3 w-[calc(100%-1.5rem)] max-w-[1200px] px-3 md:px-5 bg-midnight/90 backdrop-blur-xl shadow-lg shadow-black/20 rounded-[35px]"
+        : "top-0 w-full bg-gradient-to-b from-black/40 to-transparent"
+        }`}
     >
       <nav className={`w-full flex items-center justify-between h-16 px-5 sm:px-8 lg:px-10 xl:px-0 transition-all duration-500 ${scrolled ? "rounded-[35px]" : ""}`}>
         {/* Logo */}
@@ -78,9 +77,7 @@ export default function Header() {
             <li key={item.href} className={item.href === "/services" ? "relative group" : ""}>
               <Link
                 href={item.href}
-                className={`px-3 py-2 text-[15px] md:text-[11px] lg:text-[13px] font-helvetica font-thin uppercase tracking-widest transition-all duration-200 ${
-                  isActive(item.href) ? "text-warm-gold" : "text-white"
-                }`}
+                className="px-3 py-2 text-[15px] md:text-[11px] lg:text-[13px] font-helvetica font-thin uppercase tracking-widest transition-all duration-200 text-white hover:text-white/80"
               >
                 {item.name}
               </Link>
@@ -107,10 +104,14 @@ export default function Header() {
                       {/* 2-column grid */}
                       <div className="grid grid-cols-2 gap-2 px-4 pb-4">
                         {[
-                          { title: "Flight and Permit Coordination", slug: "flight-support" },
-                          { title: "Ramp & Crew Support", slug: "ground-handling" },
-                          { title: "VIP/CIP Meet-and-Greet", slug: "passenger-services" },
-                          { title: "On-Ground Operations", slug: "vip-business-aviation" },
+                          { title: "Flight Support", slug: "flight-support" },
+                          { title: "Ground Handling", slug: "ground-handling" },
+                          { title: "Passenger Services", slug: "passenger-services" },
+                          { title: "VIP & Business Aviation", slug: "vip-business-aviation" },
+                          { title: "Cargo & Logistics", slug: "cargo-logistics" },
+                          { title: "Fuel Coordination", slug: "fuel-coordination" },
+                          { title: "Ground Transportation", slug: "ground-transportation" },
+                          { title: "Crew Support Services", slug: "crew-services" },
                         ].map((service) => (
                           <Link
                             key={service.slug}
@@ -230,16 +231,14 @@ export default function Header() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.25 }}
                     >
-                       
+
                     </motion.li>
                   </ul>
                 </div>
 
                 {/* Services */}
                 <div>
-                  <h3 className="text-sm text-gray-500 uppercase tracking-wider mb-3">
-                    Our Services
-                  </h3>
+
                   <ul className="space-y-2 text-sm">
                     <motion.li
                       initial={{ opacity: 0, y: 10 }}

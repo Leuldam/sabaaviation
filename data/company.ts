@@ -19,13 +19,13 @@ export const story = {
 export const mission = {
   title: "Our Mission",
   content:
-    "To connect airlines, airports, regulators, and service providers through safe, compliant, and seamlessly coordinated aviation support that lets operators focus on their core flight operations.",
+    "By 2040 SABA Aviation Service will be recognized as the preferred aviation support partner for airlines, airports, governments, and aviation stakeholders across Africa and beyond—renowned for operational excellence, digital innovation, professional competence, and exceptional customer experience.",
 };
 
 export const vision = {
   title: "Our Vision",
   content:
-    "To shape the future of seamless air transport connectivity while creating sustainable economic value and developing aviation talent across the region.",
+    "To create sustainable economic value through innovative aviation services, facilitate operational excellence for airline partners, transfer aviation expertise to future generations, create meaningful employment opportunities, and support the growth and competitiveness of national and international carriers.",
 };
 
 export const values = [
@@ -122,16 +122,25 @@ export const contactInfo = {
 // below is placeholder content matching the shape the page expects.
 
 export const stats = [
-  { label: "Years in Operation", value: 12, suffix: "+" },
-  { label: "Flights Coordinated", value: 3200, suffix: "+" },
-  { label: "Partner Airlines", value: 24, suffix: "+" },
-  { label: "Client Satisfaction", value: 98, suffix: "%" },
+  { label: "Years in Operation", value: 35, suffix: "+" },
+  { label: "All over east africa", value: 3, suffix: "+ Airports" },
+  { label: "24/7 Flight Support", value: 24, suffix: "+" },
+  { label: "Reliability", value: 100, suffix: "%" },
 ];
 
 export const team = [
   {
+    name: "Abebe Angesa Guressa",
+    role: "Chief Executive Officer",
+    experience: "15+ yrs",
+    bio: "Led ground operations and airline partnerships across East Africa before founding SABA to modernize regional aviation support.",
+    image: "",
+    linkedin: "#",
+    email: "",
+  },
+  {
     name: "Selam Tesfaye",
-    role: "Founder & Chief Executive Officer",
+    role: "Chief Executive Officer",
     experience: "18+ yrs",
     bio: "Led ground operations and airline partnerships across East Africa before founding SABA to modernize regional aviation support.",
     image: "/images/team/selam-tesfaye.png",
@@ -157,20 +166,57 @@ export const team = [
     email: "",
   },
   {
-    name: "Yohannes Girma",
-    role: "Head of Flight Safety & Compliance",
-    experience: "13+ yrs",
-    bio: "Certified safety auditor ensuring every operation meets IATA and regional aviation authority standards.",
-    image: "/images/team/yohannes-girma.png",
+    name: "Birhanu Kassa Mekonen",
+    role: "Team Member",
+    experience: "",
+    bio: "",
+    image: "",
     linkedin: "#",
-    email: "yohannes@sabaaviation.com",
+    email: "",
   },
-
-  { name: "Abebe Angesa Guressa", role: "Operations Manager", experience: "10+ yrs", bio: "Oversees day-to-day ground operations and coordinates cross-functional teams to deliver reliable service across Ethiopian airports.", image: "/images/team/abebe-angesa-guressa.png", linkedin: "", email: "" },
-  { name: "Birhanu Kassa Mekonen", role: "Flight Coordination Specialist", experience: "8+ yrs", bio: "Manages overflight permits, slot coordination, and ATC liaison for international and domestic operators.", image: "/images/team/birhanu-kassa-mekonen.png", linkedin: "", email: "" },
-  { name: "Selamawit Fikru Tullu", role: "Passenger Services Lead", experience: "7+ yrs", bio: "Leads VIP and CIP facilitation, ensuring seamless terminal experiences for high-profile passengers and delegations.", image: "/images/team/selamawit-fikru-tullu.png", linkedin: "", email: "" },
-  { name: "Getachew Birru Feyisa", role: "Cargo and Freight Coordinator", experience: "9+ yrs", bio: "Handles end-to-end cargo facilitation, customs brokerage, and hazardous goods compliance for freighter and belly-cargo clients.", image: "/images/team/getachew-birru-feyisa.png", linkedin: "", email: "" },
-  { name: "Abdisa Bekele Bulto", role: "Ramp Supervisor", experience: "11+ yrs", bio: "Supervises ramp and turnaround operations, ensuring IATA and ISAGO standards are maintained on every aircraft movement.", image: "/images/team/abdisa-bekele-bulto.png", linkedin: "", email: "" },
-  { name: "Yeabsira Getahun Gebreselasie", role: "Fuel Solutions Coordinator", experience: "6+ yrs", bio: "Coordinates fuel uplifts and supplier relationships, ensuring timely delivery and full quality-compliance documentation.", image: "/images/team/yeabsira-getahun-gebreselasie.png", linkedin: "", email: "" },
-  { name: "Kaleab Yohannes Kassa", role: "Ground Transportation Manager", experience: "8+ yrs", bio: "Manages crew transfers, VIP surface logistics, and a fleet of vetted vehicles across Addis Ababa and key regional airports.", image: "/images/team/kaleab-yohannes-kassa.png", linkedin: "", email: "" },
+  {
+    name: "Selamawit Fikru Tullu",
+    role: "Team Member",
+    experience: "",
+    bio: "",
+    image: "",
+    linkedin: "#",
+    email: "",
+  },
+  {
+    name: "Getachew Birru Feyisa",
+    role: "Team Member",
+    experience: "",
+    bio: "",
+    image: "",
+    linkedin: "#",
+    email: "",
+  },
+  {
+    name: "Abdisa Bekele Bulto",
+    role: "Team Member",
+    experience: "",
+    bio: "",
+    image: "",
+    linkedin: "#",
+    email: "",
+  },
+  {
+    name: "Yeabsira Getahun Gebreselasie",
+    role: "Team Member",
+    experience: "",
+    bio: "",
+    image: "",
+    linkedin: "#",
+    email: "",
+  },
+  {
+    name: "Kaleab Yohannes Kassa",
+    role: "Team Member",
+    experience: "",
+    bio: "",
+    image: "",
+    linkedin: "#",
+    email: "",
+  },
 ];
