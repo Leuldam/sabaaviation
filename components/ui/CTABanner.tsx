@@ -22,11 +22,10 @@ export default function CTABanner({
 }: CTABannerProps) {
   return (
     <section
-      className={`section-padding ${
-        variant === "gold"
+      className={`section-padding ${variant === "gold"
           ? "bg-gradient-to-r from-warm-gold to-light-gold"
           : "bg-dark-navy"
-      }`}
+        }`}
     >
       <div className="container-max">
         <motion.div
@@ -38,25 +37,22 @@ export default function CTABanner({
         >
           <div className="max-w-xl">
             <h2
-              className={`text-3xl md:text-4xl font-bold tracking-tight ${
-                variant === "gold" ? "text-midnight" : "text-white"
-              }`}
+              className={`text-3xl md:text-4xl font-bold tracking-tight ${variant === "gold" ? "text-midnight" : "text-white"
+                }`}
             >
               {title}
             </h2>
             <p
-              className={`mt-3 text-lg ${
-                variant === "gold" ? "text-midnight/70" : "text-white/60"
-              }`}
+              className={`mt-3 text-lg ${variant === "gold" ? "text-midnight/70" : "text-white/60"
+                }`}
             >
               {subtitle}
             </p>
           </div>
           <Link
             href={buttonHref}
-            className={`${
-              variant === "gold" ? "btn-outline" : "btn-outline-gold"
-            } whitespace-nowrap`}
+            className={`${variant === "gold" ? "btn-outline" : "btn-outline-gold"
+              } whitespace-nowrap`}
           >
             {buttonText} <ArrowRight size={16} />
           </Link>

@@ -3,6 +3,7 @@ import QRCode from "qrcode";
 import nodemailer from "nodemailer";
 import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
 import { contactInfo } from "@/data/company";
+import fs from "fs";
 
 const navy = rgb(0.03, 0.16, 0.26);
 const gold = rgb(0.71, 0.49, 0.05);
@@ -65,9 +66,10 @@ async function generatePdfBuffer({ serviceTitle, form, reference, requestDate, q
   page.drawText("REQUEST INFORMATION", { x: 35, y: 735, size: 9, font: bold, color: navy });
   page.drawLine({ start: { x: 35, y: 726 }, end: { x: 560, y: 726 }, thickness: 1, color: gold });
 
+// Updated layout without status label for cleaner confirmation
   drawLabelValue(page, bold, "Reference", reference, 35, 705, 160);
-  drawLabelValue(page, bold, "Status", "PENDING REVIEW", 210, 705, 150);
-  drawLabelValue(page, bold, "Service", serviceTitle.toUpperCase(), 380, 705, 170);
+  // Service label shifted left to occupy space formerly used by status
+  drawLabelValue(page, bold, "Service", serviceTitle.toUpperCase(), 210, 705, 320);
   drawLabelValue(page, bold, "Request date", requestDate, 35, 660, 160);
 
   page.drawText("CUSTOMER", { x: 35, y: 610, size: 9, font: bold, color: navy });
@@ -101,10 +103,10 @@ async function generatePdfBuffer({ serviceTitle, form, reference, requestDate, q
   page.drawText("24/7 Operational Support", { x: 50, y: 116, size: 9, font: regular, color: slate });
   page.drawText(`Phone: ${contactInfo.phone}`, { x: 50, y: 101, size: 8, font: regular, color: slate });
   page.drawText(`Email: ${contactInfo.operations}`, { x: 220, y: 101, size: 8, font: regular, color: slate });
-  if (qrMatch) page.drawImage(await pdfDoc.embedPng(Buffer.from(qrMatch[1], "base64")), { x: 474, y: 93, width: 52, height: 52 });
+  if (qrMatch) page.drawImage(await pdfDoc.embedPng(Buffer.from(qrMatch[1], "base64")), { x: 470, y: 93, width: 80, height: 80 });
 
   page.drawText("SABA AVIATION SERVICE & FLIGHT SUPPORT PLC", { x: 35, y: 52, size: 7, font: bold, color: navy });
-  page.drawText("Precision on the Ground. Confidence in the Air.", { x: 35, y: 39, size: 7, font: regular, color: slate });
+  page.drawText("Your Trusted Gateway to Seamless Airport Operations", { x: 35, y: 39, size: 7, font: regular, color: slate });
   page.drawText("This document confirms receipt of the service request and does not constitute an airline ticket or boarding pass.", { x: 35, y: 24, size: 6.5, font: regular, color: slate });
 
   return Buffer.from(await pdfDoc.save());

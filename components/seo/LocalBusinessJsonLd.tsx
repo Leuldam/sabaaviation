@@ -7,7 +7,7 @@ const localBusinessSchema = {
   logo: 'https://www.sabaaviation.com/images/logo.png',
   image: 'https://www.sabaaviation.com/images/hero_home.png',
   description:
-    'Premium aviation ground handling, flight support, VIP aviation, cargo coordination, and airport operations services in Ethiopia.',
+    'Reliable, technology-enabled airport facilitation, regulatory coordination, ground operations, VIP, crew, cargo, and fuel solutions across Ethiopia and East Africa.',
   telephone: '+251-11-551-6897',
   email: 'info@sabaaviation.com',
   address: {
@@ -17,8 +17,8 @@ const localBusinessSchema = {
     addressCountry: 'ET',
   },
   areaServed: {
-    '@type': 'Country',
-    name: 'Ethiopia',
+    '@type': 'Place',
+    name: 'Ethiopia and East Africa',
   },
   availableLanguage: ['English', 'Amharic'],
   openingHoursSpecification: [

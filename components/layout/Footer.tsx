@@ -12,10 +12,10 @@ export default function Footer() {
           {/* Company Tagline */}
           <div>
             <h3 className="text-2xl md:text-3xl font-light leading-tight mb-6">
-              SABA Aviation 
+              SABA Aviation
             </h3>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Professional aviation ground handling and flight support services in Ethiopia.
+              Your trusted gateway to seamless airport operations across Ethiopia and East Africa.
             </p>
           </div>
 
@@ -56,17 +56,17 @@ export default function Footer() {
             </h4>
             <div className="space-y-2 text-sm">
               <Link href="/services/ground-handling" className="block text-gray-400 hover:text-white transition-colors">
-                Ground Handling
+                Ground Operations
               </Link>
               <Link href="/services/flight-support" className="block text-gray-400 hover:text-white transition-colors">
-                Flight Support
+                Airport Facilitation
               </Link>
               <Link href="/services/vip-business-aviation" className="block text-gray-400 hover:text-white transition-colors">
                 VIP Services
               </Link>
               <Link
                 href="/services"
-                className="inline-block text-white hover:text-[#052f4d] transition-colors mt-3 text-sm underline"
+                className="inline-block text-white hover:text-[#052f4d] transition-colors mt-3 text-sm  "
               >
                 VIEW ALL SERVICES →
               </Link>

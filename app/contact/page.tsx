@@ -217,9 +217,23 @@ export default function ContactPage() {
         </div>
       </section>
 
-       
-
-    
+      {/* ── MAP SECTION ─────────────────────────────────── */}
+      <section className="w-full h-[300px] sm:h-[400px] lg:h-[450px] relative bg-gray-100">
+        {/* We use a grayscale filter for a premium integrated look, returning to full color on hover */}
+        <iframe
+          src="https://maps.google.com/maps?q=Addis%20Ababa%20Bole%20International%20Airport&t=&z=14&ie=UTF8&iwloc=&output=embed"
+          width="100%"
+          height="100%"
+          style={{ border: 0 }}
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          className="grayscale-[0.85] opacity-90 contrast-125 hover:grayscale-0 hover:opacity-100 transition-all duration-700 ease-in-out"
+        />
+        
+        {/* Subtle inner shadow overlay */}
+        <div className="absolute inset-0 pointer-events-none shadow-[inset_0_10px_30px_rgba(0,0,0,0.05),inset_0_-10px_30px_rgba(0,0,0,0.05)]" />
+      </section>
     </>
   );
 }

@@ -1,9 +1,16 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, Check, Clock3, ShieldCheck } from "lucide-react";
+import { ArrowLeft, ShieldCheck, Clock, Zap } from "lucide-react";
+import { Fraunces } from "next/font/google";
 import BookingForm from "@/components/ui/BookingForm";
 import { getBookingProfile } from "@/data/booking-profiles";
 import { services } from "@/data/services";
+
+const display = Fraunces({
+  subsets: ["latin"],
+  weight: ["500", "600"],
+  variable: "--font-display",
+});
 
 interface Props {
   params?: Promise<{ slug?: string | string[] }>;
@@ -14,40 +21,138 @@ export default async function BookingPage({ params }: Props) {
   const rawSlug = resolvedParams?.slug ?? "service";
   const serviceSlug = Array.isArray(rawSlug) ? rawSlug.join("-") : rawSlug;
   const service = services.find((item) => item.slug === serviceSlug);
-  const serviceTitle = service?.title ?? (serviceSlug || "service").replace(/-/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
+  const serviceTitle =
+    service?.title ??
+    (serviceSlug || "service")
+      .replace(/-/g, " ")
+      .replace(/\b\w/g, (l) => l.toUpperCase());
   const profile = getBookingProfile(serviceSlug);
   const Icon = service?.icon;
   const heroImage = service?.image ?? "/images/service_flight_support.jpg";
 
   return (
-    <main className="min-h-screen overflow-x-hidden bg-[#f4f6f7] pb-20 font-[var(--font-montserrat)] text-[#0b1220]">
-      <section className="relative isolate min-h-[350px] overflow-hidden bg-[#073f67] text-white">
-        <Image src={heroImage} alt={`${serviceTitle} operations`} fill priority sizes="100vw" className="object-cover object-center" />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(3,24,39,0.92)_0%,rgba(3,24,39,0.72)_48%,rgba(3,24,39,0.35)_100%)]" />
-        <div className="relative mx-auto flex min-h-[350px] w-full max-w-7xl flex-col justify-between px-5 pb-9 pt-24 sm:px-8 sm:pb-10 sm:pt-28 lg:px-12">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <Link href={`/services/${serviceSlug}`} className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/80 transition-colors hover:text-[#d6aa59]"><ArrowLeft size={15} /> Back to {serviceTitle}</Link>
-            <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.1em] text-white/75"><ShieldCheck size={15} className="text-[#d6aa59]" /> Secure request</div>
-          </div>
-          <div className="max-w-2xl pb-1">
-            <div className="mb-3 flex items-center gap-2 text-[#d6aa59]">{Icon && <Icon size={18} />}<span className="text-[11px] font-bold uppercase tracking-[0.18em]">{profile.eyebrow}</span></div>
-            <h1 className="font-helvetica text-4xl font-semibold leading-tight sm:text-5xl">Request {serviceTitle}</h1>
-            <p className="mt-4 max-w-xl text-sm leading-7 text-white/78 sm:text-base">{profile.description}</p>
+    <main className={`font-[var(--font-montserrat)] ${display.variable}`}>
+      {/* ── Mobile: stacked layout ───────────────────────────── */}
+      <div className="lg:hidden">
+        {/* Compact image header strip */}
+        <div className="relative h-[calc(10rem+64px)] overflow-hidden">
+          <Image src={heroImage} alt={serviceTitle} fill sizes="100vw" className="object-cover" priority />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#031827]/85 to-[#031827]/20" />
+          <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-4">
+            <div>
+              <Link
+                href="/booking"
+                className="mb-1.5 inline-flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-widest text-white/45"
+              >
+                <ArrowLeft size={9} /> All Services
+              </Link>
+              <h1 className="font-[family-name:var(--font-display)] text-xl font-medium text-white leading-tight">
+                {serviceTitle}
+              </h1>
+            </div>
+            {Icon && (
+              <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-white/12 border border-white/15">
+                <Icon size={15} className="text-[#a9c9de]" />
+              </div>
+            )}
           </div>
         </div>
-      </section>
 
-      <div className="mx-auto w-full max-w-7xl px-5 pt-7 sm:px-8 sm:pt-10 lg:px-12">
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,0.7fr)_minmax(0,1.7fr)] lg:items-start">
-          <aside className="space-y-5 lg:sticky lg:top-28">
-            <div className="border border-[#d7e0e3] bg-white p-5 shadow-[0_12px_35px_rgba(15,23,42,0.04)] sm:p-6">
-              <div className="mb-5 flex items-center justify-between"><p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#073f67]">Before you start</p><Clock3 size={17} className="text-[#b67d0d]" /></div>
-              <ul className="space-y-4">{profile.preparation.map((item) => <li key={item} className="flex gap-3 text-sm leading-6 text-[#52606d]"><span className="mt-1 flex h-5 w-5 flex-none items-center justify-center rounded-full bg-[#edf3f6] text-[#073f67]"><Check size={12} /></span>{item}</li>)}</ul>
-            </div>
-            <div className="border-l-2 border-[#b67d0d] bg-[#073f67] p-5 text-white sm:p-6"><p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#d6aa59]">Response target</p><p className="mt-2 text-sm leading-6 text-white/75">{profile.responseTime}</p></div>
-          </aside>
-
+        {/* Form */}
+        <div className="bg-[#FAF8F3]">
           <BookingForm serviceTitle={serviceTitle} serviceSlug={serviceSlug} profile={profile} />
+        </div>
+      </div>
+
+      {/* ── Desktop: two-column full-height layout ───────────── */}
+      <div
+        className="hidden lg:flex"
+        style={{ height: "100vh", overflow: "hidden" }}
+      >
+        {/* LEFT — sticky info sidebar */}
+        <aside className="relative flex w-[340px] xl:w-[380px] flex-shrink-0 flex-col overflow-hidden">
+          {/* Background video */}
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster={heroImage}
+            className="absolute inset-0 h-full w-full object-cover object-center"
+          >
+            <source src="/images/backgroundvideo2.mp4" type="video/mp4" />
+            <source src="/images/background22.mp4" type="video/mp4" />
+            <source src="/images/baxkgroundvideo.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#031827]/80 via-[#073f67]/80 to-[#031827]/90" />
+
+          <div className="relative z-10 flex h-full flex-col px-8 pb-8 pt-[calc(2rem+64px)] xl:px-10">
+            {/* Back nav */}
+            <Link
+              href="/booking"
+              className="mb-auto inline-flex items-center gap-2 text-[9px] font-bold uppercase tracking-widest text-white/30 transition-colors hover:text-white/70"
+            >
+              <ArrowLeft size={11} /> All Services
+            </Link>
+
+            {/* Service identity — centered in panel */}
+            <div className="py-6">
+              <div className="mb-4 flex items-center gap-2">
+                {Icon && (
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 border border-white/10">
+                    <Icon size={14} className="text-[#a9c9de]" />
+                  </div>
+                )}
+                <span className="text-[9px] font-bold uppercase tracking-[0.22em] text-[#a9c9de]">
+                  {profile.eyebrow}
+                </span>
+              </div>
+
+              <h1 className="font-[family-name:var(--font-display)] text-2xl xl:text-3xl font-medium text-white leading-tight mb-3">
+                {serviceTitle}
+              </h1>
+              <p className="text-xs leading-6 text-white/50 mb-6">
+                {profile.description}
+              </p>
+
+              <div className="space-y-2.5">
+                {[
+                  { I: ShieldCheck, t: "Secure & confidential" },
+                  { I: Clock, t: profile.responseTime },
+                  { I: Zap, t: "Takes about 2 minutes" },
+                ].map(({ I, t }) => (
+                  <div key={t} className="flex items-center gap-2.5">
+                    <I size={12} className="text-[#a9c9de] flex-shrink-0" />
+                    <span className="text-[11px] text-white/40 leading-snug">{t}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* What happens next */}
+            <div className="border-t border-white/8 pt-5">
+              <p className="mb-3 text-[8px] font-bold uppercase tracking-[0.22em] text-white/20">
+                What happens next
+              </p>
+              <ol className="space-y-2">
+                {profile.preparation.map((item, i) => (
+                  <li key={item} className="flex items-start gap-2.5">
+                    <span className="mt-0.5 flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full bg-white/8 text-[8px] font-bold text-white/30">
+                      {i + 1}
+                    </span>
+                    <p className="text-[10px] leading-relaxed text-white/28">{item}</p>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+        </aside>
+
+        {/* RIGHT — scrollable form panel */}
+        <div className="flex flex-1 flex-col overflow-hidden bg-[#FAF8F3] pt-[64px]">
+          <div className="flex-1 overflow-y-auto scrollbar-hide">
+            <BookingForm serviceTitle={serviceTitle} serviceSlug={serviceSlug} profile={profile} />
+          </div>
         </div>
       </div>
     </main>

@@ -1,8 +1,8 @@
 export const seoPages = {
   home: {
-    title: 'SABA Aviation | Ground Handling & Flight Support in Ethiopia',
+    title: 'SABA Aviation | Seamless Airport Operations in Ethiopia',
     description:
-      'Professional aviation ground handling, flight support, VIP aviation services, and cargo coordination in Addis Ababa and across Ethiopia.',
+      'Your trusted gateway to seamless airport operations, with integrated aviation support across Ethiopia, East Africa, and strategic international gateways.',
     keywords: [
       'ground handling in Ethiopia',
       'flight support Ethiopia',
@@ -18,9 +18,9 @@ export const seoPages = {
     keywords: ['about SABA Aviation', 'aviation support provider Ethiopia', 'flight support company Ethiopia'],
   },
   services: {
-    title: 'Aviation Services in Ethiopia | Ground Handling, Flight Support & VIP Care',
+    title: 'Integrated Aviation Services in Ethiopia | SABA Aviation',
     description:
-      'Explore SABA Aviation services including ground handling, flight support, cargo logistics, VIP aviation, crew support, and fuel coordination.',
+      'Explore SABA Aviation airport facilitation, regulatory coordination, ground operations, VIP, crew, cargo, and fuel solutions.',
     keywords: [
       'ground handling Ethiopia',
       'flight support Ethiopia',

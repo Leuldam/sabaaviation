@@ -3,36 +3,36 @@
 export const companyInfo = {
   name: "SABA Aviation Service & Flight Support PLC",
   shortName: "SABA Aviation",
-  tagline: "Precision on the Ground. Confidence in the Air.",
+  tagline: "Your Trusted Gateway to Seamless Airport Operations",
   description:
-    "Premium aviation ground handling and flight support services connecting operators to Ethiopia and beyond.",
-  founded: "2015",
+    "Reliable, technology-enabled airport support, facilitation, and aviation services connecting operators to Ethiopia, East Africa, and strategic international gateways.",
+  founded: "2026",
   headquarters: "Addis Ababa, Ethiopia",
 };
 
 export const story = {
   title: "Our Story",
   content:
-    "SABA Aviation Service & Flight Support PLC was established with a clear objective: to provide reliable, responsive and professionally coordinated aviation support services for operators flying to and through Ethiopia. Since our founding, we have grown into a trusted partner for airlines, charter operators, and private aviation clients seeking seamless ground handling and flight support across Ethiopian airports.",
+    "SABA Aviation Service & Flight Support PLC is an emerging leader in airport support, facilitation, and aviation services. Headquartered in Ethiopia, we deliver innovative, technology-enabled solutions across East Africa and strategic international gateway airports for global carriers, charter operators, and industry stakeholders.",
 };
 
 export const mission = {
   title: "Our Mission",
   content:
-    "To deliver high-quality aviation support services that ensure safe, efficient and seamless operations for our clients.",
+    "To connect airlines, airports, regulators, and service providers through safe, compliant, and seamlessly coordinated aviation support that lets operators focus on their core flight operations.",
 };
 
 export const vision = {
   title: "Our Vision",
   content:
-    "To be a leading aviation services provider in Ethiopia and beyond, recognized for excellence, reliability and integrity.",
+    "To shape the future of seamless air transport connectivity while creating sustainable economic value and developing aviation talent across the region.",
 };
 
 export const values = [
-  { label: "Safety", description: "Uncompromising commitment to safety in every operation." },
-  { label: "Precision", description: "Meticulous attention to detail in all services." },
-  { label: "Responsiveness", description: "Swift and adaptive service delivery." },
-  { label: "Integrity", description: "Transparent and ethical business practices." },
+  { label: "Safety", description: "Uncompromising safety, compliance, and operational discipline." },
+  { label: "Quality", description: "Consistent service standards across every stakeholder touchpoint." },
+  { label: "Competence", description: "Veteran-led expertise and highly qualified aviation professionals." },
+  { label: "Coordination", description: "Reliable communication that keeps complex operations moving." },
 ];
 
 export const airports = [
@@ -115,3 +115,54 @@ export const contactInfo = {
   operationsHours: "24/7 Operations Support",
   coordinates: { lat: 8.9779, lng: 38.7993 },
 };
+
+// Add these two exports to your existing @/data/company file,
+// alongside `story`, `mission`, `vision`, and `values`.
+// Swap in real photos, bios, and links when ready — everything
+// below is placeholder content matching the shape the page expects.
+
+export const stats = [
+  { label: "Years in Operation", value: 12, suffix: "+" },
+  { label: "Flights Coordinated", value: 3200, suffix: "+" },
+  { label: "Partner Airlines", value: 24, suffix: "+" },
+  { label: "Client Satisfaction", value: 98, suffix: "%" },
+];
+
+export const team = [
+  {
+    name: "Selam Tesfaye",
+    role: "Founder & Chief Executive Officer",
+    experience: "18+ yrs",
+    bio: "Led ground operations and airline partnerships across East Africa before founding SABA to modernize regional aviation support.",
+    image: "/images/team/selam-tesfaye.png",
+    linkedin: "#",
+    email: "selam@sabaaviation.com",
+  },
+  {
+    name: "Dawit Bekele",
+    role: "Chief Operating Officer",
+    experience: "15+ yrs",
+    bio: "Former flight operations manager who has overseen turnaround logistics for thousands of flights across four countries.",
+    image: "/images/team/dawit-bekele.png",
+    linkedin: "#",
+    email: "dawit@sabaaviation.com",
+  },
+  {
+    name: "Meron Alemu",
+    role: "Board Member & Strategic Advisor",
+    experience: "20+ yrs",
+    bio: "Aviation finance veteran and long-time stakeholder guiding SABA's expansion strategy and regulatory partnerships.",
+    image: "/images/team/meron-alemu.png",
+    linkedin: "#",
+    email: "",
+  },
+  {
+    name: "Yohannes Girma",
+    role: "Head of Flight Safety & Compliance",
+    experience: "13+ yrs",
+    bio: "Certified safety auditor ensuring every operation meets IATA and regional aviation authority standards.",
+    image: "/images/team/yohannes-girma.png",
+    linkedin: "#",
+    email: "yohannes@sabaaviation.com",
+  },
+];

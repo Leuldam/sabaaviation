@@ -3,24 +3,109 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import {
-  ArrowRight,
-  Compass,
-  Eye,
-  Gauge,
-  Plane,
-  ShieldCheck,
-  Target,
-  TimerReset,
-} from "lucide-react";
+import { useEffect, useRef } from "react";
+import { Fraunces } from "next/font/google";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Briefcase, Eye, Linkedin, Mail, Target } from "lucide-react";
 import HeroSection from "@/components/ui/HeroSection";
-import SectionHeading from "@/components/ui/SectionHeading";
-import CTABanner from "@/components/ui/CTABanner";
-import { story, mission, vision, values } from "@/data/company";
+import { story, mission, vision, values, team, stats } from "@/data/company";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
+// Display serif — carries the "premium/elegant" register on every headline.
+// Body copy stays on the site's existing sans throughout.
+const display = Fraunces({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-display",
+});
+
+const BLUE = "#073f67";
 
 export default function AboutPage() {
-  const valueIcons = [ShieldCheck, Gauge, TimerReset, Compass];
+  const pageRef = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
+  const numberRefs = useRef<(HTMLSpanElement | null)[]>([]);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Signature move, repeated everywhere: a hairline rule drawing left→right.
+      gsap.utils.toArray<HTMLElement>(".rule-draw").forEach((el) => {
+        gsap.fromTo(
+          el,
+          { scaleX: 0 },
+          {
+            scaleX: 1,
+            duration: 0.9,
+            ease: "power2.out",
+            transformOrigin: "left center",
+            scrollTrigger: { trigger: el, start: "top 88%" },
+          }
+        );
+      });
+
+      // Quiet fade + rise for text blocks and rows.
+      gsap.utils.toArray<HTMLElement>(".reveal").forEach((el) => {
+        gsap.fromTo(
+          el,
+          { opacity: 0, y: 22 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+            ease: "power2.out",
+            scrollTrigger: { trigger: el, start: "top 85%" },
+          }
+        );
+      });
+
+      // A single curtain-style reveal for framed photography.
+      gsap.utils.toArray<HTMLElement>(".frame-reveal").forEach((el) => {
+        gsap.fromTo(
+          el,
+          { clipPath: "inset(0 0 0 100%)" },
+          {
+            clipPath: "inset(0 0 0 0%)",
+            duration: 1.2,
+            ease: "power3.inOut",
+            scrollTrigger: { trigger: el, start: "top 80%" },
+          }
+        );
+      });
+
+      // The four proof-point numbers count up once, together.
+      numberRefs.current.forEach((el, i) => {
+        if (!el) return;
+        const target = stats[i]?.value ?? 0;
+        gsap.to(el, {
+          textContent: target,
+          duration: 1.6,
+          ease: "power1.out",
+          snap: { textContent: 1 },
+          scrollTrigger: { trigger: statsRef.current, start: "top 85%" },
+        });
+      });
+    }, pageRef);
+
+    // Trigger positions are calculated as soon as this effect runs — but the
+    // Fraunces display font swapping in, and images finishing their load,
+    // both reflow the page afterward and can leave every ScrollTrigger start
+    // point pointing at the wrong place. Recalculate once things settle.
+    const refresh = () => ScrollTrigger.refresh();
+    document.fonts?.ready?.then(refresh);
+    window.addEventListener("load", refresh);
+    const safetyNet = setTimeout(refresh, 500);
+
+    return () => {
+      ctx.revert();
+      window.removeEventListener("load", refresh);
+      clearTimeout(safetyNet);
+    };
+  }, []);
 
   return (
     <>
@@ -35,173 +120,202 @@ export default function AboutPage() {
         ]}
       />
 
-      <div className="bg-[#f4f5f3] text-midnight">
-        {/* ── STORY FEATURE ─────────────────────────────────── */}
-        <section className="section-padding pb-8">
+      <div ref={pageRef} className={`bg-[#FAF8F3] text-[#1c2733] ${display.variable}`}>
+        {/* ── STORY ────────────────────────────────────────── */}
+        <section className="section-padding pb-10">
           <div className="container-max">
-            <div className="grid grid-cols-1 xl:grid-cols-[1.15fr_0.85fr] gap-10 xl:gap-16 items-center">
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7 }}
-                className="space-y-8"
-              >
-                <div className="inline-flex items-center gap-2 rounded-full border border-[#073f67]/15 bg-white/80 px-4 py-2 shadow-[0_10px_30px_rgba(7,63,103,0.06)] backdrop-blur-sm">
-                  <span className="h-2 w-2 rounded-full bg-[#073f67]" />
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#073f67]">About SABA</span>
-                </div>
+            <div className="grid grid-cols-1 xl:grid-cols-[1.1fr_0.9fr] gap-14 xl:gap-20 items-center">
+              <div className="reveal max-w-lg">
+                <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-[#073f67]">
+                  Our Story
+                </p>
+                <span className="rule-draw mt-3 block h-px w-16 bg-[#073f67]/40" />
 
-                <div className="space-y-5">
-                  <SectionHeading label="Our Story" title={story.title} light />
-                  <h2 className="max-w-xl text-[2.6rem] font-black leading-[0.9] tracking-[-0.07em] text-[#0b1620] sm:text-[3.2rem] lg:text-[4.4rem]">
-                    Built for confident aviation operations.
-                  </h2>
-                </div>
+                <h1
+                  className="mt-7 font-[family-name:var(--font-display)] text-[2.6rem] font-medium leading-[1.05] text-[#0b1620] sm:text-[3.2rem]"
+                >
+                  Built for confident aviation operations.
+                </h1>
 
-                <p className="max-w-xl text-[1.03rem] leading-8 text-slate-700 md:text-lg">
+                <p className="mt-6 text-[1.05rem] leading-8 text-[#3d4a55]">
                   {story.content}
                 </p>
+              </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-                  {[
-                    { value: "Regional", label: "Presence" },
-                    { value: "Fast", label: "Execution" },
-                    { value: "Trusted", label: "Support" },
-                  ].map((stat) => (
-                    <div key={stat.label} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-[0_18px_35px_rgba(15,23,42,0.04)]">
-                      <div className="text-2xl font-black tracking-[-0.06em] text-[#073f67]">{stat.value}</div>
-                      <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-slate-500">{stat.label}</div>
-                    </div>
-                  ))}
+              <div className="relative">
+                <div className="pointer-events-none absolute -left-4 -top-4 h-full w-full rounded-[0.25rem] border border-[#073f67]/25" />
+                <div className="frame-reveal relative h-[440px] overflow-hidden rounded-[0.25rem]">
+                  <Image
+                    src="/images/about_story.png"
+                    alt="SABA Aviation team"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
-              </motion.div>
+              </div>
+            </div>
 
-              <motion.div
-                initial={{ opacity: 0, x: 24 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7 }}
-                className="relative"
-              >
-                <div className="absolute -left-10 top-4 h-28 w-28 rounded-full bg-[#073f67]/10 blur-3xl" />
-                <div className="absolute -right-5 bottom-8 h-28 w-28 rounded-full bg-[#d1b16a]/15 blur-3xl" />
-
-                <div className="relative overflow-hidden rounded-[2rem] border border-white bg-white p-3 shadow-[0_35px_80px_rgba(15,23,42,0.12)]">
-                  <div className="relative h-[430px] overflow-hidden rounded-[1.5rem]">
-                    <Image
-                      src="/images/about_story.png"
-                      alt="SABA Aviation team"
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#061a2c] via-[#061a2c]/10 to-transparent" />
-
-                    <div className="absolute left-5 top-5 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.18em] text-white backdrop-blur-md">
-                      Precision-led
-                    </div>
-
-                    <div className="absolute left-5 right-5 bottom-5 rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-md shadow-[0_18px_40px_rgba(0,0,0,0.18)]">
-                      <div className="flex items-center justify-between gap-4">
-                        <div>
-                          <p className="text-[10px] uppercase tracking-[0.18em] text-white/70">Operational focus</p>
-                          <p className="mt-2 text-lg font-bold text-white">Ground handling & flight support</p>
-                        </div>
-                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#d1b16a]/15 text-[#f7d392]">
-                          <Plane className="h-5 w-5" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+            {/* proof points — a quiet masthead strip, no boxes */}
+            <div
+              ref={statsRef}
+              className="reveal mt-16 grid grid-cols-2 divide-x divide-[#073f67]/15 border-y border-[#073f67]/15 sm:grid-cols-4"
+            >
+              {stats.map((s, i) => (
+                <div key={s.label} className="px-4 py-6 text-center first:pl-0 sm:first:pl-4">
+                  <p className="font-[family-name:var(--font-display)] text-[2rem] font-medium text-[#073f67] sm:text-[2.3rem]">
+                    <span ref={(el) => (numberRefs.current[i] = el)}>0</span>
+                    {s.suffix}
+                  </p>
+                  <p className="mt-1 text-[11px] uppercase tracking-[0.14em] text-[#6b7684]">
+                    {s.label}
+                  </p>
                 </div>
-              </motion.div>
+              ))}
             </div>
           </div>
         </section>
 
         {/* ── MISSION & VISION ─────────────────────────────── */}
-        <section className="section-padding pt-6">
+        <section className="section-padding pt-16">
           <div className="container-max">
-            <div className="mb-10 text-center">
-              <p className="section-label text-[#073f67]">Mission & Vision</p>
-              <h3 className="text-[2.2rem] font-black leading-[1.02] tracking-[-0.06em] text-[#0b1620] sm:text-[2.8rem]">
-                The standards that guide every operation.
+            <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:divide-x md:divide-[#073f67]/15">
+              <div className="reveal md:pr-12">
+                <div className="flex items-center gap-2">
+                  <Target size={14} className="text-[#073f67]" />
+                  <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-[#073f67]">
+                    Our Mission
+                  </p>
+                </div>
+                <span className="rule-draw mt-3 block h-px w-16 bg-[#073f67]/40" />
+                <h3 className="mt-6 font-[family-name:var(--font-display)] text-[1.9rem] font-medium leading-tight text-[#0b1620]">
+                  {mission.title}
+                </h3>
+                <p className="mt-4 max-w-md text-[1rem] leading-8 text-[#3d4a55]">
+                  {mission.content}
+                </p>
+              </div>
+
+              <div className="reveal md:pl-12">
+                <div className="flex items-center gap-2">
+                  <Eye size={14} className="text-[#073f67]" />
+                  <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-[#073f67]">
+                    Our Vision
+                  </p>
+                </div>
+                <span className="rule-draw mt-3 block h-px w-16 bg-[#073f67]/40" />
+                <h3 className="mt-6 font-[family-name:var(--font-display)] text-[1.9rem] font-medium leading-tight text-[#0b1620]">
+                  {vision.title}
+                </h3>
+                <p className="mt-4 max-w-md text-[1rem] leading-8 text-[#3d4a55]">
+                  {vision.content}
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── VALUES ───────────────────────────────────────── */}
+        <section className="section-padding pt-20">
+          <div className="container-max">
+            <div className="reveal max-w-lg">
+              <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-[#073f67]">
+                Our Values
+              </p>
+              <span className="rule-draw mt-3 block h-px w-16 bg-[#073f67]/40" />
+              <h3 className="mt-6 font-[family-name:var(--font-display)] text-[2rem] font-medium leading-tight text-[#0b1620]">
+                The values behind every safe, precise turn.
               </h3>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <motion.div
-                initial={{ opacity: 0, y: 22 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className="group rounded-[2rem] border border-slate-200 bg-white p-8 shadow-[0_20px_50px_rgba(15,23,42,0.05)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_25px_60px_rgba(7,63,103,0.08)]"
-              >
-                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#073f67]/8 ring-1 ring-[#073f67]/10">
-                  <Target size={24} className="text-[#073f67]" />
+            <div className="mt-12 divide-y divide-[#073f67]/12 border-t border-[#073f67]/12">
+              {values.map((v, i) => (
+                <div
+                  key={v.label}
+                  className="reveal grid grid-cols-[3.5rem_1fr] items-baseline gap-6 py-7 sm:grid-cols-[5rem_1fr]"
+                >
+                  <span className="font-[family-name:var(--font-display)] text-[2.2rem] font-medium text-[#073f67]/25 sm:text-[2.6rem]">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div className="grid grid-cols-1 gap-1 sm:grid-cols-[14rem_1fr] sm:gap-6">
+                    <h4 className="font-[family-name:var(--font-display)] text-[1.2rem] font-medium text-[#0b1620]">
+                      {v.label}
+                    </h4>
+                    <p className="text-[0.98rem] leading-7 text-[#3d4a55]">{v.description}</p>
+                  </div>
                 </div>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#073f67]">Our Mission</p>
-                <h4 className="mt-4 text-[1.75rem] font-black leading-tight tracking-[-0.05em] text-[#0b1620]">{mission.title}</h4>
-                <p className="mt-4 text-[1.02rem] leading-8 text-slate-700">{mission.content}</p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 22 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="group rounded-[2rem] border border-slate-200 bg-white p-8 shadow-[0_20px_50px_rgba(15,23,42,0.05)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_25px_60px_rgba(7,63,103,0.08)]"
-              >
-                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#d1b16a]/12 ring-1 ring-[#d1b16a]/20">
-                  <Eye size={24} className="text-[#073f67]" />
-                </div>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#073f67]">Our Vision</p>
-                <h4 className="mt-4 text-[1.75rem] font-black leading-tight tracking-[-0.05em] text-[#0b1620]">{vision.title}</h4>
-                <p className="mt-4 text-[1.02rem] leading-8 text-slate-700">{vision.content}</p>
-              </motion.div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* ── OUR VALUES ───────────────────────────────────── */}
-        <section className="section-padding pt-8">
+        {/* ── LEADERSHIP ───────────────────────────────────── */}
+        <section className="section-padding pt-20 pb-24">
           <div className="container-max">
-            <SectionHeading
-              label="Our Values"
-              title="The values behind every safe, precise turn."
-              centered
-              light
-            />
+            <div className="reveal max-w-lg">
+              <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-[#073f67]">
+                Our Team
+              </p>
+              <span className="rule-draw mt-3 block h-px w-16 bg-[#073f67]/40" />
+              <h3 className="mt-6 font-[family-name:var(--font-display)] text-[2rem] font-medium leading-tight text-[#0b1620]">
+                Leadership shaped by decades in the skies.
+              </h3>
+            </div>
 
-            <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-              {values.map((v, i) => {
-                const Icon = valueIcons[i] ?? ShieldCheck;
+            <div className="mt-14 divide-y divide-[#073f67]/12 border-t border-[#073f67]/12">
+              {team.map((member, i) => (
+                <div
+                  key={member.name}
+                  className="reveal grid grid-cols-1 gap-8 py-12 sm:grid-cols-[15rem_1fr] sm:gap-12"
+                  style={{ direction: i % 2 === 1 ? "rtl" : "ltr" }}
+                >
+                  <div className="relative" style={{ direction: "ltr" }}>
+                    <div className="pointer-events-none absolute -left-3 -top-3 h-full w-full rounded-[0.2rem] border border-[#073f67]/20" />
+                    <div className="frame-reveal relative aspect-[4/5] w-full max-w-[15rem] overflow-hidden rounded-[0.2rem]">
+                      <Image src={member.image} alt={member.name} fill className="object-cover" />
+                    </div>
+                  </div>
 
-                return (
-                  <motion.div
-                    key={v.label}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: i * 0.08 }}
-                    className="group rounded-[1.35rem] border border-slate-200 bg-white p-4 shadow-[0_16px_30px_rgba(15,23,42,0.04)] transition-all duration-300 hover:-translate-y-1 hover:border-[#073f67]/20 hover:shadow-[0_20px_45px_rgba(7,63,103,0.08)] sm:p-5"
-                  >
-                    <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-[#073f67]/8 ring-1 ring-[#073f67]/10">
-                      <Icon size={18} className="text-[#073f67]" />
+                  <div style={{ direction: "ltr" }}>
+                    <h4 className="font-[family-name:var(--font-display)] text-[1.5rem] font-medium text-[#0b1620]">
+                      {member.name}
+                    </h4>
+                    <p className="mt-1 text-[11px] font-medium uppercase tracking-[0.18em] text-[#073f67]">
+                      {member.role}
+                    </p>
+                    <p className="mt-4 max-w-xl text-[0.98rem] leading-7 text-[#3d4a55]">
+                      {member.bio}
+                    </p>
+
+                    <div className="mt-5 flex items-center gap-5">
+                      <span className="inline-flex items-center gap-1.5 text-[0.85rem] text-[#6b7684]">
+                        <Briefcase size={13} className="text-[#073f67]" />
+                        {member.experience} experience
+                      </span>
+                      {member.linkedin && (
+                        <Link
+                          href={member.linkedin}
+                          aria-label={`${member.name} on LinkedIn`}
+                          className="flex h-7 w-7 items-center justify-center rounded-full border border-[#073f67]/25 text-[#073f67] transition-colors hover:bg-[#073f67] hover:text-white"
+                        >
+                          <Linkedin size={13} />
+                        </Link>
+                      )}
+                      {member.email && (
+                        <a
+                          href={`mailto:${member.email}`}
+                          aria-label={`Email ${member.name}`}
+                          className="flex h-7 w-7 items-center justify-center rounded-full border border-[#073f67]/25 text-[#073f67] transition-colors hover:bg-[#073f67] hover:text-white"
+                        >
+                          <Mail size={13} />
+                        </a>
+                      )}
                     </div>
-                    <div className="flex items-center justify-between gap-2">
-                      <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-slate-500">0{i + 1}</p>
-                    </div>
-                    <h4 className="mt-2 text-[1.08rem] font-black leading-tight tracking-[-0.04em] text-[#0b1620]">{v.label}</h4>
-                    <p className="mt-2 text-sm leading-6 text-slate-600">{v.description}</p>
-                  </motion.div>
-                );
-              })}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
-
-        
       </div>
     </>
   );

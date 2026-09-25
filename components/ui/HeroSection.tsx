@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -7,26 +7,28 @@ import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 
 interface HeroSectionProps {
-  title: string;
+  title: React.ReactNode;
   subtitle: string;
   backgroundImage?: string;
   backgroundVideo?: string;
   breadcrumbs?: { label: string; href: string }[];
   children?: React.ReactNode;
+  topBar?: React.ReactNode;
   fullHeight?: boolean;
 }
 
 export default function HeroSection({
   title,
   subtitle,
-  backgroundImage = "/images/hero_home.png",
+  backgroundImage,
   backgroundVideo,
   breadcrumbs,
   children,
+  topBar,
   fullHeight = false,
 }: HeroSectionProps) {
-  const isVideo = Boolean(backgroundVideo || backgroundImage?.endsWith(".mp4"));
-  const videoSrc = backgroundVideo || (backgroundImage?.endsWith(".mp4") ? backgroundImage : undefined);
+  const isVideo = Boolean(backgroundVideo);
+  const videoSrc = backgroundVideo;
 
   const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -80,10 +82,7 @@ export default function HeroSection({
   }, [isVideo, videoSrc, smoothProgress]);
 
   return (
-    <section
-      ref={sectionRef}
-      className={`relative ${fullHeight ? "h-[100svh] min-h-[100svh]" : "min-h-[50vh]"} flex items-end overflow-hidden`}
-    >
+    <section ref={sectionRef} className={`relative ${fullHeight ? "h-[100svh] min-h-[100svh]" : "min-h-[50vh]"} flex items-stretch overflow-hidden`}>
       {isVideo && videoSrc ? (
         <motion.div
           className="absolute inset-0 w-full h-full"
@@ -100,100 +99,113 @@ export default function HeroSection({
             <source src={videoSrc} type="video/mp4" />
           </video>
         </motion.div>
-      ) : (
+      ) : backgroundImage ? (
         <Image
           src={backgroundImage}
-          alt={title}
+          alt={typeof title === "string" ? title : "Hero background"}
           fill
           className="object-cover object-center"
           priority
           quality={90}
         />
-      )}
+      ) : null}
 
       <div className="hero-overlay" />
 
       {fullHeight && (
         <>
           <motion.div
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
-            initial={{ opacity: 0, y: 10 }}
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-20"
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2, duration: 0.6 }}
+            transition={{ delay: 1.2, duration: 0.7 }}
             style={{ opacity: scrollIndicatorOpacity }}
           >
-            <span className="text-white/40 text-[10px] tracking-[0.25em hidden md:block uppercase font-light">Scroll</span>
-            <motion.div
-              className="w-px h-10 bg-gradient-to-b from-white/40 to-transparent"
-              animate={{ scaleY: [1, 0.4, 1] }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            />
-          </motion.div>
 
-          <motion.div
-            className="absolute bottom-5 left-5 z-20"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.4, duration: 0.5 }}
-            style={{ opacity: scrollIndicatorOpacity }}
-          >
-            <div className="flex h-7 w-7 items-center justify-center rounded-full border border-white/20 bg-white/5 text-[10px] font-medium text-white/80 shadow-[0_0_12px_rgba(255,255,255,0.08)] backdrop-blur-[2px]">
-              N
-            </div>
-          </motion.div>
-        </>
+
+            <motion.div
+              className="absolute bottom-5 left-5 z-20"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.4, duration: 0.5 }}
+              style={{ opacity: scrollIndicatorOpacity }}
+            >
+
+            </motion.div>
+          </motion.div></>
       )}
 
       <motion.div
-        className={`relative z-10 container-max w-full ${fullHeight ? "flex h-full flex-col justify-end" : ""} pb-8 pl-6 pr-3 pt-20 sm:pb-16 sm:pt-24`}
+        className={`relative z-10 container-max w-full h-full flex flex-col ${fullHeight ? "justify-end lg:justify-between" : "justify-end"} pb-10 sm:pb-12 lg:pb-10 px-8 sm:px-12 lg:px-16 xl:px-20 pt-32 lg:pt-28`}
         style={fullHeight ? { y: contentY, opacity: contentOpacity } : undefined}
       >
-        {breadcrumbs && breadcrumbs.length > 0 && (
-          <motion.nav
-            initial={{ opacity: 0, y: 10 }}
+        {/* ── Top bar (optional) ── */}
+        {topBar && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="flex items-center gap-2 text-xs sm:text-sm text-white/60 mb-6"
+            transition={{ duration: 0.6, delay: 0.05 }}
+            className="w-full mb-6 lg:mb-8"
           >
-            {breadcrumbs.map((crumb, i) => (
-              <span key={crumb.href} className="flex items-center gap-2">
-                {i > 0 && <ChevronRight size={14} className="text-white/40" />}
-                {i < breadcrumbs.length - 1 ? (
-                  <Link href={crumb.href} className="hover:text-warm-gold transition-colors">
-                    {crumb.label}
-                  </Link>
-                ) : (
-                  <span className="text-white/80">{crumb.label}</span>
-                )}
-              </span>
-            ))}
-          </motion.nav>
+            {topBar}
+          </motion.div>
         )}
 
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-[2.7rem] leading-[0.9] sm:text-4xl md:text-6xl lg:text-10xl font-helvetica font-bold uppercase tracking-wide text-white max-w-base md:max-w-5xl lg:max-w-2xl pb-4 sm:pb-6 lg:pb-19"
-        >
-          {title}
-        </motion.h1>
+        {/* ── Title + subtitle group ── */}
+        <div className="flex flex-col items-start text-left w-full">
+          {breadcrumbs && breadcrumbs.length > 0 && (
+            <motion.nav
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              className="flex items-center gap-2 text-xs sm:text-sm text-white/60 mb-6"
+            >
+              {breadcrumbs.map((crumb, i) => (
+                <span key={crumb.href} className="flex items-center gap-2">
+                  {i > 0 && <ChevronRight size={14} className="text-white/40" />}
+                  {i < breadcrumbs.length - 1 ? (
+                    <Link href={crumb.href} className="hover:text-warm-gold transition-colors">
+                      {crumb.label}
+                    </Link>
+                  ) : (
+                    <span className="text-white/80">{crumb.label}</span>
+                  )}
+                </span>
+              ))}
+            </motion.nav>
+          )}
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-5 sm:mt-6 text-xs sm:text-lg md:text-lg lg:text-[13px]  pb-7 lg:pb-2  font-montserrat font-light tracking-wider uppercase text-white/50 max-w-0xl text-balance"
-        >
-          {subtitle}
-        </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="max-w-3xl lg:max-w-5xl mb-5 sm:mb-6 lg:mb-7 text-left"
+          >
+            {typeof title === "string" ? (
+              <h1 className="text-4xl leading-[0.92] sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-helvetica font-bold uppercase tracking-wide text-white">
+                {title}
+              </h1>
+            ) : (
+              title
+            )}
+          </motion.div>
 
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="text-xs sm:text-sm lg:text-sm font-montserrat font-normal tracking-wide text-white/70 max-w-md lg:max-w-lg leading-relaxed text-left mb-8 sm:mb-10 lg:mb-10"
+          >
+            {subtitle}
+          </motion.p>
+        </div>
+
+        {/* ── Bottom group: CTA + trust badges ── */}
         {children && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-8"
           >
             {children}
           </motion.div>

@@ -75,7 +75,7 @@ export default function Header() {
         {/* Desktop nav links */}
         <ul className="hidden lg:flex items-center gap-6 ml-auto">
           {navigation.map((item) => (
-            <li key={item.href}>
+            <li key={item.href} className={item.href === "/services" ? "relative group" : ""}>
               <Link
                 href={item.href}
                 className={`px-3 py-2 text-[15px] md:text-[11px] lg:text-[13px] font-helvetica font-thin uppercase tracking-widest transition-all duration-200 ${
@@ -84,6 +84,50 @@ export default function Header() {
               >
                 {item.name}
               </Link>
+
+              {/* Services hover dropdown */}
+              {item.href === "/services" && (
+                <>
+                  {/* Invisible bridge to prevent gap flicker */}
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full w-[480px] h-4" />
+
+                  <div className="absolute left-1/2 -translate-x-1/2 top-[calc(100%+0.75rem)] w-[480px] opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-2 group-hover:translate-y-0 transition-all duration-300 ease-out z-50 pointer-events-none group-hover:pointer-events-auto">
+                    <div className="bg-white rounded-2xl shadow-[0_25px_70px_rgba(0,0,0,0.2)] border border-gray-100/80 overflow-hidden">
+                      {/* Header */}
+                      <div className="px-6 pt-5 pb-3 flex items-center justify-between">
+                        <p className="text-[10px] font-montserrat font-bold uppercase tracking-[0.25em] text-gray-400">Core Services</p>
+                        <Link
+                          href="/services"
+                          className="text-[10px] font-montserrat font-bold uppercase tracking-[0.15em] text-[#073f67] hover:text-[#d1b16a] transition-colors"
+                        >
+                          All Services →
+                        </Link>
+                      </div>
+
+                      {/* 2-column grid */}
+                      <div className="grid grid-cols-2 gap-2 px-4 pb-4">
+                        {[
+                          { title: "Flight and Permit Coordination", slug: "flight-support" },
+                          { title: "Ramp & Crew Support", slug: "ground-handling" },
+                          { title: "VIP/CIP Meet-and-Greet", slug: "passenger-services" },
+                          { title: "On-Ground Operations", slug: "vip-business-aviation" },
+                        ].map((service) => (
+                          <Link
+                            key={service.slug}
+                            href={`/services/${service.slug}`}
+                            className="group/card flex items-center gap-3 rounded-xl border border-transparent px-4 py-3 transition-all duration-200 hover:border-gray-100 hover:bg-gray-50/80"
+                          >
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#d1b16a]/80 flex-shrink-0 group-hover/card:scale-125 group-hover/card:bg-[#d1b16a] transition-all duration-200" />
+                            <p className="text-[13px] font-helvetica font-medium text-gray-700 group-hover/card:text-[#073f67] transition-colors">
+                              {service.title}
+                            </p>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )}
             </li>
           ))}
         </ul>

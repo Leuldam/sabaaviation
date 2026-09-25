@@ -28,10 +28,10 @@ export interface Service {
 export const services: Service[] = [
   {
     icon: Compass,
-    title: "Flight Support",
-    subtitle: "Permits & Crew Support",
+    title: "Flight and Permit Coordination",
+    subtitle: "One Point of Coordination",
     description:
-      "Permits, coordination & operational support for seamless flight operations.",
+      "Digitally integrated tracking to expedite operating permits, overflight clearances, and landing authorizations.",
     slug: "flight-support",
     image: "/images/service_flight_support.jpg",
     details: {
@@ -53,10 +53,10 @@ export const services: Service[] = [
   },
   {
     icon: Settings,
-    title: "Ground Handling",
-    subtitle: "Ramp & Cargo Logistics",
+    title: "Ramp and Crew Support",
+    subtitle: "Turnaround Oversight",
     description:
-      "Aircraft, passengers, ramp & cargo handling with precision and care.",
+      "Pre-arrival verification of fueling, catering, ground transportation, and hotel accommodations completed at least two hours prior to arrival.",
     slug: "ground-handling",
     image: "/images/service_ground_handling.jpg",
     details: {
@@ -78,10 +78,10 @@ export const services: Service[] = [
   },
   {
     icon: ConciergeBell,
-    title: "Passenger Services",
-    subtitle: "Check-in & Concierge",
+    title: "VIP/CIP Meet-and-Greet",
+    subtitle: "Premium Passenger Journeys",
     description:
-      "Meet & assist, lounge, baggage & special assistance for every passenger.",
+      "Confidential, high-touch terminal facilitation and expedited service in close coordination with security authorities.",
     slug: "passenger-services",
     image: "/images/service_passenger.jpg",
     details: {
@@ -103,10 +103,10 @@ export const services: Service[] = [
   },
   {
     icon: Crown,
-    title: "Crew & VIP Aviation",
-    subtitle: "Training, Logistics & Executive Terminals",
+    title: "On-Ground Operations",
+    subtitle: "Welfare & Readiness",
     description:
-      "Executive handling, private terminals & bespoke concierge services.",
+      "Ground handling liaison and support for non-scheduled flights customized to operator requirements.",
     slug: "vip-business-aviation",
     image: "/images/service_vip_aviation.jpg",
     details: {
@@ -128,10 +128,10 @@ export const services: Service[] = [
   },
   {
     icon: Boxes,
-    title: "Cargo & Logistics",
-    subtitle: "Freight, Customs & Warehousing",
+    title: "Cargo & Freight Facilitation",
+    subtitle: "Transparent Supply Chains",
     description:
-      "Cargo handling, customs & warehousing solutions for efficient operations.",
+      "Rapid, transparent, and compliant cargo movements across the aviation supply chain.",
     slug: "cargo-logistics",
     image: "/images/service_cargo.jpg",
     details: {
@@ -153,10 +153,10 @@ export const services: Service[] = [
   },
   {
     icon: Fuel,
-    title: "Fuel Coordination",
-    subtitle: "Jet A-1 Uplift & Quality Control",
+    title: "Aviation Fuel Solutions",
+    subtitle: "Reliable Uplift Coordination",
     description:
-      "Fuel uplift & quality coordination with trusted suppliers.",
+      "Dependable fuel coordination and supplier management to optimize flight economics.",
     slug: "fuel-coordination",
     image: "/images/service_flight_support.jpg",
     details: {

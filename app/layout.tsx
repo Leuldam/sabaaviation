@@ -5,6 +5,7 @@ import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import CookieConsent from '@/components/ui/CookieConsent';
+import ChatBot from '@/components/ui/ChatBot';
 import LocalBusinessJsonLd from '@/components/seo/LocalBusinessJsonLd';
 
 const helveticaNeue = localFont({
@@ -146,15 +147,15 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.sabaaviation.com'),
   title: {
-    default: 'SABA Aviation | Ground Handling & Flight Support in Ethiopia',
+    default: 'SABA Aviation | Seamless Airport Operations in Ethiopia',
     template: '%s | SABA Aviation',
   },
   description:
-    'Premium aviation ground handling, flight support, VIP services, cargo coordination, and airport operations in Addis Ababa and across Ethiopia.',
+    'Your trusted gateway to seamless airport operations. SABA Aviation provides airport facilitation, regulatory coordination, ground operations, cargo, crew, VIP, and fuel solutions across Ethiopia and East Africa.',
   keywords: [
     'SABA Aviation',
-    'ground handling in Ethiopia',
-    'flight support Ethiopia',
+    'airport facilitation Ethiopia',
+    'aviation operations support East Africa',
     'VIP aviation services Addis Ababa',
     'aircraft handling Ethiopia',
     'cargo handling Ethiopia',
@@ -165,9 +166,9 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: 'SABA Aviation | Ground Handling & Flight Support in Ethiopia',
+    title: 'SABA Aviation | Seamless Airport Operations in Ethiopia',
     description:
-      'Professional aviation support services in Ethiopia for airlines, charter operators, VIP travelers, cargo operations, and executive flight teams.',
+      'Your trusted gateway to seamless airport operations for global carriers, charter operators, cargo teams, and aviation stakeholders.',
     type: 'website',
     locale: 'en_US',
     url: 'https://www.sabaaviation.com',
@@ -177,7 +178,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'SABA Aviation',
     description:
-      'Ground handling, flight support, VIP aviation, cargo handling, and operational coordination in Ethiopia.',
+      'Airport facilitation, regulatory coordination, ground operations, VIP, crew, cargo, and fuel solutions in Ethiopia and East Africa.',
   },
   robots: {
     index: true,
@@ -200,6 +201,7 @@ export default function RootLayout({
         </div>
         <Footer />
         <CookieConsent />
+        <ChatBot />
       </body>
     </html>
   );

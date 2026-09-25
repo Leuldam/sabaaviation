@@ -18,11 +18,13 @@ import {
   FileCheck,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
   Phone,
   Plane,
   Package,
   Luggage,
   Truck,
+  Globe,
 } from "lucide-react";
 import HeroSection from "@/components/ui/HeroSection";
 import SectionHeading from "@/components/ui/SectionHeading";
@@ -153,63 +155,76 @@ export default function Home() {
     <>
       {/* ── HERO ─────────────────────────────────────────── */}
       <HeroSection
-        title="ELEVATE YOUR FLIGHT OPERATIONS IN ETHIOPIA"
-        subtitle="Professional aviation ground handling and flight support services in Ethiopia."
-        backgroundImage="/images/hero_home.png"
-        backgroundVideo="/images/backgroundvideo2.mp4"
+        topBar={
+          <div className="flex items-center justify-between gap-6">
+            {/* Left: categories with line */}
+            <div className="flex items-center gap-4">
+              <p className="text-[10px] sm:text-xs hidden md:block font-montserrat font-medium uppercase tracking-[0.25em] text-white/60">
+                GROUND HANDLING <span className="text-white/30 mx-1">/</span> FLIGHT SUPPORT <span className="text-white/30 mx-1">/</span> AVIATION SERVICES
+              </p>
+            </div>
+            {/* Right: location badge */}
+            <div className="hidden md:flex items-center gap-3 rounded-xl border border-white/15 bg-white/5 backdrop-blur-md px-4 py-2.5">
+              <Globe size={22} className="text-white/60" />
+              <div>
+                <p className="text-[11px] font-montserrat font-semibold text-white/90 tracking-wide">
+                  Ethiopia <span className="inline-block mx-1 text-white/40">→</span> East Africa
+                </p>
+                <p className="text-[9px] font-montserrat font-medium uppercase tracking-[0.2em] text-[#d1b16a]/80">
+                  AND KEY INTERNATIONAL GATEWAYS
+                </p>
+              </div>
+            </div>
+          </div>
+        }
+        title={
+          <h1 className="text-left">
+            <span className="block font-serif italic font-normal text-white/90 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl leading-tight mb-1">
+              Welcome to
+            </span>
+            <span className="block font-helvetica font-black uppercase text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[0.92] tracking-tight">
+              SABA AVIATION
+            </span>
+            <span className="block font-montserrat font-light uppercase text-white/85 text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl tracking-[0.35em] mt-1">
+              SERVICE PLC
+            </span>
+          </h1>
+        }
+        subtitle="Your trusted partner in comprehensive airport facilitation and aviation support across Ethiopia, East Africa, and key international gateways."
+        backgroundVideo="/images/background22.mp4"
         fullHeight
       >
 
-        {/* ── BOOKING CTA ── */}
+        {/* ── CTA Buttons ── */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center gap-4 mb-8"
+          className="flex flex-row items-center gap-3 sm:gap-4 mb-10 w-full sm:w-auto max-w-sm sm:max-w-none"
         >
-          {/* Glowing pill button */}
+          <Link
+            href="/services"
+            className="group flex-1 sm:flex-none flex justify-center items-center gap-2 sm:gap-3 border-2 border-white/30 text-white font-montserrat text-[10px] sm:text-xs font-bold uppercase tracking-[0.15em] sm:tracking-[0.2em] px-2 sm:px-7 py-3 sm:py-3.5 rounded-full transition-all duration-300 hover:bg-white/10 hover:border-white/50 whitespace-nowrap"
+          >
+            <span>SERVICES</span>
+            <ArrowRight size={14} className="stroke-[2.5] transition-transform duration-300 group-hover:translate-x-1" />
+          </Link>
           <Link
             href="/booking"
-            className="group relative inline-flex items-center gap-3 bg-[#073f67] text-white font-poppins text-xs sm:text-sm uppercase tracking-widest px-5 py-3 rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(7,63,103,0.45)]"
+            className="group flex-1 sm:flex-none flex justify-center items-center gap-2 sm:gap-3 border-2 border-white/30 text-white font-montserrat text-[10px] sm:text-xs font-bold uppercase tracking-[0.15em] sm:tracking-[0.2em] px-2 sm:px-7 py-3 sm:py-3.5 rounded-full transition-all duration-300 hover:bg-white/10 hover:border-white/50 whitespace-nowrap"
           >
-            {/* Animated shimmer */}
-            <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-            <span className="relative">Book now</span>
-            <span className="relative flex items-center justify-center w-6 h-6 rounded-full bg-midnight/20 group-hover:bg-midnight/30 transition-colors">
-              <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.8}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </span>
+            <span>BOOKING</span>
+            <ArrowRight size={14} className="stroke-[2.5] transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
-
-          {/* Pulsing ring + divider + availability text */}
-          
         </motion.div>
 
-        {/* Trust badges */}
-        <div className="flex flex-row items-center font-montserrat font-medium uppercase tracking-widest justify-between gap-3 sm:gap-6 pt-5 sm:pt-2 border-t border-white/10 w-full">
-          <div className="flex items-center gap-2.5 sm:gap-4 shrink-0">
-            <div className="w-6 h-6 sm:w-12 sm:h-12 rounded-full border border-warm-gold flex items-center justify-center">
-              <Clock size={10} className="text-gold sm:w-5 sm:h-5" />
-            </div>
-            <div>
-              <p className="text-white text-[4px] font-montserrat font-semibold sm:text-base">24/7</p>
-              <p className="text-white text-[4px] leading-tight sm:text-xs">Operational<br className="sm:hidden" /> Support</p>
-            </div>
-          </div>
+        {/* ── Bottom service pillars bar ── */}
 
-          <div className="w-px h-7 sm:h-12 bg-white/10 shrink-0" />
 
-          <div className="text-right">
-            <p className="text-white text-[4px] leading-tight sm:text-xs sm:leading-relaxed">
-              Your Trusted Aviation Partner<br className="hidden sm:block" /> in Ethiopia
-            </p>
-          </div>
-        </div>
+        {/* Scroll down indicator */}
       </HeroSection>
 
-      {/* ── PARTNER LOGOS ────────────────────────────────── */}
-      <PartnerLogos />
+
 
       {/* ── UNIFIED LIGHT GRADIENT CONTENT ──────────────── */}
       <div className="bg-gradient-to-b from-white to-gray-200">
@@ -218,36 +233,44 @@ export default function Home() {
 
           <div className="container-max relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-16 items-center">
-              <div className="relative order-2 lg:order-1">
-                <div className="mb-5 inline-flex items-center gap-2.5 rounded-full border border-[#073f67]/15 bg-white/80 px-3 py-1.5 shadow-[0_14px_28px_rgba(7,63,103,0.08)] backdrop-blur-sm">
-                  <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.24em] uppercase text-[#073f67]">About SABA</span>
+              <ScrollFloat
+                distance={50}
+                scrub={1.2}
+                delay={0}
+                className="relative order-2 lg:order-1"
+              >
+                <div className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-[#073f67]/15 bg-white/80 px-4 py-2 shadow-[0_14px_28px_rgba(7,63,103,0.08)] backdrop-blur-sm">
+                  <span className="relative flex h-2 w-2">
+                  </span>
+                  <span className="text-[10px] sm:text-[11px] font-bold tracking-[0.25em] uppercase text-[#073f67]">About SABA</span>
                 </div>
 
-                <h2 className="text-3xl sm:text-4xl md:text-[3.2rem] lg:text-[4rem] font-black leading-[0.95] tracking-[-0.06em] text-midnight mb-5">
+                <h2 className="text-3xl sm:text-4xl md:text-[3.5rem] lg:text-[4.2rem] font-black leading-[0.92] tracking-[-0.04em] text-midnight mb-6">
                   Built for
-                  <span className="block text-[#073f67] mt-2">confident operations.</span>
+                  <span className="block mt-2 bg-gradient-to-r from-[#073f67] via-[#0a5a8a] to-[#d1b16a] bg-clip-text text-transparent pb-2 drop-shadow-sm">
+                    confident operations.
+                  </span>
                 </h2>
 
-                <div className="mb-5 h-[3px] w-20 rounded-full bg-gradient-to-r from-[#073f67] to-[#d1b16a]" />
+                <div className="mb-6 h-[3px] w-24 rounded-full bg-gradient-to-r from-[#073f67] to-[#d1b16a]" />
 
-                <p className="max-w-xl text-sm sm:text-base leading-8 text-midnight/80 font-helvetica mb-8">
-                  SABA Aviation Service &amp; Flight Support PLC provides structured, dependable aviation
-                  support across Ethiopia—helping operators, crew, and passengers move with speed,
-                  control, and confidence from touchdown to departure.
+                <p className="max-w-xl text-sm sm:text-base leading-[1.8] text-midnight/70 font-helvetica mb-10">
+                  SABA Aviation Service is an emerging leader in airport support, facilitation, and aviation services. Headquartered in Ethiopia, we deliver innovative, technology-enabled, and world-class solutions across East Africa and strategic international gateway airports. Guided by a vision of sustainable economic value creation and aviation talent development, we are shaping the future of seamless air transport connectivity for global carriers, charter operators, and industry stakeholders.
                 </p>
 
-                <div className="grid grid-cols-3 sm:grid-cols-3 gap-3 mb-8">
+                <div className="grid grid-cols-3 sm:grid-cols-3 gap-4 mb-10">
                   {[
                     { value: "24/7", label: "Operations" },
-                    { value: "12+", label: "Years" },
+                    { value: "35+", label: "Years" },
                     { value: "98%", label: "Reliability" },
                   ].map((item) => (
                     <div
                       key={item.label}
-                      className="rounded-2xl border border-slate-200 bg-white/80 p-4 shadow-[0_18px_35px_rgba(15,23,42,0.05)]"
+                      className="group/stat relative overflow-hidden rounded-2xl border border-white/60 bg-white/40 p-4 sm:p-5 backdrop-blur-xl shadow-[0_8px_30px_rgba(7,63,103,0.06)] hover:shadow-[0_15px_40px_rgba(7,63,103,0.15)] transition-all duration-500 hover:-translate-y-1.5"
                     >
-                      <p className="text-2xl font-black leading-none text-[#073f67] mb-2">{item.value}</p>
-                      <p className="text-[10px] uppercase tracking-[0.16em] text-slate-500">{item.label}</p>
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/90 via-white/40 to-transparent opacity-0 group-hover/stat:opacity-100 transition-opacity duration-500" />
+                      <p className="relative z-10 text-2xl sm:text-3xl lg:text-4xl font-black leading-none bg-gradient-to-br from-[#073f67] to-[#0a5a8a] bg-clip-text text-transparent mb-2 group-hover/stat:scale-105 origin-left transition-transform duration-500">{item.value}</p>
+                      <p className="relative z-10 text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] text-[#073f67]/60 group-hover/stat:text-[#073f67]/90 transition-colors duration-300">{item.label}</p>
                     </div>
                   ))}
                 </div>
@@ -255,67 +278,77 @@ export default function Home() {
                 <div className="flex flex-col sm:flex-row items-center gap-4">
                   <Link
                     href="/about"
-                    className="group inline-flex items-center gap-2.5 rounded-full bg-[#073f67] px-6 py-3 text-[11px] sm:text-xs font-bold uppercase tracking-[0.18em] text-white shadow-[0_18px_35px_rgba(7,63,103,0.28)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#052f4d]"
+                    className="group inline-flex items-center gap-2.5 rounded-full bg-[#073f67] px-7 py-3.5 text-xs font-black uppercase tracking-[0.2em] text-white shadow-[0_18px_35px_rgba(7,63,103,0.32)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#052f4d] hover:shadow-[0_20px_40px_rgba(7,63,103,0.45)]"
                   >
                     More About Us
-                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 transition-transform duration-300 group-hover:translate-x-1">
-                      <ArrowRight size={14} />
+                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/15 transition-transform duration-300 group-hover:translate-x-1">
+                      <ArrowRight size={14} className="stroke-[2.5]" />
                     </span>
                   </Link>
-
-                  <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] text-slate-500">
-                    <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.85)]" />
-                    Trusted delivery
-                  </div>
                 </div>
-              </div>
+              </ScrollFloat>
 
-              <div className="relative order-1 lg:order-2">
+              <ScrollFloat
+                distance={90}
+                scrub={1.5}
+                delay={0.15}
+                className="relative order-1 lg:order-2"
+              >
                 <div className="absolute -top-10 -left-8 h-28 w-28 rounded-full bg-[#073f67]/10 blur-3xl" />
                 <div className="absolute -bottom-12 -right-3 h-28 w-28 rounded-full bg-[#d1b16a]/18 blur-3xl" />
 
                 <div className="relative mx-auto max-w-[560px] rounded-[2rem] border border-white/90 bg-white p-2.5 shadow-[0_30px_80px_rgba(15,23,42,0.12)]">
-                  <div className="relative h-[300px] sm:h-[370px] lg:h-[450px] overflow-hidden rounded-[1.6rem]">
+                  <div className="relative h-[340px] sm:h-[400px] lg:h-[480px] overflow-hidden rounded-[1.6rem]">
                     <Image
                       src="/images/backgroundimage2.png"
                       alt="SABA Aviation team"
                       fill
                       className="object-cover scale-[1.05]"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#071c2f]/90 via-[#071c2f]/30 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#071c2f]/95 via-[#071c2f]/40 to-transparent" />
 
-                    <div className="absolute left-5 top-5 right-5 flex items-center justify-between gap-3">
-                      <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.2em] text-white/90 backdrop-blur-md">
-                        Est. 2013
-                      </span>
-                      <span className="rounded-full border border-[#d1b16a]/30 bg-[#d1b16a]/10 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.2em] text-[#f4e4b3] backdrop-blur-md">
+                    <div className="absolute   top-5 right-5 flex justify-between gap-3">
+
+                      <span className="rounded-full border border-[#d1b16a]/40 bg-[#d1b16a]/15 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-[#f4e4b3] backdrop-blur-md">
                         Corporate ready
                       </span>
                     </div>
 
-                    <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
-                      <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[10px] uppercase tracking-[0.18em] text-white/90 backdrop-blur-md">
-                        
-                        Efficient support network
-                      </div>
+                    <div className="absolute inset-x-0 bottom-0 p-4 sm:p-6">
+                      <div className="relative group">
+                        {/* Ambient glow removed as requested */}
 
-                      <div className="rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-md shadow-[0_18px_40px_rgba(0,0,0,0.15)]">
-                        <div className="flex items-center justify-between gap-3">
-                          <div>
-                            <p className="text-[10px] uppercase tracking-[0.24em] text-white/60">Core strength</p>
-                            <p className="mt-2 text-lg font-bold text-white">Ground handling & flight support</p>
+                        <Link
+                          href="/booking"
+                          className="relative block rounded-2xl border-2 border-sky-400/40 bg-gradient-to-br from-[#082038]/95 via-[#06182a]/95 to-[#04101e]/98 p-4 sm:p-5 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65),0_0_30px_rgba(14,165,233,0.25)] overflow-hidden transition-all duration-300 hover:border-sky-400/80 hover:shadow-[0_25px_60px_rgba(0,0,0,0.7),0_0_40px_rgba(14,165,233,0.45)] hover:-translate-y-1"
+                        >
+                          {/* Animated shimmer sweep */}
+                          <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-sky-300/15 to-transparent pointer-events-none" />
+
+                          {/* Content and bold CTA button */}
+                          <div className="relative flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
+                            <div>
+                              <p className="text-base sm:text-lg font-black text-white tracking-tight group-hover:text-sky-200 transition-colors duration-300">
+                                Book Flight Support
+                              </p>
+                              <p className="text-xs text-slate-300/90 font-medium mt-0.5">
+                                Permits, ground handling &amp; fast facilitation
+                              </p>
+                            </div>
+
+                            {/* BOLD Standout Action Button with blue glow */}
+                            <div className="flex-shrink-0 inline-flex items-center justify-center gap-2 rounded-xl bg-[#073f67] border border-sky-400/40 px-5 py-2.5 sm:px-5 sm:py-3 text-xs sm:text-sm font-black uppercase tracking-wider text-white shadow-[0_4px_20px_rgba(7,63,103,0.6),0_0_15px_rgba(14,165,233,0.35)] group-hover:bg-[#0a4d7d] group-hover:border-sky-300 group-hover:scale-105 group-hover:shadow-[0_6px_25px_rgba(14,165,233,0.65)] transition-all duration-300">
+                              <span>Book Now</span>
+                              <ArrowRight size={16} className="stroke-[3] transition-transform duration-300 group-hover:translate-x-1" />
+                            </div>
                           </div>
-                          <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#d1b16a]/15 text-[#d1b16a]">
-                            <Shield size={18} />
-                          </div>
-                        </div>
+                        </Link>
                       </div>
                     </div>
                   </div>
                 </div>
 
-               
-              </div>
+              </ScrollFloat>
             </div>
           </div>
         </section>
@@ -325,81 +358,81 @@ export default function Home() {
           <div className="w-full max-w-[1700px] mx-auto px-5 sm:px-8 lg:px-12">
             {/* Header matching reference UI */}
             <ScrollFloat distance={35} scrub={1.1} className="mb-12">
-            <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8">
-              {/* Left */}
-              <div className="max-w-md">
-                <div className="mb-5 inline-flex items-center gap-2.5 rounded-full border border-[#073f67]/15 bg-white/80 px-3 py-1.5 shadow-[0_14px_28px_rgba(7,63,103,0.08)] backdrop-blur-sm">
-                  <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.24em] uppercase text-[#073f67]">Service</span>
+              <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8">
+                {/* Left */}
+                <div className="max-w-md">
+                  <div className="mb-5 inline-flex items-center gap-2.5 rounded-full border border-[#073f67]/15 bg-white/80 px-3 py-1.5 shadow-[0_14px_28px_rgba(7,63,103,0.08)] backdrop-blur-sm">
+                    <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.24em] uppercase text-[#073f67]">Service</span>
+                  </div>
+
+                  <p className="text-black font-helvetica text-sm leading-relaxed max-w-base">
+                    From regulatory coordination and ground operations to VIP, cargo, crew, and fuel solutions, we keep every stakeholder aligned.
+                    Choose reliability, choose SABA.
+                  </p>
                 </div>
-                
-                <p className="text-black font-helvetica text-sm leading-relaxed max-w-base">
-                  From flight permits and ground handling to VIP concierge, we&apos;ve got you covered.
-                  Choose reliability, choose SABA.
-                </p>
-              </div>
 
-              {/* Right */}
-              <div className="flex flex-col justify-between border-l border-gray-300 pl-6 md:pl-16 max-w-lg self-stretch py-2">
-               
-                <div className="flex flex-wrap items-center justify-between gap-4 md:gap-6">
-                  {/* Call for Booking CTA Button */}
-                  <Link
-                    href="/contact"
-                    className="group inline-flex items-center gap-2.5 px-5 sm:px-6 py-2.5 rounded-full bg-[#073f67] hover:bg-[#052f4d] text-white font-montserrat font-bold text-xs sm:text-sm tracking-wide transition-all duration-300 shadow-sm hover:shadow-[0_4px_18px_rgba(7,63,103,0.35)]"
-                  >
-                    <span className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center group-hover:scale-110 transition-transform">
-                      <Phone size={12} className="text-white group-hover:rotate-12 transition-transform duration-300" />
-                    </span>
-                    <span>Call for Booking</span>
-                    <ArrowRight size={14} strokeWidth={2.5} className="group-hover:translate-x-1 transition-transform" />
-                  </Link>
+                {/* Right */}
+                <div className="flex flex-col justify-between border-l border-gray-300 pl-6 md:pl-16 mt-16 max-w-lg self-stretch py-2">
 
-                  {/* Navigation pill (< >) scrolling card by card */}
-                  <div className="flex items-center bg-white/90 border border-gray-200/90 rounded-full shadow-sm p-1">
-                    <button
-                      onClick={() => scrollByOne("left")}
-                      aria-label="Previous service"
-                      className="w-8 h-8 rounded-full flex items-center justify-center text-midnight/70 hover:text-midnight hover:bg-gray-100 active:scale-95 transition-all"
+                  <div className="flex flex-wrap items-center justify-between gap-4 md:gap-6">
+                    {/* Call for Booking CTA Button */}
+                    <Link
+                      href="/contact"
+                      className="group inline-flex items-center  gap-2.5 px-5 sm:px-6 py-2.5 rounded-full bg-[#073f67] hover:bg-[#052f4d] text-white font-montserrat font-bold text-xs sm:text-sm tracking-wide transition-all duration-300 shadow-sm hover:shadow-[0_4px_18px_rgba(7,63,103,0.35)]"
                     >
-                      <ChevronLeft size={16} strokeWidth={2.4} />
-                    </button>
-                    <button
-                      onClick={() => scrollByOne("right")}
-                      aria-label="Next service"
-                      className="w-8 h-8 rounded-full flex items-center justify-center text-midnight/70 hover:text-midnight hover:bg-gray-100 active:scale-95 transition-all"
-                    >
-                      <ChevronRight size={16} strokeWidth={2.4} />
-                    </button>
+                      <span className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <Phone size={12} className="text-white group-hover:rotate-12 transition-transform duration-300" />
+                      </span>
+                      <span>Call for Booking</span>
+                      <ArrowRight size={14} strokeWidth={2.5} className="group-hover:translate-x-1 transition-transform" />
+                    </Link>
+
+                    {/* Navigation pill (< >) scrolling card by card */}
+                    <div className="flex items-center bg-white/90 border border-gray-200/90 rounded-full shadow-sm p-1">
+                      <button
+                        onClick={() => scrollByOne("left")}
+                        aria-label="Previous service"
+                        className="w-8 h-8 rounded-full flex items-center justify-center text-midnight/70 hover:text-midnight hover:bg-gray-100 active:scale-95 transition-all"
+                      >
+                        <ChevronLeft size={16} strokeWidth={2.4} />
+                      </button>
+                      <button
+                        onClick={() => scrollByOne("right")}
+                        aria-label="Next service"
+                        className="w-8 h-8 rounded-full flex items-center justify-center text-midnight/70 hover:text-midnight hover:bg-gray-100 active:scale-95 transition-all"
+                      >
+                        <ChevronRight size={16} strokeWidth={2.4} />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
             </ScrollFloat>
 
             {/* Horizontal carousel showing 4 cards on desktop, sliding one by one */}
             <ScrollFloat distance={45} scrub={1.3} className="w-full">
-            <div
-              ref={carouselRef}
-              onScroll={handleScroll}
-              className="flex gap-5 overflow-x-auto pb-4 pt-1 scrollbar-hide scroll-smooth snap-x snap-mandatory"
-            >
-              {services.map((service, i) => (
-                <div
-                  key={service.slug}
-                  className="service-card-item shrink-0 w-[85vw] sm:w-[calc(50%-10px)] lg:w-[calc(25%-15px)] snap-start"
-                >
-                  <ServiceCard
-                    slug={service.slug}
-                    icon={service.icon}
-                    title={service.title}
-                    subtitle={service.subtitle}
-                    description={service.description}
-                    image={service.image}
-                    index={i}
-                  />
-                </div>
-              ))}
-            </div>
+              <div
+                ref={carouselRef}
+                onScroll={handleScroll}
+                className="flex gap-5 overflow-x-auto pb-4 pt-1 scrollbar-hide scroll-smooth snap-x snap-mandatory"
+              >
+                {services.map((service, i) => (
+                  <div
+                    key={service.slug}
+                    className="service-card-item shrink-0 w-[85vw] sm:w-[calc(50%-10px)] lg:w-[calc(25%-15px)] snap-start"
+                  >
+                    <ServiceCard
+                      slug={service.slug}
+                      icon={service.icon}
+                      title={service.title}
+                      subtitle={service.subtitle}
+                      description={service.description}
+                      image={service.image}
+                      index={i}
+                    />
+                  </div>
+                ))}
+              </div>
             </ScrollFloat>
 
             {/* Single continuous progress line track matching reference UI */}
@@ -555,15 +588,33 @@ export default function Home() {
               We uphold the highest standards in aviation safety, compliance and operational
               excellence, ensuring your operation runs smoothly, every time.
             </p>
-            <Link href="/safety-quality" className="btn-outline text-white font-semibold text-sm sm:text-base tracking-wide inline-flex items-center gap-2.5          ">
-              OUR SAFETY & QUALITY <ArrowRight size={16} />
-            </Link>
+            <div className="flex flex-wrap items-center gap-4 mt-4">
+              <Link href="/safety-quality" className="group inline-flex items-center gap-2 border-2 border-white/30 text-white font-montserrat font-bold text-[11px] sm:text-xs tracking-[0.1em] uppercase px-5 sm:px-6 py-2.5 sm:py-3 rounded-full transition-all duration-300 hover:bg-white/10 hover:border-white/50">
+                OUR SAFETY & QUALITY <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+
+              <Link
+                href="/booking"
+                className="group relative inline-flex items-center gap-2.5 sm:gap-3 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-gradient-to-r from-[#073f67] to-[#0a5a8a] text-white font-montserrat font-bold text-[11px] sm:text-xs tracking-[0.1em] uppercase transition-all duration-500 shadow-[0_8px_25px_rgba(7,63,103,0.4)] hover:shadow-[0_12px_35px_rgba(7,63,103,0.6)] hover:-translate-y-1 overflow-hidden"
+              >
+                {/* Animated shimmer sweep */}
+                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
+
+                <span className="relative flex h-6 w-6 sm:h-7 sm:w-7 items-center justify-center rounded-full bg-white/15 backdrop-blur-md group-hover:bg-white/25 transition-colors">
+                  <Phone size={12} className="text-white group-hover:rotate-12 transition-transform duration-300" />
+                </span>
+
+                <span className="relative z-10">Book Now</span>
+
+                <ArrowRight size={14} strokeWidth={2.5} className="relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
+              </Link>
+            </div>
           </ScrollFloat>
 
           {/* Safety badges inline row */}
-          <ScrollFloat distance={70} scrub={1.2} delay={0.15} className="grid grid-cols-2 md:grid-cols-4 gap-8 -mt-2 md:-mt-24">
+          <ScrollFloat distance={70} scrub={1.2} delay={0.15} className="md:flex hidden items-center justify-center grid grid-cols-2 md:grid-cols-4 gap-40 -mt-2 md:-mt-24">
             {safetyBadges.map((badge) => (
-              <div key={badge.label} className="flex flex-col items-center text-center group">
+              <div key={badge.label} className="flex flex-col text-right items-center text-center group">
                 <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center mb-8 group-hover:border-warm-gold/50 transition-colors">
                   <badge.icon size={20} className="text-white/60 group-hover:text-warm-gold transition-colors" />
                 </div>
