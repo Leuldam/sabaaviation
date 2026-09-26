@@ -263,7 +263,7 @@ export default function OperationsPage() {
                 </div>
                 <div className="frame-reveal relative h-[280px] w-full overflow-hidden rounded-[0.25rem] sm:h-[340px] lg:h-[400px]">
                   <Image
-                    src="/images/about_story.png"
+                    src="/images/aboutstory.png"
                     alt="Ground crew marshaller"
                     fill
                     className="object-cover"

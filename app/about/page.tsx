@@ -113,7 +113,7 @@ export default function AboutPage() {
       <HeroSection
         title="About Saba"
         subtitle="Built for Modern Aviation Operations"
-        backgroundImage="/images/hero_about.png"
+        backgroundImage="/images/abouthome.png"
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "About", href: "/about" },
@@ -146,7 +146,7 @@ export default function AboutPage() {
                 <div className="pointer-events-none absolute -left-4 -top-4 h-full w-full rounded-[0.25rem] border border-[#073f67]/25" />
                 <div className="frame-reveal relative h-[440px] overflow-hidden rounded-[0.25rem]">
                   <Image
-                    src="/images/about_story.png"
+                    src="/images/aboutstory.png"
                     alt="SABA Aviation team"
                     fill
                     className="object-cover"

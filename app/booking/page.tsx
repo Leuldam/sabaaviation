@@ -46,9 +46,21 @@ export default function BookingServicesPage() {
 
   return (
     <main
-      className={`font-[var(--font-montserrat)] ${display.variable}`}
-      style={{ height: "100vh", display: "flex", overflow: "hidden" }}
+      className={`relative isolate font-[var(--font-montserrat)] ${display.variable}`}
+      style={{ height: "100dvh", display: "flex", overflow: "hidden" }}
     >
+      <div className="pointer-events-none absolute inset-0 lg:hidden">
+        <Image
+          src="/images/hero_home.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center opacity-90"
+        />
+        <div className="absolute inset-0 bg-[#031827]/55" />
+      </div>
+
       {/* ══ LEFT — hero VIDEO panel (desktop only) ══════════ */}
       <div className="relative hidden lg:flex lg:w-[48%] xl:w-[52%] flex-shrink-0 flex-col overflow-hidden">
         {/* Background video */}
@@ -109,24 +121,24 @@ export default function BookingServicesPage() {
       </div>
 
       {/* ══ RIGHT — selector panel ════════════════════════════ */}
-      <div className="flex flex-1 flex-col bg-[#FAF8F3] overflow-hidden pt-[64px]">
+      <div className="relative z-10 flex flex-1 flex-col overflow-hidden bg-transparent pt-[64px] lg:bg-[#FAF8F3]">
 
         {/* Header */}
-        <div className="flex-shrink-0 border-b border-[#073f67]/8 px-5 py-5 sm:px-8 lg:px-10">
-          <p className="mb-1 text-[9px] font-bold uppercase tracking-[0.22em] text-[#073f67]/40">
+        <div className="flex-shrink-0 border-b border-white/20 px-5 py-4 sm:px-8 lg:border-[#073f67]/8 lg:py-5 lg:px-10">
+          <p className="mb-1 text-[9px] font-bold uppercase tracking-[0.22em] text-white/65 lg:text-[#073f67]/40">
             Service Request
           </p>
-          <h1 className="font-[family-name:var(--font-display)] text-xl font-medium text-[#0b1620] sm:text-2xl">
+          <h1 className="font-[family-name:var(--font-display)] text-xl font-medium text-white sm:text-2xl lg:text-[#0b1620]">
             What can we coordinate for you?
           </h1>
         </div>
 
         {/* Main content — flex-1 with centered content */}
-        <div className="relative z-20 flex flex-1 flex-col justify-center px-5 py-6 sm:px-8 lg:px-10">
+        <div className="relative z-20 flex min-h-0 flex-1 flex-col justify-start px-5 py-4 sm:px-8 sm:py-6 lg:justify-center lg:px-10">
 
           {/* ── MOBILE: native-style dropdown ─────────────────── */}
           <div className="lg:hidden">
-            <label className="mb-2 block text-[9px] font-bold uppercase tracking-[0.22em] text-[#073f67]/50">
+            <label className="mb-2 block text-[9px] font-bold uppercase tracking-[0.22em] text-white/80 lg:text-[#073f67]/50">
               Select a service
             </label>
             <div ref={mobileDropRef} className="relative">
@@ -156,7 +168,7 @@ export default function BookingServicesPage() {
 
               {open && (
                 <div className="absolute left-0 right-0 top-[calc(100%+8px)] z-50 overflow-hidden rounded-2xl border border-[#dde3e7] bg-[#FAF8F3] shadow-2xl shadow-black/12">
-                  <div className="max-h-60 overflow-y-auto py-1.5">
+                  <div className="max-h-[min(15rem,40dvh)] overflow-y-auto py-1.5">
                     {services.map((service) => {
                       const ServiceIcon = service.icon;
                       const active = service.slug === selectedSlug;
@@ -190,7 +202,7 @@ export default function BookingServicesPage() {
             </div>
 
             {/* Mobile description */}
-            <p className="mt-3 text-xs leading-6 text-[#6b7a84]">
+            <p className="mt-3 text-xs leading-6 text-white/85">
               {selected.description}
             </p>
           </div>
@@ -291,15 +303,15 @@ export default function BookingServicesPage() {
         </div>
 
         {/* ── Mobile CTA bar ──────────────────────────────────── */}
-        <div className="relative z-10 flex-shrink-0 border-t border-[#073f67]/8 bg-white/80 p-4 backdrop-blur-sm lg:hidden">
+        <div className="relative z-10 flex-shrink-0 p-4 lg:hidden">
           <div className="mb-3 flex items-center gap-3">
             <div className="relative h-12 w-16 flex-shrink-0 overflow-hidden rounded-lg">
               <Image src={selected.image} alt={selected.title} fill sizes="64px" className="object-cover" />
               <div className="absolute inset-0 bg-[#073f67]/30" />
             </div>
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-semibold text-[#0b1620]">{selected.title}</p>
-              <p className="text-[11px] text-[#8a969e]">Selected service</p>
+              <p className="truncate text-sm font-semibold text-white">{selected.title}</p>
+              <p className="text-[11px] text-white/65">Selected service</p>
             </div>
           </div>
           <Link
@@ -308,9 +320,9 @@ export default function BookingServicesPage() {
           >
             Book This Service <ArrowRight size={14} />
           </Link>
-          <p className="mt-2 text-center text-[10px] text-[#9aabb6]">
+          <p className="mt-2 text-center text-[10px] text-white/65">
             Not sure?{" "}
-            <a href="mailto:ops@sabaaviation.com" className="text-[#073f67] font-semibold">Email us</a>
+            <a href="mailto:ops@sabaaviation.com" className="font-semibold text-[#b9d8eb]"> Contact us</a>
           </p>
         </div>
 
@@ -319,7 +331,7 @@ export default function BookingServicesPage() {
           <p className="text-[10px] text-[#9aabb6]">
             Not sure?{" "}
             <a href="mailto:ops@sabaaviation.com" className="text-[#073f67] font-semibold hover:underline">
-              Email our ops desk
+             contact
             </a>
           </p>
           <p className="text-[10px] text-[#9aabb6]">Takes ~2 minutes &bull; Responds within the hour</p>

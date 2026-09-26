@@ -109,7 +109,7 @@ const stats = [
   { value: "99.8%", label: "Safety Compliance Rate", icon: Target },
   { value: "24/7", label: "Safety Monitoring", icon: Shield },
   { value: "500+", label: "Hours Annual Training", icon: Users },
-  { value: "Zero", label: "Accident Target", icon: TrendingUp },
+  { value: "Zero", label: "Accident ", icon: TrendingUp },
 ];
 
 function PillarRow({
@@ -309,7 +309,7 @@ export default function SafetyQualityPage() {
                   <CornerMarks />
                 </div>
                 <div className="frame-reveal relative h-[320px] w-full overflow-hidden rounded-[0.25rem] sm:h-[400px] lg:h-[460px]">
-                  <Image src="/images/about_story.png" alt="Safety operations" fill className="object-cover" />
+                  <Image src="/images/aboutstory.png" alt="Safety operations" fill className="object-cover" />
                 </div>
               </div>
             </div>

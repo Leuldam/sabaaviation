@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function ContactSection() {
   return (
-    <section className="py-16 md:py-20 bg-[#F7F7F7]">
+    <section className="py-16 md:py-20 bg-[#FAF8F3]">
       <div className="w-full px-6 md:px-12 lg:px-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

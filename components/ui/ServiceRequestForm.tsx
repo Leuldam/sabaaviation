@@ -154,7 +154,7 @@ export default function ServiceRequestForm({
 
           <div>
             <label htmlFor="company" className="mb-1 block text-[8px] font-semibold uppercase tracking-[0.18em] text-midnight/60 sm:text-[9px]">
-              Company / Operator
+              Company
             </label>
             <input
               id="company"

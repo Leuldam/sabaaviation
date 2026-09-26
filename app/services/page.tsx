@@ -44,7 +44,7 @@ export default function ServicesPage() {
       <HeroSection
         title="Our Services"
         subtitle="End-to-End Aviation Support, Professionally Delivered."
-        backgroundImage="/images/hero_services.png"
+        backgroundImage="/images/heorser.png"
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Services", href: "/services" },
@@ -88,7 +88,7 @@ export default function ServicesPage() {
               <ScrollFloat distance={80} scrub={1.8} delay={0.1}>
                 <div className="relative h-[320px] w-full overflow-hidden rounded-[0.3rem] sm:h-[400px] lg:h-[450px]">
                   <Image
-                    src="/images/hero_services.png"
+                    src="/images/heorser.png"
                     alt="SABA Aviation Services"
                     fill
                     className="object-cover"
